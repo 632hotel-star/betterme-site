@@ -17,7 +17,7 @@ BM.strings = {
       'cta.badgeAlt': 'Download on the App Store',
       'hero.l1': 'Everything you need for the gym.',
       'hero.l2': 'In one app.',
-      'hero.note': 'For iPhone · Try it free for 3 days',
+      'hero.note': 'If the link doesn’t open, open it in Safari',
 
       'workouts.eyebrow': 'Workouts',
       'workouts.title': 'Your exercises, your plan, your strength.',
@@ -61,7 +61,7 @@ BM.strings = {
       'pricing.title': 'Why pay for more than one subscription?',
 
       'end.title': 'Ready to start?',
-      'end.note': 'Try it free for 3 days, no payment needed.',
+      'end.note': 'If the link doesn’t open, open it in Safari',
       'end.linksLabel': 'Links',
       'end.privacy': 'Privacy',
       'end.terms': 'Terms',
