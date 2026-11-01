@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="ar" dir="rtl" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>BetterMe · كل شيء تحتاجه للنادي في تطبيق واحد</title>
+  <meta name="description" content="تمارين، تغذية، متابعة، وذكاء اصطناعي يعرف بياناتك، مع ستريكات ومنافسة بين الأصدقاء. كل هذا في تطبيق واحد وتحت اشتراك واحد.">
+  <meta name="theme-color" content="#0B0B0D">
+  <meta name="color-scheme" content="dark">
+  <meta name="apple-itunes-app" content="app-id=6825474864">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="BetterMe · كل شيء تحتاجه للنادي في تطبيق واحد">
+  <meta property="og:description" content="تمارين، تغذية، متابعة، وذكاء اصطناعي يعرف بياناتك. كل هذا في تطبيق واحد.">
+  <meta property="og:url" content="https://betterme.fitness/">
+  <meta property="og:image" content="https://betterme.fitness/assets/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="canonical" href="https://betterme.fitness/">
+  <link rel="alternate" hreflang="ar" href="https://betterme.fitness/">
+  <link rel="alternate" hreflang="en" href="https://betterme.fitness/?lang=en">
+  <link rel="alternate" hreflang="x-default" href="https://betterme.fitness/">
+  <script>
+    // Language and motion flags before first paint (no flash of the wrong language).
+    (function () {
+      var d = document.documentElement, q = null, s = null;
+      try { q = new URLSearchParams(location.search).get('lang'); } catch (e) {}
+      try { s = localStorage.getItem('bm-lang'); } catch (e) {}
+      var lang = (q === 'en' || q === 'ar') ? q : (s === 'en' || s === 'ar') ? s : 'ar';
+      d.className = d.className.replace('no-js', 'js');
+      if (lang === 'en') { d.lang = 'en'; d.dir = 'ltr'; d.classList.add('i18n-pending'); }
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap">
+  <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+  <a class="skip" href="#main" data-i18n="nav.skip">تخطَّ إلى المحتوى</a>
+
+  <header class="nav" id="nav">
+    <div class="wrap nav-in">
+      <a class="nav-brand" href="#top" aria-label="BetterMe">
+        <img src="assets/wordmark.png" width="928" height="207" alt="BetterMe">
+      </a>
+      <div class="nav-actions">
+        <button class="nav-lang" type="button" id="lang-toggle" lang="en" data-i18n="nav.lang" data-i18n-attr="aria-label:nav.langLabel" aria-label="Switch to English">English</button>
+        <a class="nav-cta js-store" href="https://apps.apple.com/app/id6825474864" data-i18n="nav.download">حمّل التطبيق</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- Hero -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="wrap hero-in">
+        <div class="hero-mark" aria-hidden="true">
+          <img class="m-arc" src="assets/mark-arc.png" width="507" height="512" alt="">
+          <img class="m-head" src="assets/mark-head.png" width="507" height="512" alt="">
+          <img class="m-star" src="assets/mark-star.png" width="507" height="512" alt="">
+        </div>
+        <p class="hero-name"><img src="assets/wordmark-text.png" width="665" height="109" alt="BetterMe"></p>
+        <h1 class="hero-title" id="hero-title">
+          <span class="line" data-i18n="hero.l1">كل شيء تحتاجه للنادي.</span>
+          <span class="line" data-i18n="hero.l2">في تطبيق واحد.</span>
+        </h1>
+        <div class="hero-cta">
+          <a class="badge js-store" href="https://apps.apple.com/app/id6825474864">
+            <img class="js-badge" src="https://toolbox.marketingtools.apple.com/api/badges/download-on-the-app-store/black/ar-sa?size=250x83" width="250" height="83" alt="حمّله من App Store" data-i18n-attr="alt:cta.badgeAlt">
+          </a>
+          <p class="hero-note" data-i18n="hero.note">على iPhone · جرّبه 3 أيام مجانًا</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- I. Workouts -->
+    <section class="feature split" id="workouts" aria-labelledby="t-workouts">
+      <div class="wrap feature-in">
+        <header class="copy">
+          <p class="eyebrow"><span class="num" aria-hidden="true">I</span><span data-i18n="workouts.eyebrow">التمارين</span></p>
+          <h2 id="t-workouts" data-i18n="workouts.title">تمارينك، جدولك، وتطوّر قوتك.</h2>
+          <p class="lede" data-i18n="workouts.body">مكتبة من 450 تمرين لكل عضلات الجسم، ترتّب منها جدولك وتسجّل جولاتك وتكراراتك وأوزانك. ولكل تمرين فيديو وشرح يساعدك تفهم التكنيك الصحيح.</p>
+        </header>
+        <div class="demo" data-scene="workouts"></div>
+      </div>
+    </section>
+
+    <!-- II. Nutrition -->
+    <section class="feature stacked" id="nutrition" aria-labelledby="t-nutrition">
+      <div class="wrap feature-in">
+        <header class="copy">
+          <p class="eyebrow"><span class="num" aria-hidden="true">II</span><span data-i18n="nutrition.eyebrow">التغذية</span></p>
+          <h2 id="t-nutrition" data-i18n="nutrition.title">سعراتك، بدون تعقيد.</h2>
+          <p class="lede" data-i18n="nutrition.body">سجّل وجباتك بالطريقة اللي تريحك: اوصف وجبتك للذكاء الاصطناعي، أو أضف المنتجات والمقادير بنفسك من مكتبتنا للمنتجات السعودية. وتابع سعراتك والبروتين والكارب والدهون.</p>
+        </header>
+        <div class="demo" data-scene="nutrition"></div>
+      </div>
+    </section>
+
+    <!-- III. Stores -->
+    <section class="feature split flip" id="stores" aria-labelledby="t-stores">
+      <div class="wrap feature-in">
+        <header class="copy">
+          <p class="eyebrow"><span class="num" aria-hidden="true">III</span><span data-i18n="stores.eyebrow">المتاجر · من المستخدمين، للمستخدمين</span></p>
+          <h2 id="t-stores" data-i18n="stores.title">جدول أو وصفة؟ تلقاها عندنا.</h2>
+          <p class="lede" data-i18n="stores.body">انشر وجباتك بمكوناتها ومقاديرها وماكروزها، أو احفظ وجبات المستخدمين بضغطة زر. ونفس الشيء لجداول التمارين: تصفّح جداول المجتمع، اختر اللي يناسبك وابدأ تتمرن عليه.</p>
+        </header>
+        <div class="demo" data-scene="stores"></div>
+      </div>
+    </section>
+
+    <!-- IV. Progress -->
+    <section class="feature stacked" id="progress" aria-labelledby="t-progress">
+      <div class="wrap feature-in">
+        <header class="copy">
+          <p class="eyebrow"><span class="num" aria-hidden="true">IV</span><span data-i18n="progress.eyebrow">المتابعة</span></p>
+          <h2 id="t-progress" data-i18n="progress.title">تغيّرك يستاهل تشوفه.</h2>
+          <p class="lede" data-i18n="progress.body">سجّل وزنك يوميًا وتابع تغيّره على الرسم البياني. وصوّر جسمك من نفس الزاوية يوميًا أو أسبوعيًا، والتطبيق يجمع صورك في فيديو يوضّح تطورك مع الوقت. وصورك تبقى على جوالك، ما تنرفع لأي مكان.</p>
+        </header>
+        <div class="demo" data-scene="progress"></div>
+      </div>
+    </section>
+
+    <!-- V. AI -->
+    <section class="feature centered ai-section" id="ai" aria-labelledby="t-ai">
+      <div class="wrap feature-in">
+        <header class="copy">
+          <p class="eyebrow"><span class="num" aria-hidden="true">V</span><span data-i18n="ai.eyebrow">الذكاء الاصطناعي</span></p>
+          <h2 id="t-ai"><span class="line" data-i18n="ai.title1">ذكاء اصطناعي يعرف بياناتك.</span> <span class="line dim" data-i18n="ai.title2">مو مجرد نصائح عامة.</span></h2>
+          <p class="lede" data-i18n="ai.body">كل يوم تسجّل فيه تمارينك وأكلك ووزنك، تصير عندك معلومات يقدر الذكاء الاصطناعي يستخدمها للإجابة عن أسئلتك. تسأله إذا تقدّمك مناسب لهدفك أو تحتاج تراجع خطتك، ويجاوبك بناءً على بياناتك المسجّلة، مو كلام عام ينقال للجميع.</p>
+        </header>
+        <div class="demo" data-scene="ai"></div>
+      </div>
+    </section>
+
+    <!-- VI. Consistency -->
+    <section class="feature trio" id="consistency" aria-labelledby="t-consistency">
+      <div class="wrap feature-in">
+        <header class="copy">
+          <p class="eyebrow"><span class="num" aria-hidden="true">VI</span><span data-i18n="consistency.eyebrow">الالتزام</span></p>
+          <h2 id="t-consistency" data-i18n="consistency.title">بنساعدك تلتزم، كل يوم.</h2>
+          <p class="lede" data-i18n="consistency.body">ستريكات للنادي والتغذية والمكملات والماء والخطوات، وتذكيرات لموعد النادي والوجبات والمكملات والوزن. وكل يوم تكمّل فيه ستريكاتك تكسب نجمة، ومع النجوم يرتفع مستواك وتتطور شخصيتك الإغريقية.</p>
+        </header>
+        <div class="demo" data-scene="consistency"></div>
+      </div>
+    </section>
+
+    <!-- VII. Competition -->
+    <section class="feature split" id="competition" aria-labelledby="t-competition">
+      <div class="wrap feature-in">
+        <header class="copy">
+          <p class="eyebrow"><span class="num" aria-hidden="true">VII</span><span data-i18n="competition.eyebrow">المنافسة · مو لحالك</span></p>
+          <h2 id="t-competition" data-i18n="competition.title">نافس أخوياك. وخلّكم تتطورون.</h2>
+          <p class="lede" data-i18n="competition.body">أضف أصدقاءك وتنافسوا على الالتزام والنجوم، أو على الأوزان اللي ترفعونها في النادي، أو على تغيّر وزن الجسم، مع ترتيب واضح داخل المجموعات. والأوزان تنحسب نسبةً لوزن جسمك، وما أحد يشوف وزنك.</p>
+        </header>
+        <div class="demo" data-scene="competition"></div>
+      </div>
+    </section>
+
+    <!-- Gather -->
+    <section class="gather" id="all" aria-labelledby="t-all">
+      <div class="wrap">
+        <div class="demo" data-scene="gather">
+          <div class="stage ga">
+            <p class="ga-words">
+              <span class="w" data-i18n="gather.w1">تمارين.</span>
+              <span class="w" data-i18n="gather.w2">تغذية.</span>
+              <span class="w" data-i18n="gather.w3">متابعة.</span>
+              <span class="w" data-i18n="gather.w4">ذكاء اصطناعي.</span>
+              <span class="w" data-i18n="gather.w5">التزام.</span>
+              <span class="w" data-i18n="gather.w6">منافسة.</span>
+            </p>
+            <div class="ga-brand" aria-hidden="true"><img src="assets/mark.png" width="507" height="512" alt=""></div>
+            <h2 class="ga-title" id="t-all">
+              <span class="line" data-i18n="gather.l1">كل هذا في تطبيق واحد.</span>
+              <span class="line" data-i18n="gather.l2">وتحت اشتراك واحد.</span>
+            </h2>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing" id="pricing" aria-labelledby="t-pricing">
+      <div class="wrap pricing-in">
+        <header class="copy">
+          <p class="eyebrow"><span data-i18n="pricing.eyebrow">الاشتراك</span></p>
+          <h2 id="t-pricing" data-i18n="pricing.title">ليش تحتاج أكثر من اشتراك؟</h2>
+        </header>
+        <div class="demo" data-scene="pricing"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- End -->
+  <footer class="end" id="download" aria-labelledby="t-end">
+    <div class="wrap end-in">
+      <img class="end-mark" src="assets/mark.png" width="507" height="512" alt="">
+      <h2 id="t-end" data-i18n="end.title">جاهز تبدأ؟</h2>
+      <a class="badge js-store" href="https://apps.apple.com/app/id6825474864">
+        <img class="js-badge" src="https://toolbox.marketingtools.apple.com/api/badges/download-on-the-app-store/black/ar-sa?size=250x83" width="250" height="83" alt="حمّله من App Store" data-i18n-attr="alt:cta.badgeAlt">
+      </a>
+      <p class="end-note" data-i18n="end.note">جرّبه 3 أيام مجانًا، بدون دفع.</p>
+      <nav class="end-links" aria-label="روابط" data-i18n-attr="aria-label:end.linksLabel">
+        <a class="js-legal" data-doc="privacy" href="https://zlmxdgavlbvsznsueemi.supabase.co/storage/v1/object/public/legal/ar/privacy.txt" data-i18n="end.privacy">الخصوصية</a>
+        <a class="js-legal" data-doc="terms" href="https://zlmxdgavlbvsznsueemi.supabase.co/storage/v1/object/public/legal/ar/terms.txt" data-i18n="end.terms">الشروط</a>
+        <a class="js-legal" data-doc="support" href="https://zlmxdgavlbvsznsueemi.supabase.co/storage/v1/object/public/legal/ar/support.txt" data-i18n="end.support">الدعم</a>
+      </nav>
+      <p class="end-fine" dir="ltr">© 2026 BetterMe</p>
+    </div>
+  </footer>
+
+  <script src="js/config.js" defer></script>
+  <script src="js/strings.js" defer></script>
+  <script src="js/motion.js" defer></script>
+  <script src="js/scenes.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
