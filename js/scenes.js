@@ -730,8 +730,9 @@
       var list = h('ul', { class: 'pr-list' }, cfg.comparison.rows.map(function (r) {
         var tx = rowsT[r.key];
         return h('li', { class: 'pr-row struck' },
+          h('img', { class: 'pr-ic', src: 'assets/cmp-' + r.key + '.webp', alt: '', width: 40, height: 40 }),
           h('div', { class: 'pr-cat' },
-            h('p', null, h('b', { text: tx.cat }), cfg.comparison.showAppNames ? h('span', { class: 'pr-app' }, h('bdi', { text: r.app })) : null),
+            h('p', null, h('b', { text: tx.cat })),
             h('p', { class: 'pr-quip', text: tx.quip })),
           h('p', { class: 'pr-price' }, h('b', { class: 'num', text: BM.fmt(r.monthly, 2) }), h('span', { text: t('prPerMonth') })),
           h('i', { class: 'strike', 'aria-hidden': 'true' }));

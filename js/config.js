@@ -36,16 +36,15 @@ BM.config = {
   // own 3-day trial per account (no Apple introductory offer). Matches App Store Connect.
   price: { monthly: 5.99, yearly: 59.99, trialDays: 3 },
 
-  // "Why pay for more than one subscription?" Monthly prices as listed on each app's Saudi App Store
-  // page on `checkedOn`. Set `showAppNames: false` to show service categories only.
+  // "Why pay for more than one subscription?" Service categories with a blurred icon of the reference app
+  // (assets/cmp-<key>.webp, blur baked in), no app names. Monthly prices, Saudi App Store, `checkedOn` (README.md).
   comparison: {
     checkedOn: '2026-11-01',
-    showAppNames: true,
     rows: [
-      { key: 'calories', app: 'MyFitnessPal Premium', monthly: 77.99 },
-      { key: 'lifting', app: 'Strong PRO', monthly: 18.99 },
-      { key: 'ai', app: 'ChatGPT Plus', monthly: 89.99 },
-      { key: 'water', app: 'WaterMinder', monthly: 4.99 }
+      { key: 'calories', monthly: 77.99 },
+      { key: 'lifting', monthly: 18.99 },
+      { key: 'ai', monthly: 89.99 },
+      { key: 'water', monthly: 4.99 }
     ]
   }
 };
