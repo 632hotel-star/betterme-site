@@ -138,7 +138,7 @@ html[lang="en"] .hero-title { line-height: 1.06; }
 .hero-title .line { display: block; }
 .hero-title .line + .line { color: var(--ink-2); }
 .hero-cta { margin-top: clamp(30px, 5vh, 48px); display: flex; flex-direction: column; align-items: center; gap: 14px; }
-.hero-note { font-size: 0.88rem; color: var(--ink-3); }
+.hero-note { font-size: 0.8rem; color: var(--ink-3); }
 .badge { display: inline-block; border-radius: 12px; }
 .badge img { height: 54px; width: auto; }
 
@@ -633,7 +633,7 @@ html[dir="rtl"] .strike { transform-origin: right center; }
 .end-mark { width: 84px; height: auto; }
 .end h2 { margin-top: 22px; font-size: clamp(2.2rem, 1.4rem + 3.4vw, 3.8rem); }
 .end .badge { margin-top: 30px; }
-.end-note { margin-top: 12px; font-size: 0.88rem; color: var(--ink-3); }
+.end-note { margin-top: 12px; font-size: 0.8rem; color: var(--ink-3); }
 .end-links { margin-top: 56px; display: flex; gap: 24px; font-size: 0.88rem; }
 .end-links a { color: var(--ink-2); text-decoration: none; }
 .end-links a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
