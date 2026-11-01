@@ -600,11 +600,12 @@ html[lang="en"] .ga-title { line-height: 1.08; letter-spacing: -0.022em; }
   position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: 16px;
   padding-block: 17px; border-bottom: 1px solid var(--line);
 }
+.pr-row { grid-template-columns: 40px minmax(0, 1fr) auto; }
 .pr-total { align-items: center; }
+.pr-ic { width: 40px; height: 40px; margin-top: 2px; }
 .pr-row > :not(.strike), .pr-total > :not(.strike) { transition: opacity .35s; }
 .struck > :not(.strike) { opacity: .42; }
 .pr-cat b { font-weight: 600; font-size: 1.05rem; }
-.pr-app { margin-inline-start: 10px; font-size: 0.84rem; color: var(--ink-2); }
 .pr-quip { margin-top: 3px; font-size: 0.85rem; color: var(--ink-3); }
 .pr-price { display: flex; align-items: baseline; gap: 6px; white-space: nowrap; }
 .pr-price b { font-size: 1.25rem; font-weight: 700; }
@@ -648,8 +649,9 @@ html[dir="rtl"] .strike { transform-origin: right center; }
   .st-space { --pad: 18px; }
   .st-days li { grid-template-columns: 4.6em 3.6em minmax(0, 1fr); }
   .seg button { padding: 6px 12px; font-size: 0.82rem; }
-  .pr-app { display: block; margin: 2px 0 0; }
   .wk-svg { max-width: 230px; }
+  .pr-row { grid-template-columns: 34px minmax(0, 1fr) auto; gap: 12px; }
+  .pr-ic { width: 34px; height: 34px; }
   .fact { padding: 16px 4px 18px; }
   .fact .ref { inset-inline-end: 4px; top: 16px; }
   .fact-val b { font-size: 1.5rem; }
