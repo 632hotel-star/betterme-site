@@ -36,7 +36,10 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-behavior: smooth; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-behavior: smooth; background: var(--bg); overflow-x: clip; }
+/* iPhone Safari pans sideways when anything is wider than the screen, even with the body clipped, so the content
+   clips itself too (clip, unlike hidden, adds no scroll container). */
+main, .end { overflow-x: clip; }
 html.i18n-pending body { visibility: hidden; }
 body {
   margin: 0;
