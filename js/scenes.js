@@ -556,16 +556,16 @@
           h('b', { text: t('cmStarGain') })));
       var ch = h('div', { class: 'cm-char' },
         h('div', { class: 'char-stage' },
-          h('img', { class: 'c-from', src: 'assets/char-beginner.webp', alt: '', width: 640, height: 640 }),
-          h('img', { class: 'c-to', src: 'assets/char-strong.webp', alt: '', width: 640, height: 640 })),
+          h('img', { class: 'c-from', src: 'assets/char-strong.webp', alt: '', width: 800, height: 800 }),
+          h('img', { class: 'c-to', src: 'assets/char-beast.webp', alt: '', width: 800, height: 800 })),
         h('div', { class: 'lvl' },
           h('span', { class: 'lvl-l', text: t('cmLevel') }),
           h('b', { class: 'lvl-name', text: t('cmLevelTo') }),
-          h('span', { class: 'lvl-stars' }, h('img', { src: 'assets/icon-starLGold.png', alt: '', width: 14, height: 14 }), h('b', { class: 'num', text: '7' }), ' ' + t('cmStars'))),
+          h('span', { class: 'lvl-stars' }, h('img', { src: 'assets/icon-starLGold.png', alt: '', width: 14, height: 14 }), h('b', { class: 'num', text: '30' }), ' ' + t('cmStars'))),
         h('div', { class: 'lvl-bar', 'aria-hidden': 'true' }, h('i', { class: 'lvl-fill' })),
         h('p', { class: 'lvl-cap', text: t('cmNext') }));
       st.append(tasks, ch);
-      st.querySelector('.lvl-fill').style.transform = 'scaleX(' + (7 / 30) + ')';
+      st.querySelector('.lvl-fill').style.transform = 'scaleX(' + (30 / 90) + ')';
     },
     timeline: function (st, T) {
       var data = t('cmTasks');
@@ -576,17 +576,17 @@
         T.fn(a + 0.02, a + 0.09, function (k) { gold.style.opacity = String(k); });
         T.swap(el.querySelector('.streak b'), a + 0.08, String(data[i].from), String(data[i].from + 1));
       });
-      // All of today's streaks done → one star → 7 stars is the Strong level.
+      // All of today's streaks done → one star → 30 stars is the Beast level (the app's own Strong → Beast step).
       var star = st.querySelector('.cm-star'), starImg = star.querySelector('img');
       T.fade(star, 0.52, 0.58, { y: 6 });
       T.fn(0.53, 0.62, function (k) {
         var e = E.out(k);
         starImg.style.transform = k >= 1 ? '' : 'scale(' + (0.5 + 0.5 * e) + ') rotate(' + (-25 * (1 - e)) + 'deg)';
       });
-      T.swap(st.querySelector('.lvl-stars b'), 0.64, '6', '7');
+      T.swap(st.querySelector('.lvl-stars b'), 0.64, '29', '30');
       var fill = st.querySelector('.lvl-fill');
       T.fn(0, 1, function (k, p) {
-        var f = p < 0.64 ? 6 / 7 : p < 0.76 ? lerp(6 / 7, 1, seg(p, 0.64, 0.7)) : lerp(1, 7 / 30, E.inOut(seg(p, 0.76, 0.84)));
+        var f = p < 0.64 ? 29 / 30 : p < 0.76 ? lerp(29 / 30, 1, seg(p, 0.64, 0.7)) : lerp(1, 30 / 90, E.inOut(seg(p, 0.76, 0.84)));
         fill.style.transform = 'scaleX(' + f + ')';
       });
       var from = st.querySelector('.c-from'), to = st.querySelector('.c-to');
@@ -706,9 +706,11 @@
   S.gather = {
     render: function (st) { clearStyles(st); },
     timeline: function (st, T) {
-      var w = st.getBoundingClientRect().width;
+      var box = st.getBoundingClientRect(), w = box.width;
       st.querySelectorAll('.w').forEach(function (el, i) {
-        var s = SCATTER[i % SCATTER.length], sx = s[0] * w * 0.9, sy = s[1] * 1.2;
+        // Each word starts scattered but never past the stage edge, so a phone never gets wider than its screen.
+        var s = SCATTER[i % SCATTER.length], r = el.getBoundingClientRect(), sy = s[1] * 1.2;
+        var sx = Math.max(box.left - r.left, Math.min(box.right - r.right, s[0] * w * 0.9));
         T.fn(0, 1, function (k, p) {
           var o = seg(p, i * 0.04, i * 0.04 + 0.12), m = E.inOut(seg(p, 0.24, 0.58));
           el.style.opacity = o >= 1 ? '' : String(o);
