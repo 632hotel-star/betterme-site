@@ -55,11 +55,11 @@
     } catch (e) {}
     applyLanguage(lang);
     BM.rebuildScenes();
-    requestAnimationFrame(refreshIndicators);
   }
 
   // ---------- links from the central config ----------
   document.querySelectorAll('.js-store').forEach(function (a) { a.href = cfg.appStoreUrl; });
+  document.querySelectorAll('.js-social').forEach(function (a) { a.href = cfg.social[a.getAttribute('data-net')]; });
   document.querySelectorAll('.js-badge').forEach(function (img) {
     img.addEventListener('error', function () {
       // Arabic badge unavailable: use Apple's English badge rather than a broken image.
@@ -69,16 +69,14 @@
     });
   });
 
-  // ---------- header ----------
+  // ---------- header, and the hero's scroll cue (it leaves once the visitor scrolls) ----------
   var nav = document.getElementById('nav');
-  function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 24); }
+  function onScroll() {
+    nav.classList.toggle('scrolled', window.scrollY > 24);
+    root.classList.toggle('scrolled-down', window.scrollY > 40);
+  }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
-
-  // ---------- segmented controls keep their pill under the selected item ----------
-  function refreshIndicators() {
-    document.querySelectorAll('.seg').forEach(function (g) { BM.moveIndicator(g); });
-  }
 
   // ---------- start ----------
   applyLanguage(BM.lang());
@@ -87,16 +85,14 @@
     setLanguage(BM.lang() === 'ar' ? 'en' : 'ar');
   });
 
-  // Examples measure their layout (chart size, photo stack, panel heights): rebuild them when the width changes.
+  // Examples measure their layout (chart size, card positions): rebuild them when the width changes.
   var lastW = window.innerWidth, timer = null;
   window.addEventListener('resize', function () {
     clearTimeout(timer);
     timer = setTimeout(function () {
-      refreshIndicators();
       if (Math.abs(window.innerWidth - lastW) < 40) return;
       lastW = window.innerWidth;
       BM.rebuildScenes();
     }, 180);
   });
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(refreshIndicators);
 })();

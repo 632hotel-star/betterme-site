@@ -16,6 +16,12 @@ BM.config = {
     en: 'https://toolbox.marketingtools.apple.com/api/badges/download-on-the-app-store/black/en-us?size=250x83'
   },
 
+  // BetterMe's own accounts (checked 2026-11-03).
+  social: {
+    tiktok: 'https://www.tiktok.com/@betterme.ai1',
+    instagram: 'https://www.instagram.com/betterme.ai1/'
+  },
+
   // Public legal pages (same text as in the app). Source: docs/APP_STORE_SUBMISSION.md §1.
   legal: {
     privacy: {
