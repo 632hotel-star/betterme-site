@@ -38,9 +38,9 @@ BM.config = {
     }
   },
 
-  // BetterMe's own published prices (Saudi App Store): monthly 5.99, yearly 59.99, plus the app's
-  // own 3-day trial per account (no Apple introductory offer). Matches App Store Connect.
-  price: { monthly: 5.99, yearly: 59.99, trialDays: 3 },
+  // BetterMe's own price (Saudi App Store): monthly 7.99 SAR since 2026-11-04 (owner), plus the app's own 3-day
+  // trial per account (no Apple introductory offer). The page shows the monthly price only; yearly is not re-checked.
+  price: { monthly: 7.99, yearly: 59.99, trialDays: 3 },
 
   // "Why pay for more than one subscription?" Service categories with a blurred icon of the reference app
   // (assets/cmp-<key>.webp, blur baked in), no app names. Monthly prices, Saudi App Store, `checkedOn` (README.md).
