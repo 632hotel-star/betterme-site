@@ -1,7 +1,6 @@
 /*
- * Text. Arabic static text lives in index.html (it is the page's own language); `static.en` holds the
- * English for every [data-i18n] key. `demo` holds the text the animated examples draw, in both languages.
- * Every example reflects what BetterMe 1.0 actually does; app labels are copied from the app's strings.
+ * Text. Arabic lives in index.html (it is the page's own language); `static.en` holds the English for every
+ * [data-i18n] key, and `rows` the pricing categories in both languages. Every claim matches the app on main (1.0.3).
  */
 window.BM = window.BM || {};
 
@@ -9,60 +8,76 @@ BM.strings = {
   static: {
     en: {
       'meta.title': 'BetterMe · Everything you need for the gym, in one app',
-      'meta.description': 'Workouts, nutrition, progress and an AI that knows your data, plus streaks and competing with friends. All in one app, under one subscription.',
+      'meta.description': 'Workouts on video, AI nutrition, progress and a coach that knows your numbers. All in one app, under one subscription.',
       'nav.skip': 'Skip to content',
       'nav.lang': 'العربية',
       'nav.langLabel': 'التبديل إلى العربية',
-      'nav.download': 'Download',
+      'nav.download': 'Download the app',
+      'nav.downloadShort': 'Download',
       'cta.badgeAlt': 'Download on the App Store',
-      'hero.l1': 'Everything you need for the gym.',
-      'hero.l2': 'In one app.',
-      'hero.note': 'If the link doesn’t open, open it in Safari',
-      'hero.scroll': 'Scroll down. Each feature plays as you go.',
-      'social.follow': 'Follow us',
       'social.tiktok': 'BetterMe on TikTok',
       'social.instagram': 'BetterMe on Instagram',
 
-      'workouts.eyebrow': 'Workouts',
-      'workouts.title': 'Log your workout. Watch your strength grow.',
-      'workouts.body': '450 exercises, each with a video and a guide.',
+      'hero.l1': 'Everything you need for the gym.',
+      'hero.l2': 'In one app.',
+      'hero.sub': 'Workouts on video, AI nutrition, and a coach that knows your numbers.',
+      'hero.note': 'If the link doesn’t open, open it in Safari',
+      'hero.scroll': 'Scroll to see the app',
 
-      'nutrition.eyebrow': 'Nutrition',
-      'nutrition.title': 'Describe your meal. We count it.',
-      'nutrition.body': 'Or pick from the Saudi product library.',
+      'tour.title1': 'Five tabs.',
+      'tour.title2': 'Everything in its place.',
+      'tour.home.tab': 'Home',
+      'tour.home.t': 'Your whole day on one screen.',
+      'tour.home.d': 'Stars, streaks and today’s workout, the moment you open it.',
+      'tour.home.alt': 'The Home tab in BetterMe',
+      'tour.workout.tab': 'Workout',
+      'tour.workout.t': 'Your plan is ready. Every exercise on video.',
+      'tour.workout.d': 'Know what to train today, and how to do it right.',
+      'tour.workout.alt': 'The Workout tab in BetterMe',
+      'tour.nutrition.tab': 'Nutrition',
+      'tour.nutrition.t': 'Snap your food. The calories count themselves.',
+      'tour.nutrition.d': 'Or describe it in a few words, or scan the barcode.',
+      'tour.nutrition.alt': 'The Nutrition tab in BetterMe',
+      'tour.progress.tab': 'Progress',
+      'tour.progress.t': 'Watch your body change.',
+      'tour.progress.d': 'Weight, photos, your plan and InBody reports, all in front of you.',
+      'tour.progress.alt': 'The Progress tab in BetterMe',
+      'tour.friends.tab': 'Friends',
+      'tour.friends.t': 'Race your friends to the top.',
+      'tour.friends.d': 'On commitment and lifts. Nobody sees your weight.',
+      'tour.friends.alt': 'A friends group in BetterMe',
 
-      'stores.eyebrow': 'Stores',
-      'stores.title': 'Meals and programs from other users.',
-      'stores.body': 'Publish your meal, or save someone’s program in a tap.',
+      'new.title': 'New in BetterMe',
+      'new.photo.t': 'Snap your plate. We’ll do the math.',
+      'new.photo.d': 'AI reads the calories, protein, carbs and fat from a single photo.',
+      'new.photo.alt': 'Clip: a meal photo and its calorie estimate',
+      'new.coach.t': 'AI that answers from your own data.',
+      'new.coach.d': 'It knows your workouts, meals and weight, and gives you your next step.',
+      'new.coach.alt': 'The AI coach answering from your data',
+      'new.clips.t': 'exercises, all on video.',
+      'new.clips.d': 'See the right form before you lift.',
+      'new.inbody.t': 'Snap your InBody. Know if you’re on track.',
+      'new.inbody.d': 'And see the change from scan to scan.',
+      'new.live.t': 'Train with the clip in front of you.',
+      'new.live.d': 'A rest timer, a 3-minute warm-up, and every set saved.',
+      'new.live.alt': 'Clip: a live workout with the exercise video and the rest timer',
+      'new.lock.t': 'Rest counts down on your Lock Screen.',
+      'new.lock.d': 'And widgets show your day without opening the app.',
 
-      'progress.eyebrow': 'Progress',
-      'progress.title': 'See your change for yourself.',
-      'progress.body': 'Your weight on a chart, your photos in a video that stays on your phone.',
+      'levels.title': 'Finish your day, earn a star.',
+      'levels.body': 'Collect stars, and your character ranks up with you.',
+      'levels.l1': 'Beginner',
+      'levels.l2': 'Strong',
+      'levels.l3': 'Beast',
+      'levels.l4': 'Iron Eater',
 
-      'ai.eyebrow': 'AI coach',
-      'ai.title': 'AI that knows your data.',
-      'ai.body': 'Ask about your progress. It answers from your numbers.',
-
-      'consistency.eyebrow': 'Consistency',
-      'consistency.title': 'Finish your day, earn a star.',
-      'consistency.body': 'Streaks and reminders. Stars level up your character.',
-
-      'competition.eyebrow': 'Competition',
-      'competition.title': 'Compete with your friends.',
-      'competition.body': 'On commitment, lifts or weight change. Nobody sees your weight.',
-
-      'gather.w1': 'Workouts.',
-      'gather.w2': 'Nutrition.',
-      'gather.w3': 'Stores.',
-      'gather.w4': 'Progress.',
-      'gather.w5': 'AI.',
-      'gather.w6': 'Consistency.',
-      'gather.w7': 'Competition.',
-      'gather.l1': 'All of it in one app.',
-      'gather.l2': 'Under one subscription.',
-
-      'pricing.eyebrow': 'Pricing',
-      'pricing.title': 'Why pay for more than one subscription?',
+      'price.title': 'One subscription instead of four.',
+      'price.per': 'SAR / month',
+      'price.trialA': 'Try it free for',
+      'price.trialB': 'days.',
+      'price.others': 'If you paid for each one separately',
+      'price.total': 'Total, every month',
+      'price.currency': 'SAR',
 
       'end.title': 'Ready to start?',
       'end.note': 'If the link doesn’t open, open it in Safari',
@@ -73,111 +88,9 @@ BM.strings = {
     }
   },
 
-  demo: {
-    ar: {
-      kg: 'كجم', g: 'غ', kcal: 'سعرة',
-      protein: 'بروتين', carbs: 'كارب', fat: 'دهون',
-
-      // Workouts
-      wkFig: 'فيديو وشرح لكل تمرين',
-      wkPR: 'رقم قياسي',
-
-      // Nutrition (an AI-style estimate for the described meal)
-      nuMeal: 'سماش برقر منزلي بجبن شيدر',
-
-      // Stores: one meal goes out to the store, one program comes back
-      stBoxes: ['المتجر', 'عندك'],
-      stCards: {
-        meal: { tag: 'وجبة', title: 'شوفان بالبروتين', sub: '536 سعرة' },
-        plan: { tag: 'جدول', title: 'دفع · سحب · أرجل', sub: '3 أيام بالأسبوع' }
-      },
-      stPublish: 'انشر وجبتك',
-      stSave: 'احفظ جدول',
-
-      // Progress
-      pgWeight: 'وزنك هذا الشهر',
-      pgVideo: 'صورك في فيديو',
-      pgDates: ['1 أكتوبر', '8 أكتوبر', '15 أكتوبر', '22 أكتوبر', '29 أكتوبر'],
-      pgPrivate: 'على جوالك فقط',
-
-      // AI
-      aiQuestion: 'هل أنا ماشي صح؟',
-      aiFacts: [
-        { label: 'الوزن', value: '82.1', unit: 'كجم' },
-        { label: 'Bench Press', value: '62.5', unit: 'كجم' },
-        { label: 'البروتين', value: '118', unit: 'غ' }
-      ],
-      aiAnswer: [
-        { k: 0, text: 'وزنك ينزل نص كيلو بالأسبوع. ممتاز.' },
-        { k: 1, text: 'قوتك زادت من 57.5 إلى 62.5 كجم.' },
-        { k: 2, warn: true, text: 'زِد البروتين: 118 من هدفك 150 غ.' }
-      ],
-
-      // Consistency (streak names and level names from the app)
-      cmTasks: [{ key: 'water', name: 'الماء' }, { key: 'supplements', name: 'المكملات' }, { key: 'training', name: 'النادي' }],
-      cmStarGain: '+1 نجمة',
-      cmLevelFrom: 'قوي',
-      cmLevelTo: 'وحش',
-
-      // Competition (group criteria from the app)
-      cpCrit: [{ key: 'commitment', name: 'الالتزام' }, { key: 'lifts', name: 'الأوزان' }, { key: 'weight', name: 'تغيّر الوزن' }],
-      cpUsers: { fahad: 'فهد', you: 'أنت', khalid: 'خالد' },
-
-      // Pricing
-      prRows: { calories: 'حساب السعرات', lifting: 'تسجيل الأوزان', ai: 'الذكاء الاصطناعي', water: 'متابعة الماء' },
-      prPerMonth: 'ريال / شهر',
-      prTotal: 'المجموع كل شهر',
-      prCurrency: 'ريال',
-      prOne: 'تطبيق واحد. اشتراك واحد. وذكاء اصطناعي يعرف تقدّمك.'
-    },
-
-    en: {
-      kg: 'kg', g: 'g', kcal: 'kcal',
-      protein: 'Protein', carbs: 'Carbs', fat: 'Fat',
-
-      wkFig: 'A video and a guide for every exercise',
-      wkPR: 'New best',
-
-      nuMeal: 'Homemade smash burger with cheddar',
-
-      stBoxes: ['Store', 'Yours'],
-      stCards: {
-        meal: { tag: 'Meal', title: 'Protein oats', sub: '536 kcal' },
-        plan: { tag: 'Program', title: 'Push · Pull · Legs', sub: '3 days a week' }
-      },
-      stPublish: 'Publish your meal',
-      stSave: 'Save a program',
-
-      pgWeight: 'Your weight this month',
-      pgVideo: 'Your photos as a video',
-      pgDates: ['Oct 1', 'Oct 8', 'Oct 15', 'Oct 22', 'Oct 29'],
-      pgPrivate: 'On your phone only',
-
-      aiQuestion: 'Am I on track?',
-      aiFacts: [
-        { label: 'Weight', value: '82.1', unit: 'kg' },
-        { label: 'Bench Press', value: '62.5', unit: 'kg' },
-        { label: 'Protein', value: '118', unit: 'g' }
-      ],
-      aiAnswer: [
-        { k: 0, text: 'You’re losing half a kilo a week. Good pace.' },
-        { k: 1, text: 'Your strength is up from 57.5 to 62.5 kg.' },
-        { k: 2, warn: true, text: 'Eat more protein: 118 of your 150 g.' }
-      ],
-
-      cmTasks: [{ key: 'water', name: 'Water' }, { key: 'supplements', name: 'Supplements' }, { key: 'training', name: 'Gym' }],
-      cmStarGain: '+1 star',
-      cmLevelFrom: 'Strong',
-      cmLevelTo: 'Beast',
-
-      cpCrit: [{ key: 'commitment', name: 'Commitment' }, { key: 'lifts', name: 'Lifts' }, { key: 'weight', name: 'Weight change' }],
-      cpUsers: { fahad: 'Fahad', you: 'You', khalid: 'Khalid' },
-
-      prRows: { calories: 'Calorie counting', lifting: 'Workout logging', ai: 'AI questions', water: 'Water tracking' },
-      prPerMonth: 'SAR / month',
-      prTotal: 'Total, every month',
-      prCurrency: 'SAR',
-      prOne: 'One app. One subscription. And an AI that knows your progress.'
-    }
+  // Pricing categories (no app names on the page; see README.md).
+  rows: {
+    ar: { calories: 'حساب السعرات', lifting: 'تسجيل الأوزان', ai: 'الذكاء الاصطناعي', water: 'متابعة الماء' },
+    en: { calories: 'Calorie counting', lifting: 'Workout logging', ai: 'AI questions', water: 'Water tracking' }
   }
 };
