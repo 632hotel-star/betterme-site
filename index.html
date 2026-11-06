@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>BetterMe · كل شيء تحتاجه للنادي في تطبيق واحد</title>
-  <meta name="description" content="تمارين، تغذية، متابعة، وذكاء اصطناعي يعرف بياناتك، مع ستريكات ومنافسة بين الأصدقاء. كل هذا في تطبيق واحد وتحت اشتراك واحد.">
-  <meta name="theme-color" content="#0B0B0D">
+  <meta name="description" content="تمارين بالفيديو، تغذية بالذكاء الاصطناعي، متابعة، ومدرب يعرف أرقامك. كل هذا في تطبيق واحد وتحت اشتراك واحد.">
+  <meta name="theme-color" content="#0A0909">
   <meta name="color-scheme" content="dark">
   <meta name="apple-itunes-app" content="app-id=6825474864">
   <meta property="og:type" content="website">
   <meta property="og:title" content="BetterMe · كل شيء تحتاجه للنادي في تطبيق واحد">
-  <meta property="og:description" content="تمارين، تغذية، متابعة، وذكاء اصطناعي يعرف بياناتك. كل هذا في تطبيق واحد.">
+  <meta property="og:description" content="تمارين بالفيديو، تغذية بالذكاء الاصطناعي، ومدرب يعرف أرقامك. كل هذا في تطبيق واحد.">
   <meta property="og:url" content="https://betterme.fitness/">
   <meta property="og:image" content="https://betterme.fitness/assets/og.png">
   <meta name="twitter:card" content="summary_large_image">
@@ -28,9 +28,11 @@
       try { s = localStorage.getItem('bm-lang'); } catch (e) {}
       var lang = (q === 'en' || q === 'ar') ? q : (s === 'en' || s === 'ar') ? s : 'ar';
       d.className = d.className.replace('no-js', 'js');
+      try { if (!matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('motion'); } catch (e) {}
       if (lang === 'en') { d.lang = 'en'; d.dir = 'ltr'; d.classList.add('i18n-pending'); }
     })();
   </script>
+  <link rel="preload" as="image" href="assets/statue-hero.webp" type="image/webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap">
@@ -42,179 +44,193 @@
   <header class="nav" id="nav">
     <div class="wrap nav-in">
       <a class="nav-brand" href="#top" aria-label="BetterMe">
-        <img src="assets/wordmark.png" width="928" height="207" alt="BetterMe">
+        <img src="assets/wordmark-text.png" width="665" height="109" alt="BetterMe">
       </a>
       <div class="nav-actions">
+        <a class="nav-icon js-social" data-net="tiktok" href="https://www.tiktok.com/@betterme.ai1" target="_blank" rel="noopener" aria-label="BetterMe على تيك توك" data-i18n-attr="aria-label:social.tiktok"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+        <a class="nav-icon js-social" data-net="instagram" href="https://www.instagram.com/betterme.ai1/" target="_blank" rel="noopener" aria-label="BetterMe على إنستقرام" data-i18n-attr="aria-label:social.instagram"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.3" cy="6.7" r="1.15" fill="currentColor" stroke="none"/></svg></a>
         <button class="nav-lang" type="button" id="lang-toggle" lang="en" data-i18n="nav.lang" data-i18n-attr="aria-label:nav.langLabel" aria-label="Switch to English">English</button>
-        <a class="nav-cta js-store" href="https://apps.apple.com/app/id6825474864" data-i18n="nav.download">حمّل التطبيق</a>
+        <a class="nav-cta js-store" href="https://apps.apple.com/app/id6825474864"><span class="l-full" data-i18n="nav.download">حمّل التطبيق</span><span class="l-short" data-i18n="nav.downloadShort">حمّل</span></a>
       </div>
     </div>
   </header>
 
   <main id="main">
 
-    <!-- Hero -->
+    <!-- Hero: the statue in the visor, one line, the download -->
     <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-art" aria-hidden="true">
+        <div class="hero-glow"></div>
+        <img class="hero-statue" src="assets/statue-hero.webp" width="1100" height="1061" alt="" fetchpriority="high">
+      </div>
       <div class="wrap hero-in">
-        <div class="hero-mark" aria-hidden="true">
-          <img class="m-arc" src="assets/mark-arc.png" width="507" height="512" alt="">
-          <img class="m-head" src="assets/mark-head.png" width="507" height="512" alt="">
-          <img class="m-star" src="assets/mark-star.png" width="507" height="512" alt="">
-        </div>
-        <p class="hero-name"><img src="assets/wordmark-text.png" width="665" height="109" alt="BetterMe"></p>
-        <h1 class="hero-title" id="hero-title">
-          <span class="line" data-i18n="hero.l1">كل شيء تحتاجه للنادي.</span>
-          <span class="line" data-i18n="hero.l2">في تطبيق واحد.</span>
-        </h1>
-        <div class="hero-cta">
-          <a class="badge js-store" href="https://apps.apple.com/app/id6825474864">
-            <img class="js-badge" src="https://toolbox.marketingtools.apple.com/api/badges/download-on-the-app-store/black/ar-sa?size=250x83" width="250" height="83" alt="حمّله من App Store" data-i18n-attr="alt:cta.badgeAlt">
-          </a>
-          <p class="hero-note" data-i18n="hero.note">إذا ما انفتح معك الرابط، افتحه في سفاري</p>
-        </div>
-        <div class="social hero-social">
-          <span class="social-l" data-i18n="social.follow">تابعنا</span>
-          <a class="js-social" data-net="tiktok" href="https://www.tiktok.com/@betterme.ai1" target="_blank" rel="noopener" aria-label="BetterMe على تيك توك" data-i18n-attr="aria-label:social.tiktok"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
-          <a class="js-social" data-net="instagram" href="https://www.instagram.com/betterme.ai1/" target="_blank" rel="noopener" aria-label="BetterMe على إنستقرام" data-i18n-attr="aria-label:social.instagram"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.3" cy="6.7" r="1.15" fill="currentColor" stroke="none"/></svg></a>
-          <span class="social-h" dir="ltr">@betterme.ai1</span>
+        <div class="hero-copy">
+          <h1 class="hero-title" id="hero-title">
+            <span class="line" data-i18n="hero.l1">كل شيء تحتاجه للنادي.</span>
+            <span class="line accent" data-i18n="hero.l2">في تطبيق واحد.</span>
+          </h1>
+          <p class="hero-sub" data-i18n="hero.sub">تمارين بالفيديو، وتغذية بالذكاء الاصطناعي، ومدرب يعرف أرقامك.</p>
+          <div class="hero-cta">
+            <a class="badge js-store" href="https://apps.apple.com/app/id6825474864">
+              <img class="js-badge" src="https://toolbox.marketingtools.apple.com/api/badges/download-on-the-app-store/black/ar-sa?size=250x83" width="250" height="83" alt="حمّله من App Store" data-i18n-attr="alt:cta.badgeAlt">
+            </a>
+            <p class="note" data-i18n="hero.note">إذا ما انفتح معك الرابط، افتحه في سفاري</p>
+          </div>
         </div>
       </div>
-      <a class="hero-scroll" href="#workouts">
-        <span class="scroll-track" aria-hidden="true"><i></i></span>
-        <span data-i18n="hero.scroll">انزل بالسكرول، وكل ميزة تشتغل قدامك</span>
+      <a class="hero-scroll" href="#app">
+        <span data-i18n="hero.scroll">انزل وشوف التطبيق</span>
+        <span class="scroll-line" aria-hidden="true"><i></i></span>
       </a>
     </section>
 
-    <!-- Each section: one short title, one line, one motion that plays with the scroll. -->
-    <section class="feature" id="workouts" aria-labelledby="t-workouts">
-      <div class="wrap">
-        <header class="copy">
-          <p class="eyebrow"><span class="num" aria-hidden="true">I</span><span data-i18n="workouts.eyebrow">التمارين</span></p>
-          <h2 id="t-workouts" data-i18n="workouts.title">سجّل تمرينك، وشوف قوتك تزيد.</h2>
-          <p class="lede" data-i18n="workouts.body">450 تمرين، ولكل تمرين فيديو وشرح.</p>
-        </header>
-        <div class="demo" data-scene="workouts"></div>
+    <!-- The app: its five tabs, panned sideways as the page scrolls -->
+    <section class="tour" id="app" aria-labelledby="t-tour">
+      <div class="tour-pin">
+        <h2 class="h2 tour-title" id="t-tour"><span class="line" data-i18n="tour.title1">خمس صفحات،</span> <span class="line" data-i18n="tour.title2">وكل شي في مكانه.</span></h2>
+        <div class="tour-viewport">
+          <ol class="tour-track">
+            <li class="shot">
+              <div class="phone"><img data-shot="home" src="assets/app-home-ar.webp" width="660" height="1434" alt="الصفحة الرئيسية في BetterMe" data-i18n-attr="alt:tour.home.alt" fetchpriority="low" decoding="async"></div>
+              <p class="shot-tab" data-i18n="tour.home.tab">الرئيسية</p>
+              <h3 data-i18n="tour.home.t">يومك كله في شاشة وحدة.</h3>
+              <p data-i18n="tour.home.d">نجومك وستريكاتك وتمرين اليوم، أول ما تفتح.</p>
+            </li>
+            <li class="shot">
+              <div class="phone"><img data-shot="workout" src="assets/app-workout-ar.webp" width="660" height="1434" alt="صفحة التمرين في BetterMe" data-i18n-attr="alt:tour.workout.alt" fetchpriority="low" decoding="async"></div>
+              <p class="shot-tab" data-i18n="tour.workout.tab">التمرين</p>
+              <h3 data-i18n="tour.workout.t">جدولك جاهز، وكل تمرين بفيديو.</h3>
+              <p data-i18n="tour.workout.d">تعرف وش تلعب اليوم، وكيف تلعبه صح.</p>
+            </li>
+            <li class="shot">
+              <div class="phone"><img data-shot="nutrition" src="assets/app-nutrition-ar.webp" width="660" height="1434" alt="صفحة التغذية في BetterMe" data-i18n-attr="alt:tour.nutrition.alt" fetchpriority="low" decoding="async"></div>
+              <p class="shot-tab" data-i18n="tour.nutrition.tab">التغذية</p>
+              <h3 data-i18n="tour.nutrition.t">صوّر أكلك، والسعرات تنحسب لحالها.</h3>
+              <p data-i18n="tour.nutrition.d">أو اوصفه بكلمتين، أو امسح الباركود.</p>
+            </li>
+            <li class="shot">
+              <div class="phone"><img data-shot="progress" src="assets/app-progress-ar.webp" width="660" height="1434" alt="صفحة التقدّم في BetterMe" data-i18n-attr="alt:tour.progress.alt" fetchpriority="low" decoding="async"></div>
+              <p class="shot-tab" data-i18n="tour.progress.tab">التقدّم</p>
+              <h3 data-i18n="tour.progress.t">شوف جسمك وهو يتغيّر.</h3>
+              <p data-i18n="tour.progress.d">وزنك وصورك وخطتك وتقارير InBody، كلها قدامك.</p>
+            </li>
+            <li class="shot">
+              <div class="phone"><img data-shot="group" src="assets/app-group-ar.webp" width="660" height="1434" alt="مجموعة أصدقاء في BetterMe" data-i18n-attr="alt:tour.friends.alt" fetchpriority="low" decoding="async"></div>
+              <p class="shot-tab" data-i18n="tour.friends.tab">الأصدقاء</p>
+              <h3 data-i18n="tour.friends.t">نافس شلّتك على القمة.</h3>
+              <p data-i18n="tour.friends.d">على الالتزام والأوزان، ووزنك ما يشوفه أحد.</p>
+            </li>
+          </ol>
+        </div>
       </div>
     </section>
 
-    <section class="feature" id="nutrition" aria-labelledby="t-nutrition">
+    <!-- What's new -->
+    <section class="news" id="new" aria-labelledby="t-new">
       <div class="wrap">
-        <header class="copy">
-          <p class="eyebrow"><span class="num" aria-hidden="true">II</span><span data-i18n="nutrition.eyebrow">التغذية</span></p>
-          <h2 id="t-nutrition" data-i18n="nutrition.title">اوصف وجبتك، ونحسبها لك.</h2>
-          <p class="lede" data-i18n="nutrition.body">أو اختر من مكتبة المنتجات السعودية.</p>
-        </header>
-        <div class="demo" data-scene="nutrition"></div>
+        <h2 class="h2" id="t-new" data-reveal data-i18n="new.title">الجديد في BetterMe</h2>
+        <div class="feats">
+          <article class="feat" data-reveal>
+            <div class="feat-phone"><div class="phone"><video class="clip" data-clip="meal" muted playsinline loop preload="none" poster="assets/clip-meal-ar.webp" aria-label="مقطع: تصوير الوجبة وتقدير سعراتها" data-i18n-attr="aria-label:new.photo.alt"></video></div></div>
+            <div class="feat-copy">
+              <h3 data-i18n="new.photo.t">صوّر صحنك، وخلّ الحساب علينا.</h3>
+              <p data-i18n="new.photo.d">الذكاء الاصطناعي يطلع لك السعرات والبروتين والكارب والدهون من صورة وحدة.</p>
+            </div>
+          </article>
+          <article class="feat" data-reveal data-delay="1">
+            <div class="feat-phone"><div class="phone"><img data-shot="coach" src="assets/app-coach-ar.webp" width="660" height="1434" alt="المدرب الذكي يرد من بياناتك" data-i18n-attr="alt:new.coach.alt" loading="lazy" decoding="async"></div></div>
+            <div class="feat-copy">
+              <h3 data-i18n="new.coach.t">ذكاء اصطناعي يجاوبك من بياناتك.</h3>
+              <p data-i18n="new.coach.d">يعرف تمارينك وأكلك ووزنك، ويعطيك خطوتك الجاية.</p>
+            </div>
+          </article>
+          <article class="feat" data-reveal data-delay="2">
+            <div class="feat-phone"><div class="phone"><video class="clip" data-clip="session" muted playsinline loop preload="none" poster="assets/clip-session-ar.webp" aria-label="مقطع: تمرين حيّ مع فيديو التمرين ومؤقت الراحة" data-i18n-attr="aria-label:new.live.alt"></video></div></div>
+            <div class="feat-copy">
+              <h3 data-i18n="new.live.t">تمرّن والمقطع قدامك.</h3>
+              <p data-i18n="new.live.d">مؤقت راحة، وإحماء 3 دقائق، وكل مجموعة تنحفظ.</p>
+            </div>
+          </article>
+        </div>
+        <ul class="stats">
+          <li data-reveal>
+            <p class="stat-num"><bdi dir="ltr" class="js-count" data-to="566">566</bdi></p>
+            <div><h3 data-i18n="new.clips.t">تمرين، كلها بالفيديو.</h3><p data-i18n="new.clips.d">تشوف الحركة صح قبل ما تشيل.</p></div>
+          </li>
+          <li data-reveal data-delay="1">
+            <p class="stat-num word" dir="ltr">InBody</p>
+            <div><h3 data-i18n="new.inbody.t">صوّر InBody، ويقولك ماشي صح ولا لا.</h3><p data-i18n="new.inbody.d">وتشوف الفرق من قياس لقياس.</p></div>
+          </li>
+          <li data-reveal data-delay="2">
+            <p class="stat-num"><bdi dir="ltr" class="js-timer">2:19</bdi></p>
+            <div><h3 data-i18n="new.lock.t">الراحة تعدّ على شاشة القفل.</h3><p data-i18n="new.lock.d">والويدجت يعطيك يومك بدون ما تفتح التطبيق.</p></div>
+          </li>
+        </ul>
       </div>
     </section>
 
-    <section class="feature" id="stores" aria-labelledby="t-stores">
-      <div class="wrap">
-        <header class="copy">
-          <p class="eyebrow"><span class="num" aria-hidden="true">III</span><span data-i18n="stores.eyebrow">المتاجر</span></p>
-          <h2 id="t-stores" data-i18n="stores.title">وجبات وجداول من المستخدمين.</h2>
-          <p class="lede" data-i18n="stores.body">انشر وجبتك، أو احفظ جدول غيرك بضغطة.</p>
-        </header>
-        <div class="demo" data-scene="stores"></div>
+    <!-- Stars and levels -->
+    <section class="levels" id="levels" aria-labelledby="t-levels">
+      <div class="levels-art" aria-hidden="true">
+        <img class="levels-statue" src="assets/statue-fire.webp" width="1018" height="1001" alt="" loading="lazy" decoding="async">
       </div>
-    </section>
-
-    <section class="feature" id="progress" aria-labelledby="t-progress">
-      <div class="wrap">
-        <header class="copy">
-          <p class="eyebrow"><span class="num" aria-hidden="true">IV</span><span data-i18n="progress.eyebrow">المتابعة</span></p>
-          <h2 id="t-progress" data-i18n="progress.title">شوف تغيّرك بعينك.</h2>
-          <p class="lede" data-i18n="progress.body">وزنك على رسم بياني، وصورك تصير فيديو يبقى على جوالك.</p>
-        </header>
-        <div class="demo" data-scene="progress"></div>
-      </div>
-    </section>
-
-    <section class="feature" id="ai" aria-labelledby="t-ai">
-      <div class="wrap">
-        <header class="copy">
-          <p class="eyebrow"><span class="num" aria-hidden="true">V</span><span data-i18n="ai.eyebrow">الذكاء الاصطناعي</span></p>
-          <h2 id="t-ai" data-i18n="ai.title">ذكاء اصطناعي يعرف بياناتك.</h2>
-          <p class="lede" data-i18n="ai.body">اسأله عن تقدّمك، ويجاوبك من أرقامك أنت.</p>
-        </header>
-        <div class="demo" data-scene="ai"></div>
-      </div>
-    </section>
-
-    <section class="feature" id="consistency" aria-labelledby="t-consistency">
-      <div class="wrap">
-        <header class="copy">
-          <p class="eyebrow"><span class="num" aria-hidden="true">VI</span><span data-i18n="consistency.eyebrow">الالتزام</span></p>
-          <h2 id="t-consistency" data-i18n="consistency.title">كمّل يومك، واكسب نجمة.</h2>
-          <p class="lede" data-i18n="consistency.body">ستريكات وتذكيرات، ومع النجوم تتطوّر شخصيتك.</p>
-        </header>
-        <div class="demo" data-scene="consistency"></div>
-      </div>
-    </section>
-
-    <section class="feature" id="competition" aria-labelledby="t-competition">
-      <div class="wrap">
-        <header class="copy">
-          <p class="eyebrow"><span class="num" aria-hidden="true">VII</span><span data-i18n="competition.eyebrow">المنافسة</span></p>
-          <h2 id="t-competition" data-i18n="competition.title">نافس أخوياك.</h2>
-          <p class="lede" data-i18n="competition.body">على الالتزام أو الأوزان أو تغيّر الوزن. وما أحد يشوف وزنك.</p>
-        </header>
-        <div class="demo" data-scene="competition"></div>
-      </div>
-    </section>
-
-    <!-- Gather -->
-    <section class="gather" id="all" aria-labelledby="t-all">
-      <div class="wrap">
-        <div class="demo" data-scene="gather">
-          <div class="stage ga">
-            <p class="ga-words">
-              <span class="w" data-i18n="gather.w1">تمارين.</span>
-              <span class="w" data-i18n="gather.w2">تغذية.</span>
-              <span class="w" data-i18n="gather.w3">متاجر.</span>
-              <span class="w" data-i18n="gather.w4">متابعة.</span>
-              <span class="w" data-i18n="gather.w5">ذكاء اصطناعي.</span>
-              <span class="w" data-i18n="gather.w6">التزام.</span>
-              <span class="w" data-i18n="gather.w7">منافسة.</span>
-            </p>
-            <div class="ga-brand" aria-hidden="true"><img src="assets/mark.png" width="507" height="512" alt=""></div>
-            <h2 class="ga-title" id="t-all">
-              <span class="line" data-i18n="gather.l1">كل هذا في تطبيق واحد.</span>
-              <span class="line" data-i18n="gather.l2">وتحت اشتراك واحد.</span>
-            </h2>
-          </div>
+      <div class="wrap levels-in">
+        <div class="levels-copy">
+          <h2 class="h2" id="t-levels" data-reveal data-i18n="levels.title">كل يوم تكمّله، نجمة.</h2>
+          <p class="lead" data-reveal data-delay="1" data-i18n="levels.body">اجمع النجوم، وشخصيتك تترقّى معك.</p>
+          <ol class="ladder" data-reveal data-delay="2">
+            <li class="on"><b data-i18n="levels.l1">مبتدئ</b><span><bdi dir="ltr">0</bdi><img src="assets/icon-starLGold.png" width="216" height="216" alt=""></span></li>
+            <li class="on"><b data-i18n="levels.l2">قوي</b><span><bdi dir="ltr">7</bdi><img src="assets/icon-starLGold.png" width="216" height="216" alt=""></span></li>
+            <li class="on"><b data-i18n="levels.l3">وحش</b><span><bdi dir="ltr">30</bdi><img src="assets/icon-starLGold.png" width="216" height="216" alt=""></span></li>
+            <li class="on"><b data-i18n="levels.l4">آكل حديد</b><span><bdi dir="ltr">90</bdi><img src="assets/icon-starLGold.png" width="216" height="216" alt=""></span></li>
+          </ol>
         </div>
       </div>
     </section>
 
     <!-- Pricing -->
-    <section class="pricing" id="pricing" aria-labelledby="t-pricing">
-      <div class="wrap pricing-in">
-        <header class="copy">
-          <p class="eyebrow"><span data-i18n="pricing.eyebrow">الاشتراك</span></p>
-          <h2 id="t-pricing" data-i18n="pricing.title">ليش تحتاج أكثر من اشتراك؟</h2>
-        </header>
-        <div class="demo" data-scene="pricing"></div>
+    <section class="price" id="pricing" aria-labelledby="t-price">
+      <div class="wrap">
+        <div class="price-card" data-reveal>
+          <div class="price-main">
+            <h2 class="h2" id="t-price" data-i18n="price.title">اشتراك واحد بدل أربعة.</h2>
+            <p class="price-big"><bdi dir="ltr" class="js-price">7.99</bdi><span data-i18n="price.per">ريال / شهر</span></p>
+            <p class="price-trial"><span data-i18n="price.trialA">جرّبه</span> <bdi dir="ltr" class="js-trial">3</bdi> <span data-i18n="price.trialB">أيام مجانًا.</span></p>
+            <a class="badge js-store" href="https://apps.apple.com/app/id6825474864">
+              <img class="js-badge" src="https://toolbox.marketingtools.apple.com/api/badges/download-on-the-app-store/black/ar-sa?size=250x83" width="250" height="83" alt="حمّله من App Store" data-i18n-attr="alt:cta.badgeAlt" loading="lazy">
+            </a>
+          </div>
+          <div class="price-others">
+            <p class="others-h" data-i18n="price.others">لو اشتركت في كل وحدة لحالها</p>
+            <ul class="others" id="others"></ul>
+            <p class="others-total"><span data-i18n="price.total">المجموع كل شهر</span><s><bdi dir="ltr" class="js-total">191.96</bdi> <span data-i18n="price.currency">ريال</span></s></p>
+          </div>
+        </div>
       </div>
     </section>
 
   </main>
 
-  <!-- End -->
   <footer class="end" id="download" aria-labelledby="t-end">
     <div class="wrap end-in">
-      <img class="end-mark" src="assets/mark.png" width="507" height="512" alt="">
-      <h2 id="t-end" data-i18n="end.title">جاهز تبدأ؟</h2>
-      <a class="badge js-store" href="https://apps.apple.com/app/id6825474864">
-        <img class="js-badge" src="https://toolbox.marketingtools.apple.com/api/badges/download-on-the-app-store/black/ar-sa?size=250x83" width="250" height="83" alt="حمّله من App Store" data-i18n-attr="alt:cta.badgeAlt">
-      </a>
-      <p class="end-note" data-i18n="end.note">إذا ما انفتح معك الرابط، افتحه في سفاري</p>
-      <div class="social end-social">
-          <span class="social-l" data-i18n="social.follow">تابعنا</span>
-          <a class="js-social" data-net="tiktok" href="https://www.tiktok.com/@betterme.ai1" target="_blank" rel="noopener" aria-label="BetterMe على تيك توك" data-i18n-attr="aria-label:social.tiktok"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
-          <a class="js-social" data-net="instagram" href="https://www.instagram.com/betterme.ai1/" target="_blank" rel="noopener" aria-label="BetterMe على إنستقرام" data-i18n-attr="aria-label:social.instagram"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.3" cy="6.7" r="1.15" fill="currentColor" stroke="none"/></svg></a>
-          <span class="social-h" dir="ltr">@betterme.ai1</span>
-        </div>
+      <h2 class="h2 end-title" id="t-end" data-reveal data-i18n="end.title">جاهز تبدأ؟</h2>
+      <div class="end-cta" data-reveal data-delay="1">
+        <a class="badge js-store" href="https://apps.apple.com/app/id6825474864">
+          <img class="js-badge" src="https://toolbox.marketingtools.apple.com/api/badges/download-on-the-app-store/black/ar-sa?size=250x83" width="250" height="83" alt="حمّله من App Store" data-i18n-attr="alt:cta.badgeAlt" loading="lazy">
+        </a>
+        <p class="note" data-i18n="end.note">إذا ما انفتح معك الرابط، افتحه في سفاري</p>
+      </div>
+    </div>
+    <div class="end-art" aria-hidden="true">
+      <div class="end-glow"></div>
+      <img class="end-statue" src="assets/statue-open.webp" width="1600" height="813" alt="" loading="lazy" decoding="async">
+    </div>
+    <div class="wrap end-foot">
+      <div class="social">
+        <a class="js-social" data-net="tiktok" href="https://www.tiktok.com/@betterme.ai1" target="_blank" rel="noopener" aria-label="BetterMe على تيك توك" data-i18n-attr="aria-label:social.tiktok"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+        <a class="js-social" data-net="instagram" href="https://www.instagram.com/betterme.ai1/" target="_blank" rel="noopener" aria-label="BetterMe على إنستقرام" data-i18n-attr="aria-label:social.instagram"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.3" cy="6.7" r="1.15" fill="currentColor" stroke="none"/></svg></a>
+        <span class="social-h" dir="ltr">@betterme.ai1</span>
+      </div>
       <nav class="end-links" aria-label="روابط" data-i18n-attr="aria-label:end.linksLabel">
         <a class="js-legal" data-doc="privacy" href="https://zlmxdgavlbvsznsueemi.supabase.co/storage/v1/object/public/legal/ar/privacy.txt" data-i18n="end.privacy">الخصوصية</a>
         <a class="js-legal" data-doc="terms" href="https://zlmxdgavlbvsznsueemi.supabase.co/storage/v1/object/public/legal/ar/terms.txt" data-i18n="end.terms">الشروط</a>
@@ -224,10 +240,9 @@
     </div>
   </footer>
 
-  <script src="js/config.js" defer></script>
-  <script src="js/strings.js" defer></script>
-  <script src="js/motion.js" defer></script>
-  <script src="js/scenes.js" defer></script>
-  <script src="js/main.js" defer></script>
+  <script src="js/config.js"></script>
+  <script src="js/strings.js"></script>
+  <script src="js/motion.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
