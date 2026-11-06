@@ -128,12 +128,6 @@
     document.querySelectorAll('video[data-clip]').forEach(function (v) { io.observe(v); });
   }
 
-  // ---------- header ----------
-  var nav = document.getElementById('nav');
-  function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 24); }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-
   // ---------- start ----------
   applyLanguage(lang());
   BM.initMotion();

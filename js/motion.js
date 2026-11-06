@@ -11,6 +11,7 @@
   BM.reduced = function () { return reduceQuery.matches; };
   function clamp(x) { return x < 0 ? 0 : x > 1 ? 1 : x; }
   function lerp(a, b, t) { return a + (b - a) * t; }
+  function seg(p, a, b) { return clamp((p - a) / (b - a)); }
   function out(t) { return 1 - Math.pow(1 - t, 3); }
   // Progress of an element's top through [start, end] (fractions of the screen height, start below end).
   function through(el, vh, start, end) {
@@ -110,6 +111,44 @@
     }
   }
 
+  // The problem: everything you have to keep track of drops in, one after another.
+  function pile() {
+    var list = document.querySelector('.pile');
+    if (!list) return;
+    var items = Array.prototype.slice.call(list.children), n = items.length;
+    track(function (vh) { return through(list, vh, 0.95, 0.35); }, function (p) {
+      items.forEach(function (li, k) {
+        var a = (k / n) * 0.78, t = out(seg(p, a, a + 0.22));
+        li.style.opacity = t >= 1 ? '' : String(t);
+        li.style.transform = t >= 1 ? '' : 'translate3d(0,' + ((1 - t) * -26).toFixed(1) + 'px,0) scale(' + (0.86 + 0.14 * t).toFixed(4) + ')';
+      });
+    });
+  }
+
+  // Icon lists: each icon pops in after the one before it.
+  function iconLists() {
+    document.querySelectorAll('.icon-list').forEach(function (list) {
+      var items = Array.prototype.slice.call(list.children), n = items.length;
+      track(function (vh) { return through(list, vh, 0.95, 0.55); }, function (p) {
+        items.forEach(function (li, k) {
+          var a = (k / n) * 0.7, t = out(seg(p, a, a + 0.3));
+          li.style.opacity = t >= 1 ? '' : String(t);
+          li.style.transform = t >= 1 ? '' : 'translate3d(0,' + ((1 - t) * 18).toFixed(1) + 'px,0) scale(' + (0.7 + 0.3 * t).toFixed(4) + ')';
+        });
+      });
+    });
+  }
+
+  // Consistency: the app's streak coins light up one after another, each in its colour.
+  function streaks() {
+    var row = document.querySelector('.streak-row');
+    if (!row) return;
+    var items = row.querySelectorAll('.sk'), n = items.length;
+    track(function (vh) { return through(row, vh, 0.92, 0.55); }, function (p) {
+      items.forEach(function (li, k) { li.classList.toggle('lit', p >= (k + 1) / n - 0.001); });
+    });
+  }
+
   // The journey: the day counter climbs to 73 while the progress line draws itself.
   function journey() {
     var art = document.querySelector('.journey-art');
@@ -161,7 +200,7 @@
 
   BM.initMotion = function () {
     if (!BM.reduced()) {
-      hero(); tour(); reveals(); counters(); journey(); levels(); ending();
+      hero(); tour(); reveals(); pile(); iconLists(); counters(); journey(); streaks(); levels(); ending();
     }
     window.addEventListener('scroll', schedule, { passive: true });
     BM.relayout();
