@@ -110,6 +110,17 @@
     }
   }
 
+  // The journey: the day counter climbs to 73 while the progress line draws itself.
+  function journey() {
+    var art = document.querySelector('.journey-art');
+    if (!art) return;
+    var days = art.querySelector('.js-days'), chart = art.querySelector('.growth'), to = Number(days.getAttribute('data-to'));
+    track(function (vh) { return through(art, vh, 0.95, 0.5); }, function (p) {
+      days.textContent = String(Math.max(1, Math.round(lerp(1, to, out(p)))));
+      chart.style.setProperty('--draw', (1 - p).toFixed(4));
+    });
+  }
+
   // The gold line climbs the four levels; the statue in flames drifts the way he is running.
   function levels() {
     var ladder = document.querySelector('.ladder'), statue = document.querySelector('.levels-statue');
@@ -150,7 +161,7 @@
 
   BM.initMotion = function () {
     if (!BM.reduced()) {
-      hero(); tour(); reveals(); counters(); levels(); ending();
+      hero(); tour(); reveals(); counters(); journey(); levels(); ending();
     }
     window.addEventListener('scroll', schedule, { passive: true });
     BM.relayout();
