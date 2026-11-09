@@ -196,6 +196,38 @@
     });
   }
 
+  // The affiliate link's journey: the scene pins and the scroll plays its five scenes in turn (link, tap, download,
+  // subscription, dashboard). The scenes sit in one row that slides to the next scene in the reading direction; the rail
+  // fills to the current one, and each scene plays its own movement (--t, read by the CSS) before the row moves on.
+  function flow() {
+    var stage = document.querySelector('.flow');
+    if (!stage) return;
+    var row = stage.querySelector('.flow-scenes'), scenes = Array.prototype.slice.call(row.children), n = scenes.length;
+    var nodes = stage.querySelectorAll('.flow-rail > li:not(.flow-fill)'), fill = stage.querySelector('.flow-fill');
+    var counts = stage.querySelectorAll('.js-fv-n'), dist = 1, slot = 0;
+    layouts.push(function () {
+      row.style.transform = '';
+      slot = Math.abs(scenes[1].getBoundingClientRect().left - scenes[0].getBoundingClientRect().left);
+      dist = n * 0.75 * (root.clientHeight || window.innerHeight);
+      stage.style.setProperty('--dist', dist + 'px');
+    });
+    track(function () { return clamp(-stage.getBoundingClientRect().top / dist); }, function (p) {
+      var raw = p * n, k = Math.min(n - 1, Math.floor(raw));
+      var pos = k >= n - 1 ? n - 1 : k + smooth(seg(raw - k, 0.8, 1));
+      row.style.transform = 'translate3d(' + (pos * slot * (rtl() ? 1 : -1)).toFixed(1) + 'px,0,0)';
+      fill.style.setProperty('--p', (pos / (n - 1)).toFixed(4));
+      nodes.forEach(function (li, i) { li.classList.toggle('on', pos >= i - 0.5); });
+      scenes.forEach(function (sc, i) {
+        var d = Math.min(1, Math.abs(i - pos));
+        sc.style.opacity = (1 - d * 0.8).toFixed(3);
+        sc.style.transform = d ? 'scale(' + (1 - d * 0.08).toFixed(4) + ')' : '';
+        sc.style.setProperty('--t', seg(raw - i, 0.04, 0.7).toFixed(4));
+      });
+      var last = seg(raw - (n - 1), 0.04, 0.7);
+      counts.forEach(function (b) { b.textContent = b.getAttribute(last >= 0.55 ? 'data-to' : 'data-from'); });
+    });
+  }
+
   // Measure, then move everything to the current scroll position at once.
   BM.relayout = function () {
     layouts.forEach(function (fn) { fn(); });
@@ -205,7 +237,7 @@
 
   BM.initMotion = function () {
     if (!BM.reduced()) {
-      hero(); reveals(); rises(); staggers(); counters(); journey(); levels(); lineup(); steps(); period();
+      hero(); reveals(); rises(); staggers(); counters(); journey(); levels(); lineup(); steps(); period(); flow();
     }
     window.addEventListener('scroll', schedule, { passive: true });
     BM.relayout();
