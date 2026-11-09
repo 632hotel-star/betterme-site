@@ -38,7 +38,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&display=swap">
-  <link rel="stylesheet" href="css/site.css?v=20261109b">
+  <link rel="stylesheet" href="css/site.css?v=20261109c">
 </head>
 <body>
   <a class="skip" href="#main" data-i18n="nav.skip">تخطَّ إلى المحتوى</a>
@@ -76,7 +76,7 @@
           <div class="device hl-device"><video data-clip="meal" muted playsinline loop preload="none" poster="assets/clip-meal-ar.webp" aria-label="مقطع: تصوير وجبة وتقدير سعراتها" data-i18n-attr="aria-label:food.alt"></video></div>
         </article>
         <article class="hl-tile" aria-roledescription="slide">
-          <p class="hl-cap"><span data-i18n="hl.2a">كل تمرين بفيديو،</span> <b data-i18n="hl.2b">والراحة تعدّ لك.</b></p>
+          <p class="hl-cap"><span data-i18n="hl.2a">كل تمرين بفيديو يشرح التكنيك،</span> <b data-i18n="hl.2b">وسجّل أوزانك وعدّاتك عشان تزيد عليها.</b></p>
           <div class="device hl-device"><video data-clip="session" muted playsinline loop preload="none" poster="assets/clip-session-ar.webp" aria-label="مقطع: تمرين مباشر مع فيديو التمرين ومؤقت الراحة" data-i18n-attr="aria-label:train.alt"></video></div>
         </article>
         <article class="hl-tile" aria-roledescription="slide">
@@ -120,33 +120,51 @@
     <!-- Training -->
     <section class="chapter train tint" aria-labelledby="t-train">
       <div class="wrap">
-        <h2 class="section-title" id="t-train" data-reveal><span data-i18n="train.t1">تعرف متى تزيد الوزن،</span> <span class="soft" data-i18n="train.t2">ومتى تخفّف.</span></h2>
+        <h2 class="section-title" id="t-train" data-reveal><span data-i18n="train.t1">تعرف متى تزيد الوزن،</span> <span class="soft" data-i18n="train.t2">وتقيس مدى زيادة أوزانك.</span></h2>
         <div class="bento">
           <div class="cell cell-plan" data-reveal>
-            <p class="cell-cap"><b data-i18n="train.planA">جدولك جاهز.</b> <span data-i18n="train.planB">يبنيه الذكاء الاصطناعي، أو تنقله من تطبيقك القديم.</span></p>
-            <div class="device cell-device"><img data-shot="workout" src="assets/app-workout-ar.webp" width="660" height="1434" alt="صفحة التمرين في BetterMe" data-i18n-attr="alt:workout.alt" loading="lazy"></div>
+            <p class="cell-cap"><b data-i18n="train.growA">تشوف كم زادت أوزانك</b> <span data-i18n="train.growB">في كل تمرين، من أول جلسة لليوم.</span></p>
+            <div class="device cell-device"><img data-shot="strength" src="assets/app-strength-ar.webp" width="660" height="1434" alt="تطوّر الأوزان في تمرين واحد" data-i18n-attr="alt:strength.alt" loading="lazy"></div>
           </div>
           <div class="cell cell-num" data-reveal data-delay="1">
             <p class="big-num"><bdi dir="ltr" class="js-count" data-to="566">566</bdi></p>
-            <p class="cell-cap" data-i18n="train.clips">تمرين، كلها بالفيديو.</p>
+            <p class="cell-cap" data-i18n="train.clips">تمرين، كلها بفيديو يشرح التكنيك.</p>
           </div>
-          <div class="cell cell-rest" data-reveal data-delay="2">
-            <div class="rest-ring" aria-hidden="true">
-              <svg viewBox="0 0 120 120"><circle class="track" cx="60" cy="60" r="52"/><circle class="arc" cx="60" cy="60" r="52" pathLength="100"/></svg>
-              <bdi dir="ltr" class="js-timer">2:19</bdi>
+          <div class="cell cell-log" data-reveal data-delay="2">
+            <div class="lift-log" aria-hidden="true">
+              <div class="lift-row was">
+                <span class="lift-when" data-i18n="train.lastWeek">الأسبوع الماضي</span>
+                <span class="lift-bar"></span>
+                <span class="lift-val"><bdi class="n">80</bdi> <span data-i18n="unit.kgReps">كغ × 8</span></span>
+              </div>
+              <div class="lift-row now">
+                <span class="lift-when" data-i18n="train.today">اليوم</span>
+                <span class="lift-bar"></span>
+                <span class="lift-val"><bdi class="n js-lift">82.5</bdi> <span data-i18n="unit.kgReps">كغ × 8</span></span>
+              </div>
+              <span class="lift-up"><bdi dir="ltr" class="n">+2.5</bdi> <span data-i18n="unit.kg">كغ</span></span>
             </div>
-            <p class="cell-cap" data-i18n="train.rest">الراحة تعدّ على شاشة القفل.</p>
+            <p class="cell-cap"><b data-i18n="train.logA">يسجّل أوزانك وعدّاتك،</b> <span data-i18n="train.logB">وتشوفها الأسبوع الجاي وتزيد عليها.</span></p>
           </div>
           <div class="cell cell-list" data-reveal>
             <ul class="icon-grid" data-stagger>
               <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M222,128a6,6,0,0,1-6,6H128a6,6,0,0,1,0-12h88A6,6,0,0,1,222,128ZM128,70h88a6,6,0,0,0,0-12H128a6,6,0,0,0,0,12Zm88,116H128a6,6,0,0,0,0,12h88a6,6,0,0,0,0-12ZM83.76,43.76,56,71.51,44.24,59.76a6,6,0,0,0-8.48,8.48l16,16a6,6,0,0,0,8.48,0l32-32a6,6,0,0,0-8.48-8.48Zm0,64L56,135.51,44.24,123.76a6,6,0,1,0-8.48,8.48l16,16a6,6,0,0,0,8.48,0l32-32a6,6,0,0,0-8.48-8.48Zm0,64L56,199.51,44.24,187.76a6,6,0,0,0-8.48,8.48l16,16a6,6,0,0,0,8.48,0l32-32a6,6,0,0,0-8.48-8.48Z"/></svg><span data-i18n="train.i1">العدّات والمجموعات</span></li>
-              <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M222,144v64a6,6,0,0,1-6,6H40a6,6,0,0,1-6-6V144a6,6,0,0,1,12,0v58H210V144a6,6,0,0,1,12,0Zm-98.24,4.24a6,6,0,0,0,8.48,0l40-40a6,6,0,0,0-8.48-8.48L134,129.51V32a6,6,0,0,0-12,0v97.51L92.24,99.76a6,6,0,0,0-8.48,8.48Z"/></svg><span data-i18n="train.i2">انقل جدولك</span></li>
-              <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M196.89,130.94,144.4,111.6,125.06,59.11a13.92,13.92,0,0,0-26.12,0L79.6,111.6,27.11,130.94a13.92,13.92,0,0,0,0,26.12L79.6,176.4l19.34,52.49a13.92,13.92,0,0,0,26.12,0L144.4,176.4l52.49-19.34a13.92,13.92,0,0,0,0-26.12Zm-4.15,14.86-55.08,20.3a6,6,0,0,0-3.56,3.56l-20.3,55.08a1.92,1.92,0,0,1-3.6,0L89.9,169.66a6,6,0,0,0-3.56-3.56L31.26,145.8a1.92,1.92,0,0,1,0-3.6l55.08-20.3a6,6,0,0,0,3.56-3.56l20.3-55.08a1.92,1.92,0,0,1,3.6,0l20.3,55.08a6,6,0,0,0,3.56,3.56l55.08,20.3a1.92,1.92,0,0,1,0,3.6ZM146,40a6,6,0,0,1,6-6h18V16a6,6,0,0,1,12,0V34h18a6,6,0,0,1,0,12H182V64a6,6,0,0,1-12,0V46H152A6,6,0,0,1,146,40ZM246,88a6,6,0,0,1-6,6H230v10a6,6,0,0,1-12,0V94H208a6,6,0,0,1,0-12h10V72a6,6,0,0,1,12,0V82h10A6,6,0,0,1,246,88Z"/></svg><span data-i18n="train.i3">جدول بالذكاء الاصطناعي</span></li>
-              <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M243.6,148.8a6,6,0,0,1-8.4-1.2A53.58,53.58,0,0,0,192,126a6,6,0,0,1,0-12,26,26,0,1,0-25.18-32.5,6,6,0,0,1-11.62-3,38,38,0,1,1,59.91,39.63A65.69,65.69,0,0,1,244.8,140.4,6,6,0,0,1,243.6,148.8ZM189.19,213a6,6,0,0,1-2.19,8.2,5.9,5.9,0,0,1-3,.81,6,6,0,0,1-5.2-3,59,59,0,0,0-101.62,0,6,6,0,1,1-10.38-6A70.1,70.1,0,0,1,103,182.55a46,46,0,1,1,50.1,0A70.1,70.1,0,0,1,189.19,213ZM128,178a34,34,0,1,0-34-34A34,34,0,0,0,128,178ZM70,120a6,6,0,0,0-6-6A26,26,0,1,1,89.18,81.49a6,6,0,1,0,11.62-3,38,38,0,1,0-59.91,39.63A65.69,65.69,0,0,0,11.2,140.4a6,6,0,1,0,9.6,7.2A53.58,53.58,0,0,1,64,126,6,6,0,0,0,70,120Z"/></svg><span data-i18n="train.i4">جداول المجتمع</span></li>
+              <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M134,80v44.6l37.09,22.25a6,6,0,0,1-6.18,10.3l-40-24A6,6,0,0,1,122,128V80a6,6,0,0,1,12,0Zm-6-46A93.4,93.4,0,0,0,61.51,61.56c-8.58,8.68-16,17-23.51,25.8V64a6,6,0,0,0-12,0v40a6,6,0,0,0,6,6H72a6,6,0,0,0,0-12H44.73C52.86,88.29,60.79,79.35,70,70a82,82,0,1,1,1.7,117.62,6,6,0,1,0-8.24,8.72A94,94,0,1,0,128,34Z"/></svg><span data-i18n="train.i2">أوزانك السابقة قدامك</span></li>
               <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,26A102,102,0,1,0,230,128,102.12,102.12,0,0,0,128,26Zm0,192a90,90,0,1,1,90-90A90.1,90.1,0,0,1,128,218Zm47.18-95.09-64-40A6,6,0,0,0,102,88v80a6,6,0,0,0,9.18,5.09l64-40a6,6,0,0,0,0-10.18ZM114,157.17V98.83L160.68,128Z"/></svg><span data-i18n="train.i5">فيديو لكل تمرين</span></li>
               <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M222,48V152a14,14,0,0,1-14,14H94.49l13.75,13.76a6,6,0,1,1-8.48,8.48l-24-24a6,6,0,0,1,0-8.48l24-24a6,6,0,0,1,8.48,8.48L94.49,154H208a2,2,0,0,0,2-2V48a2,2,0,0,0-2-2H96a2,2,0,0,0-2,2v8a6,6,0,0,1-12,0V48A14,14,0,0,1,96,34H208A14,14,0,0,1,222,48ZM168,194a6,6,0,0,0-6,6v8a2,2,0,0,1-2,2H48a2,2,0,0,1-2-2V104a2,2,0,0,1,2-2H161.51l-13.75,13.76a6,6,0,1,0,8.48,8.48l24-24a6,6,0,0,0,0-8.48l-24-24a6,6,0,0,0-8.48,8.48L161.51,90H48a14,14,0,0,0-14,14V208a14,14,0,0,0,14,14H160a14,14,0,0,0,14-14v-8A6,6,0,0,0,168,194Z"/></svg><span data-i18n="train.i6">بدائل التمارين</span></li>
+              <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M164.25,91.75a6,6,0,0,1,0,8.49l-64,64a6,6,0,0,1-8.49-8.48l64-64A6,6,0,0,1,164.25,91.75ZM214.2,41.8a54.07,54.07,0,0,0-76.38,0L107.75,71.85a6,6,0,0,0,8.49,8.49l30.07-30.06a42,42,0,0,1,59.41,59.41l-30.08,30.07a6,6,0,1,0,8.49,8.49l30.07-30.07A54,54,0,0,0,214.2,41.8ZM139.76,175.64l-30.07,30.08a42,42,0,0,1-59.41-59.41l30.06-30.07a6,6,0,0,0-8.49-8.49l-30,30.07a54,54,0,0,0,76.38,76.39l30.07-30.08a6,6,0,0,0-8.49-8.49Z"/></svg><span data-i18n="train.i3">سوبر سِت ودروب سِت</span></li>
+              <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M214,96A86,86,0,1,0,74,162.87V240a6,6,0,0,0,2.85,5.1A5.93,5.93,0,0,0,80,246a6,6,0,0,0,2.68-.63L128,222.71l45.33,22.66A6,6,0,0,0,182,240V162.87A85.87,85.87,0,0,0,214,96ZM54,96a74,74,0,1,1,74,74A74.09,74.09,0,0,1,54,96ZM170,230.29l-39.33-19.66a6,6,0,0,0-5.36,0L86,230.29V171a85.75,85.75,0,0,0,84,0ZM128,150A54,54,0,1,0,74,96,54.06,54.06,0,0,0,128,150Zm0-96A42,42,0,1,1,86,96,42,42,0,0,1,128,54Z"/></svg><span data-i18n="train.i4">رقم قياسي جديد</span></li>
             </ul>
           </div>
+        </div>
+        <div class="plan-card" data-reveal>
+          <h3 class="plan-title" data-i18n="plan.title">كيف تسوي جدولك؟</h3>
+          <ul class="plan-ways" data-stagger>
+            <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M225.91,74.79,181.22,30.1a14,14,0,0,0-19.8,0L38.1,153.41a13.94,13.94,0,0,0-4.1,9.9V208a14,14,0,0,0,14,14H216a6,6,0,0,0,0-12H110.49L225.91,94.59A14,14,0,0,0,225.91,74.79ZM93.52,210H48a2,2,0,0,1-2-2V163.31a2,2,0,0,1,.59-1.41L136,72.49,183.52,120ZM217.42,86.1,192,111.52,144.49,64,169.9,38.59a2,2,0,0,1,2.83,0l44.69,44.68A2,2,0,0,1,217.42,86.1Z"/></svg><span data-i18n="plan.i1">ابنيه بنفسك</span></li>
+            <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M196.89,130.94,144.4,111.6,125.06,59.11a13.92,13.92,0,0,0-26.12,0L79.6,111.6,27.11,130.94a13.92,13.92,0,0,0,0,26.12L79.6,176.4l19.34,52.49a13.92,13.92,0,0,0,26.12,0L144.4,176.4l52.49-19.34a13.92,13.92,0,0,0,0-26.12Zm-4.15,14.86-55.08,20.3a6,6,0,0,0-3.56,3.56l-20.3,55.08a1.92,1.92,0,0,1-3.6,0L89.9,169.66a6,6,0,0,0-3.56-3.56L31.26,145.8a1.92,1.92,0,0,1,0-3.6l55.08-20.3a6,6,0,0,0,3.56-3.56l20.3-55.08a1.92,1.92,0,0,1,3.6,0l20.3,55.08a6,6,0,0,0,3.56,3.56l55.08,20.3a1.92,1.92,0,0,1,0,3.6ZM146,40a6,6,0,0,1,6-6h18V16a6,6,0,0,1,12,0V34h18a6,6,0,0,1,0,12H182V64a6,6,0,0,1-12,0V46H152A6,6,0,0,1,146,40ZM246,88a6,6,0,0,1-6,6H230v10a6,6,0,0,1-12,0V94H208a6,6,0,0,1,0-12h10V72a6,6,0,0,1,12,0V82h10A6,6,0,0,1,246,88Z"/></svg><span data-i18n="plan.i2">جدول بالذكاء الاصطناعي</span></li>
+            <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M243.6,148.8a6,6,0,0,1-8.4-1.2A53.58,53.58,0,0,0,192,126a6,6,0,0,1,0-12,26,26,0,1,0-25.18-32.5,6,6,0,0,1-11.62-3,38,38,0,1,1,59.91,39.63A65.69,65.69,0,0,1,244.8,140.4,6,6,0,0,1,243.6,148.8ZM189.19,213a6,6,0,0,1-2.19,8.2,5.9,5.9,0,0,1-3,.81,6,6,0,0,1-5.2-3,59,59,0,0,0-101.62,0,6,6,0,1,1-10.38-6A70.1,70.1,0,0,1,103,182.55a46,46,0,1,1,50.1,0A70.1,70.1,0,0,1,189.19,213ZM128,178a34,34,0,1,0-34-34A34,34,0,0,0,128,178ZM70,120a6,6,0,0,0-6-6A26,26,0,1,1,89.18,81.49a6,6,0,1,0,11.62-3,38,38,0,1,0-59.91,39.63A65.69,65.69,0,0,0,11.2,140.4a6,6,0,1,0,9.6,7.2A53.58,53.58,0,0,1,64,126,6,6,0,0,0,70,120Z"/></svg><span data-i18n="plan.i3">جداول المجتمع</span></li>
+            <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M222,144v64a6,6,0,0,1-6,6H40a6,6,0,0,1-6-6V144a6,6,0,0,1,12,0v58H210V144a6,6,0,0,1,12,0Zm-98.24,4.24a6,6,0,0,0,8.48,0l40-40a6,6,0,0,0-8.48-8.48L134,129.51V32a6,6,0,0,0-12,0v97.51L92.24,99.76a6,6,0,0,0-8.48,8.48Z"/></svg><span data-i18n="plan.i4">انقل جدولك</span></li>
+          </ul>
         </div>
       </div>
     </section>
@@ -168,38 +186,34 @@
     <section class="chapter journey" aria-labelledby="t-journey">
       <div class="wrap">
         <h2 class="section-title" id="t-journey" data-reveal><span data-i18n="journey.t1">شوف تطوّرك</span> <span class="soft" data-i18n="journey.t2">بعينك.</span></h2>
-        <div class="board" data-reveal>
-          <p class="day"><span data-i18n="journey.day">اليوم</span> <bdi dir="ltr" class="js-days" data-to="73">73</bdi> <span data-i18n="journey.of">من 113</span></p>
-          <svg class="growth" viewBox="0 0 320 140" preserveAspectRatio="none" aria-hidden="true">
-            <defs><linearGradient id="growth-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0060F0" stop-opacity="0.18"/><stop offset="1" stop-color="#0060F0" stop-opacity="0"/></linearGradient></defs>
-            <path class="area" d="M0 128 C 40 124, 60 112, 90 106 S 140 92, 170 80 S 230 50, 260 40 S 300 18, 320 12 L 320 140 L 0 140 Z" fill="url(#growth-fill)"/>
-            <path class="line" d="M0 128 C 40 124, 60 112, 90 106 S 140 92, 170 80 S 230 50, 260 40 S 300 18, 320 12" pathLength="1"/>
-          </svg>
-          <ul class="rhythm" data-stagger>
-            <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M237.57,133.77l-32-80h0a6,6,0,0,0-6.86-3.63L134,64.52V40a6,6,0,0,0-12,0V67.19l-67.3,15a6,6,0,0,0-4.27,3.63h0v0l-32,80A6.1,6.1,0,0,0,18,168c0,21.86,23.31,30,38,30s38-8.14,38-30a6.1,6.1,0,0,0-.43-2.23L64.19,92.33,122,79.48V210H104a6,6,0,0,0,0,12h48a6,6,0,0,0,0-12H134V76.81l56.21-12.49-27.78,69.45A6.1,6.1,0,0,0,162,136c0,21.86,23.31,30,38,30s38-8.14,38-30A6.1,6.1,0,0,0,237.57,133.77ZM56,186a36.89,36.89,0,0,1-17.48-4.56c-5.37-3.13-8.15-7.18-8.49-12.37l26-64.91,26,64.91C81.06,182.85,62.58,186,56,186Zm144-32a36.89,36.89,0,0,1-17.48-4.56c-5.37-3.13-8.15-7.18-8.49-12.37l26-64.91,26,64.91C225.06,150.85,206.58,154,200,154Z"/></svg><span data-i18n="journey.i1">وزنك كل يوم</span></li>
-            <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M208,58H179.21L165,36.67A6,6,0,0,0,160,34H96a6,6,0,0,0-5,2.67L76.78,58H48A22,22,0,0,0,26,80V192a22,22,0,0,0,22,22H208a22,22,0,0,0,22-22V80A22,22,0,0,0,208,58Zm10,134a10,10,0,0,1-10,10H48a10,10,0,0,1-10-10V80A10,10,0,0,1,48,70H80a6,6,0,0,0,5-2.67L99.21,46h57.57L171,67.33A6,6,0,0,0,176,70h32a10,10,0,0,1,10,10ZM128,90a42,42,0,1,0,42,42A42,42,0,0,0,128,90Zm0,72a30,30,0,1,1,30-30A30,30,0,0,1,128,162Z"/></svg><span data-i18n="journey.i2">صورة كل أسبوع</span></li>
-            <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M212.24,83.76l-56-56A6,6,0,0,0,152,26H56A14,14,0,0,0,42,40V216a14,14,0,0,0,14,14H200a14,14,0,0,0,14-14V88A6,6,0,0,0,212.24,83.76ZM158,46.48,193.52,82H158ZM200,218H56a2,2,0,0,1-2-2V40a2,2,0,0,1,2-2h90V88a6,6,0,0,0,6,6h50V216A2,2,0,0,1,200,218Zm-34-82a6,6,0,0,1-6,6H96a6,6,0,0,1,0-12h64A6,6,0,0,1,166,136Zm0,32a6,6,0,0,1-6,6H96a6,6,0,0,1,0-12h64A6,6,0,0,1,166,168Z"/></svg><span data-i18n="journey.i3">InBody كل شهر</span></li>
-          </ul>
+        <div class="bento progress-bento">
+          <div class="cell cell-photos" data-reveal>
+            <p class="cell-cap"><b data-i18n="journey.photoA">صوّر جسمك بنفس الكادر كل أسبوع،</b> <span data-i18n="journey.photoB">وشوف الفرق نهاية كل شهر.</span></p>
+            <div class="device cell-device"><img data-shot="capture" src="assets/app-capture-ar.webp" width="660" height="1434" alt="تصوير الجسم بنفس الكادر" data-i18n-attr="alt:capture.alt" loading="lazy"></div>
+          </div>
+          <div class="cell cell-weight" data-reveal data-delay="1">
+            <p class="weight-now"><bdi class="n js-weight" data-from="86.6" data-to="81.6">81.6</bdi> <small data-i18n="unit.kg">كغ</small></p>
+            <svg class="growth" viewBox="0 0 320 140" preserveAspectRatio="none" aria-hidden="true">
+              <defs><linearGradient id="growth-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0060F0" stop-opacity="0.16"/><stop offset="1" stop-color="#0060F0" stop-opacity="0"/></linearGradient></defs>
+              <path class="area" d="M0 14 C 30 18, 50 30, 80 34 S 120 46, 150 60 S 200 74, 230 92 S 290 112, 320 118 L 320 140 L 0 140 Z" fill="url(#growth-fill)"/>
+              <path class="line" d="M0 14 C 30 18, 50 30, 80 34 S 120 46, 150 60 S 200 74, 230 92 S 290 112, 320 118"/>
+            </svg>
+            <p class="cell-cap"><b data-i18n="journey.weightA">قراف يوضح تطوّر وزنك</b> <span data-i18n="journey.weightB">يوم بيوم.</span></p>
+          </div>
+          <div class="cell cell-ai" data-reveal>
+            <p class="cell-cap"><b data-i18n="journey.aiA">ذكاء اصطناعي يقرأ تقرير InBody،</b> <span data-i18n="journey.aiB">ويقولك إذا ماشي صح أو لا.</span></p>
+            <div class="device cell-device"><img data-shot="coachplan" src="assets/app-coachplan-ar.webp" width="660" height="1434" alt="المدرب الذكي يقول إنك ماشي على الخطة" data-i18n-attr="alt:coachplan.alt" loading="lazy"></div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Streaks and levels -->
+    <!-- Levels, then the streaks that earn them -->
     <section class="chapter levels tint" aria-labelledby="t-levels">
-      <div class="wrap">
-        <h2 class="section-title" id="t-levels" data-reveal><span data-i18n="levels.t1">التزم كل يوم.</span> <span class="soft" data-i18n="levels.t2">واجمع ستريكاتك.</span></h2>
-        <ul class="streak-row">
-          <li class="sk lit"><span class="sk-ico" aria-hidden="true"><img src="assets/streak-nutrition-off.png" width="96" height="96" alt=""><img class="on" src="assets/streak-nutrition.png" width="96" height="96" alt=""></span><span data-i18n="levels.s1">السعرات</span></li>
-          <li class="sk lit"><span class="sk-ico" aria-hidden="true"><img src="assets/streak-training-off.png" width="96" height="96" alt=""><img class="on" src="assets/streak-training.png" width="96" height="96" alt=""></span><span data-i18n="levels.s2">التمرين</span></li>
-          <li class="sk lit"><span class="sk-ico" aria-hidden="true"><img src="assets/streak-water-off.png" width="96" height="96" alt=""><img class="on" src="assets/streak-water.png" width="96" height="96" alt=""></span><span data-i18n="levels.s3">الماء</span></li>
-          <li class="sk lit"><span class="sk-ico" aria-hidden="true"><img src="assets/streak-steps-off.png" width="96" height="96" alt=""><img class="on" src="assets/streak-steps.png" width="96" height="96" alt=""></span><span data-i18n="levels.s4">الخطوات</span></li>
-          <li class="sk lit"><span class="sk-ico" aria-hidden="true"><img src="assets/streak-supplements-off.png" width="96" height="96" alt=""><img class="on" src="assets/streak-supplements.png" width="96" height="96" alt=""></span><span data-i18n="levels.s5">المكملات</span></li>
-        </ul>
-      </div>
       <!-- On phones the four levels pass one by one through the middle as you scroll; on wide screens they stand in a row. -->
       <div class="lineup-stage">
         <div class="lineup-pin">
-          <p class="lead center" data-reveal><span data-i18n="levels.m1">ستريكات أكثر، نجوم أكثر،</span> <b data-i18n="levels.m2">ومستوى أعلى.</b></p>
+          <h2 class="section-title" id="t-levels" data-reveal><span data-i18n="levels.t1">التزم كل يوم.</span> <span class="soft" data-i18n="levels.t2">ومستواك يرتفع.</span></h2>
           <ol class="lineup">
             <li><img src="assets/level-beginner.webp" width="278" height="560" alt="" loading="lazy"><span class="lv-name" data-i18n="levels.l1">مبتدئ</span><span class="lv-when" data-i18n="levels.w1">من أول يوم</span></li>
             <li><img src="assets/level-strong.webp" width="282" height="560" alt="" loading="lazy"><span class="lv-name" data-i18n="levels.l2">قوي</span><span class="lv-when"><span data-i18n="levels.after">بعد</span> <bdi dir="ltr">7</bdi> <span data-i18n="levels.days7">أيام التزام</span> <bdi dir="ltr">100%</bdi></span></li>
@@ -207,6 +221,16 @@
             <li><img src="assets/level-ironEater.webp" width="496" height="560" alt="" loading="lazy"><span class="lv-name" data-i18n="levels.l4">آكل حديد</span><span class="lv-when"><span data-i18n="levels.after">بعد</span> <bdi dir="ltr">90</bdi> <span data-i18n="levels.days">يوم التزام</span> <bdi dir="ltr">100%</bdi></span></li>
           </ol>
         </div>
+      </div>
+      <div class="wrap streaks">
+        <ul class="streak-row">
+          <li class="sk lit"><span class="sk-ico" aria-hidden="true"><img src="assets/streak-nutrition-off.png" width="96" height="96" alt=""><img class="on" src="assets/streak-nutrition.png" width="96" height="96" alt=""></span><span data-i18n="levels.s1">السعرات</span></li>
+          <li class="sk lit"><span class="sk-ico" aria-hidden="true"><img src="assets/streak-training-off.png" width="96" height="96" alt=""><img class="on" src="assets/streak-training.png" width="96" height="96" alt=""></span><span data-i18n="levels.s2">التمرين</span></li>
+          <li class="sk lit"><span class="sk-ico" aria-hidden="true"><img src="assets/streak-water-off.png" width="96" height="96" alt=""><img class="on" src="assets/streak-water.png" width="96" height="96" alt=""></span><span data-i18n="levels.s3">الماء</span></li>
+          <li class="sk lit"><span class="sk-ico" aria-hidden="true"><img src="assets/streak-steps-off.png" width="96" height="96" alt=""><img class="on" src="assets/streak-steps.png" width="96" height="96" alt=""></span><span data-i18n="levels.s4">الخطوات</span></li>
+          <li class="sk lit"><span class="sk-ico" aria-hidden="true"><img src="assets/streak-supplements-off.png" width="96" height="96" alt=""><img class="on" src="assets/streak-supplements.png" width="96" height="96" alt=""></span><span data-i18n="levels.s5">المكملات</span></li>
+        </ul>
+        <p class="lead center" data-reveal><span data-i18n="levels.m1">كمّل ستريكاتك كل يوم،</span> <b data-i18n="levels.m2">وتاخذ نجمة.</b></p>
       </div>
     </section>
 
@@ -300,9 +324,9 @@
     </div>
   </footer>
 
-  <script src="js/config.js?v=20261109b"></script>
-  <script src="js/strings.js?v=20261109b"></script>
-  <script src="js/motion.js?v=20261109b"></script>
-  <script src="js/main.js?v=20261109b"></script>
+  <script src="js/config.js?v=20261109c"></script>
+  <script src="js/strings.js?v=20261109c"></script>
+  <script src="js/motion.js?v=20261109c"></script>
+  <script src="js/main.js?v=20261109c"></script>
 </body>
 </html>
