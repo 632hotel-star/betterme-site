@@ -3,6 +3,20 @@
   var BM = window.BM, root = document.documentElement;
   var cfg = BM.config;
 
+  // Inside TikTok, Instagram and the like a video can only play full screen, so there each clip is an animated image
+  // that plays inside the phone (its still first, the animation once it comes near the screen).
+  if (root.classList.contains('inapp')) {
+    document.querySelectorAll('video[data-clip]').forEach(function (v) {
+      var img = document.createElement('img');
+      img.setAttribute('data-clip', v.getAttribute('data-clip'));
+      img.src = v.getAttribute('poster');
+      img.width = 540; img.height = 1174;
+      img.alt = v.getAttribute('aria-label');
+      img.setAttribute('data-i18n-attr', v.getAttribute('data-i18n-attr').replace('aria-label:', 'alt:'));
+      v.replaceWith(img);
+    });
+  }
+
   // ---------- language ----------
   // Arabic is the page's own text; the first time we switch away we keep it so we can switch back.
   var arabic = { text: new Map(), attr: new Map(), title: document.title, desc: '' };
@@ -83,6 +97,10 @@
       if (v.dataset.src && v.dataset.src !== base + '.mp4') { v.dataset.src = base + '.mp4'; v.src = v.dataset.src; v.load(); playIfShown(v); }
       else v.dataset.src = base + '.mp4';
     });
+    document.querySelectorAll('img[data-clip]').forEach(function (img) {
+      var src = 'assets/clip-' + img.getAttribute('data-clip') + '-' + l + (img.dataset.live ? '-anim.webp' : '.webp');
+      if (img.getAttribute('src') !== src) img.setAttribute('src', src);
+    });
     document.querySelectorAll('.js-badge').forEach(function (img) {
       img.dataset.fallback = '';
       img.src = cfg.badge[l];
@@ -123,6 +141,66 @@
     });
   });
 
+  // ---------- TikTok: its browser never hands a link to the App Store ----------
+  // There the download button opens a sheet that shows how to open the page in the browser. While it is open the address
+  // carries ?get=app, so the page the browser opens goes straight on to the App Store.
+  var inTikTok = /musical_ly|Bytedance|TikTok/i.test(navigator.userAgent);
+  function markGet(on) {
+    try {
+      var url = new URL(location.href);
+      if (on) url.searchParams.set('get', 'app'); else url.searchParams.delete('get');
+      history.replaceState(null, '', url);
+    } catch (e) {}
+  }
+  function copyText(text) {
+    function legacy() {
+      var t = document.createElement('textarea');
+      t.value = text; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.opacity = '0';
+      document.body.appendChild(t);
+      t.select(); t.setSelectionRange(0, text.length);
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) {}
+      t.remove();
+      return ok ? Promise.resolve() : Promise.reject();
+    }
+    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text).catch(legacy);
+    return legacy();
+  }
+  var getApp = (function () {
+    var sheet = document.getElementById('getapp');
+    if (!sheet) return null;
+    var copyBtn = sheet.querySelector('.getapp-copy'), opener = null, timer = 0;
+    function open(from) {
+      opener = from;
+      markGet(true);
+      root.classList.add('sheet-open');
+      sheet.classList.add('open');
+      sheet.querySelector('.getapp-sheet').focus({ preventScroll: true });
+    }
+    function close() {
+      markGet(false);
+      root.classList.remove('sheet-open');
+      sheet.classList.remove('open');
+      copyBtn.classList.remove('copied');
+      if (opener) opener.focus({ preventScroll: true });
+    }
+    sheet.querySelectorAll('[data-close]').forEach(function (el) { el.addEventListener('click', close); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && sheet.classList.contains('open')) close(); });
+    copyBtn.addEventListener('click', function () {
+      copyText(cfg.appStoreUrl).then(function () {
+        copyBtn.classList.add('copied');
+        clearTimeout(timer);
+        timer = setTimeout(function () { copyBtn.classList.remove('copied'); }, 3000);
+      }, function () {});
+    });
+    return { open: open };
+  })();
+  if (inTikTok && getApp) {
+    document.querySelectorAll('.js-store').forEach(function (a) {
+      a.addEventListener('click', function (e) { e.preventDefault(); getApp.open(a); });
+    });
+  }
+
   // ---------- clips: load near the screen, play only while on it (never with Reduce Motion) ----------
   var shown = new WeakMap();
   function playIfShown(v) {
@@ -142,6 +220,19 @@
       });
     }, { rootMargin: '200px 0px' });
     document.querySelectorAll('video[data-clip]').forEach(function (v) { io.observe(v); });
+    // The animated clips (in-app browsers) all start as their row comes near, so the next tile is already moving.
+    var clipImgs = document.querySelectorAll('img[data-clip]');
+    if (clipImgs.length && !BM.reduced()) {
+      var ioImg = new IntersectionObserver(function (entries) {
+        if (!entries[0].isIntersecting) return;
+        ioImg.disconnect();
+        clipImgs.forEach(function (img) {
+          img.dataset.live = '1';
+          img.src = 'assets/clip-' + img.getAttribute('data-clip') + '-' + lang() + '-anim.webp';
+        });
+      }, { rootMargin: '300px 0px' });
+      ioImg.observe(clipImgs[0].closest('section') || clipImgs[0]);
+    }
   }
 
   // ---------- highlights: a swipeable row that moves on by itself while it is on screen ----------
@@ -235,6 +326,11 @@
   })();
 
   // ---------- start ----------
+  // Opened in the browser from TikTok's sheet: on to the App Store.
+  if (!inTikTok && /(?:^|[?&])get=app(?:&|$)/.test(location.search)) {
+    markGet(false);
+    location.assign(cfg.appStoreUrl);
+  }
   applyLanguage(lang());
   BM.initMotion();
   document.getElementById('lang-toggle').addEventListener('click', function () {
