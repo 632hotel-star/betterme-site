@@ -93,32 +93,35 @@
     });
   }
 
-  // 0 → 566 videos; the rest timer runs from 3:00 down to 2:19 and its ring empties with it.
+  // 0 → 566 videos. Last week's set and today's: today's bar grows past it, 80 → 82.5 kg, then the +2.5 kg shows.
   function counters() {
-    var count = document.querySelector('.js-count'), timer = document.querySelector('.js-timer');
+    var count = document.querySelector('.js-count');
     if (count) {
       var to = Number(count.getAttribute('data-to'));
       track(function (vh) { return through(count, vh, 0.98, 0.6); }, function (p) {
         count.textContent = String(Math.round(lerp(0, to, out(p))));
       });
     }
-    if (timer) {
-      var ring = timer.closest('.rest-ring');
-      track(function (vh) { return through(timer, vh, 0.98, 0.45); }, function (p) {
-        var s = Math.round(lerp(180, 139, p));
-        timer.textContent = Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
-        ring.style.setProperty('--left', (s / 180).toFixed(4));
+    var log = document.querySelector('.lift-log');
+    if (log) {
+      var now = log.querySelector('.lift-row.now'), kg = log.querySelector('.js-lift');
+      track(function (vh) { return through(log, vh, 0.95, 0.5); }, function (p) {
+        var e = out(p);
+        now.style.setProperty('--grow', lerp(0.68, 0.86, e).toFixed(4));
+        kg.textContent = (Math.round(lerp(80, 82.5, e) * 2) / 2).toFixed(1);
+        log.style.setProperty('--up', seg(p, 0.8, 1).toFixed(3));
       });
     }
   }
 
-  // The journey: the day counter climbs to 73 while the progress line draws itself.
+  // Progress: the weight line draws itself while the number moves from the first weigh-in to today's.
   function journey() {
-    var board = document.querySelector('.board');
-    if (!board) return;
-    var days = board.querySelector('.js-days'), chart = board.querySelector('.growth'), to = Number(days.getAttribute('data-to'));
-    track(function (vh) { return through(board, vh, 0.9, 0.4); }, function (p) {
-      days.textContent = String(Math.max(1, Math.round(lerp(1, to, out(p)))));
+    var cell = document.querySelector('.cell-weight');
+    if (!cell) return;
+    var num = cell.querySelector('.js-weight'), chart = cell.querySelector('.growth');
+    var from = Number(num.getAttribute('data-from')), to = Number(num.getAttribute('data-to'));
+    track(function (vh) { return through(cell, vh, 0.92, 0.42); }, function (p) {
+      num.textContent = lerp(from, to, out(p)).toFixed(1);
       chart.style.setProperty('--draw', (1 - p).toFixed(4));
     });
   }
