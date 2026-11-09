@@ -470,6 +470,197 @@ html.motion .hero-copy > :nth-child(3) { animation-delay: 120ms; }
 .end-pill { padding: 8px 14px; border-radius: 999px; background: var(--tint); font-weight: 700; color: var(--ink); }
 .legal .end-pill:hover { background: #e8e8ed; text-decoration: none; }
 
+/* ---------- affiliates: the idea in three icons ---------- */
+.idea-row { display: flex; justify-content: center; align-items: flex-start; gap: 4px; margin-top: 40px; }
+.idea-row > li:not(.idea-arrow) {
+  display: flex; flex-direction: column; align-items: center; gap: 12px; width: 92px;
+  font-size: 14px; font-weight: 700; text-align: center; white-space: nowrap;
+}
+.idea-ico { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; background: var(--tint); color: var(--accent); }
+.idea-ico svg { width: 30px; height: 30px; }
+.idea-arrow { padding-top: 21px; color: var(--ink-3); }
+.idea-arrow svg { width: 22px; height: 22px; }
+[dir="ltr"] .idea-arrow svg { transform: scaleX(-1); }
+
+/* ---------- affiliates: the link's journey ----------
+   With motion the scene pins and the scroll plays five scenes in turn; each scene's own movement follows --t (0 → 1,
+   set by motion.js). Without it (Reduce Motion) --t stays 1: the five finished scenes, one under another. */
+.flow { margin-top: 36px; }
+.flow-rail { position: relative; display: flex; justify-content: space-between; width: 100%; max-width: 520px; margin-inline: auto; }
+.flow-rail > li:not(.flow-fill) {
+  position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; width: 60px;
+  font-size: 12px; font-weight: 700; color: var(--ink-3); white-space: nowrap; transition: color 300ms var(--ease);
+}
+.flow-dot {
+  display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%;
+  background: #e8e8ed; color: var(--ink-3); transition: background 300ms var(--ease), color 300ms var(--ease);
+}
+.flow-dot svg { width: 20px; height: 20px; }
+.flow-rail > li.on { color: var(--ink); }
+.flow-rail > li.on .flow-dot { background: var(--accent); color: #fff; }
+.flow-rail::before, .flow-fill { content: ""; position: absolute; top: 19px; height: 2px; inset-inline-start: 30px; }
+.flow-rail::before { inset-inline-end: 30px; background: #d2d2d7; }
+.flow-fill { width: calc((100% - 60px) * var(--p, 1)); background: var(--accent); }
+html:not(.motion) .flow-rail { display: none; }
+
+.flow-scenes { display: grid; gap: 64px; }
+.flow-scene { --t: 1; margin: 0; display: flex; flex-direction: column; align-items: center; }
+.flow-cap { max-width: 26ch; margin-top: 24px; font-size: clamp(18px, 2.2vw, 22px); font-weight: 700; line-height: 1.45; text-align: center; text-wrap: balance; }
+html.motion .flow-chapter { padding-bottom: 0; }
+html.motion .flow { height: calc(100svh + var(--dist, 0px)); }
+html.motion .flow-pin {
+  position: sticky; top: 0; height: 100svh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(24px, 5svh, 48px);
+  overflow: hidden;
+}
+html.motion .flow-scenes {
+  --slot: min(420px, 100%);
+  display: flex; align-items: flex-start; gap: 0; width: 100%; padding-inline: calc((100% - var(--slot)) / 2);
+  will-change: transform;
+}
+html.motion .flow-scene { flex: none; width: var(--slot); padding-inline: 8px; }
+
+.fv {
+  position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
+  width: 100%; max-width: 380px; min-height: 300px; padding: 26px 20px; border-radius: var(--radius); background: var(--tint);
+}
+.fv-card {
+  display: flex; align-items: center; gap: 14px; width: 100%; padding: 16px; border-radius: 20px; background: #fff;
+  box-shadow: 0 1px 2px rgba(29, 29, 31, 0.06), 0 14px 34px -18px rgba(29, 29, 31, 0.3);
+}
+.fv b, .fv small { font-weight: 700; }
+.fv-chip {
+  display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: 999px;
+  background: rgba(0, 96, 240, 0.1); color: var(--accent); font-size: 14px; font-weight: 700;
+  --k: clamp(0, (var(--t) - 0.82) * 8, 1);
+  opacity: var(--k); transform: translateY(calc((1 - var(--k)) * 10px));
+}
+.fv-chip svg { width: 16px; height: 16px; flex: none; }
+
+/* 1. The link: it types itself out, then the code at its end lights up. */
+.fv-url {
+  position: relative; display: flex; align-items: center; gap: 10px; padding: 13px 18px; border-radius: 999px; background: #fff;
+  box-shadow: 0 1px 2px rgba(29, 29, 31, 0.06), 0 14px 34px -18px rgba(29, 29, 31, 0.3);
+}
+.fv-url-ico svg { display: block; width: 20px; height: 20px; color: var(--accent); }
+.fv-url-text {
+  display: inline-block; font: 500 14px/1.3 ui-monospace, "SF Mono", Menlo, monospace; color: var(--ink-2); white-space: nowrap;
+  clip-path: inset(-4px calc((1 - clamp(0, var(--t) * 1.8, 1)) * 100%) -4px -6px);
+}
+.fv-code { position: relative; color: var(--accent); }
+.fv-code::before {
+  content: ""; position: absolute; inset: -3px -4px; border-radius: 6px; background: rgba(0, 96, 240, 0.12);
+  opacity: clamp(0, (var(--t) - 0.58) * 6, 1);
+}
+.fv-tag {
+  position: absolute; top: calc(100% + 12px); right: 34px; white-space: nowrap;
+  padding: 6px 13px; border-radius: 999px; background: var(--accent); color: #fff; font-size: 14px; font-weight: 700;
+  --k: clamp(0, (var(--t) - 0.68) * 5, 1);
+  opacity: var(--k); transform: translateY(calc((1 - var(--k)) * 8px));
+}
+.fv-tag::before {
+  content: ""; position: absolute; top: -4px; right: 22px; width: 10px; height: 10px; border-radius: 2px;
+  background: inherit; transform: rotate(45deg);
+}
+
+/* 2. Sent in a chat: the preview card, then a tap. */
+.fv-bubble {
+  position: relative; width: min(270px, 100%); padding: 8px; border-radius: 20px; background: #fff;
+  box-shadow: 0 1px 2px rgba(29, 29, 31, 0.06), 0 14px 34px -18px rgba(29, 29, 31, 0.3);
+  --k: clamp(0, var(--t) * 4, 1);
+  opacity: var(--k); transform: translateY(calc((1 - var(--k)) * 24px));
+}
+.fv-preview { display: flex; align-items: center; gap: 12px; padding: 10px; border-radius: 14px; background: var(--tint); }
+.fv-preview img { width: 52px; height: 52px; border-radius: 12px; }
+.fv-preview span { display: flex; flex-direction: column; font-family: var(--font-en); }
+.fv-preview b { font-size: 16px; }
+.fv-preview small { font-size: 13px; color: var(--ink-3); }
+.fv-mini { display: block; padding: 8px 6px 2px; font: 500 12px/1.3 ui-monospace, "SF Mono", Menlo, monospace; color: var(--ink-3); text-align: left; }
+.fv-mini b { color: var(--accent); font-weight: 500; }
+.fv-ripple {
+  position: absolute; left: 50%; top: 40%; width: 120px; height: 120px; margin: -60px 0 0 -60px; border-radius: 50%;
+  background: rgba(0, 96, 240, 0.28); pointer-events: none;
+  --k: clamp(0, (var(--t) - 0.45) * 2.6, 1);
+  opacity: calc(clamp(0, (var(--t) - 0.45) * 30, 1) * (1 - var(--k))); transform: scale(calc(0.15 + var(--k)));
+}
+
+/* 3. The App Store: «Get», the download ring, «Open», and the download is the link's. */
+.fv-store img { width: 60px; height: 60px; border-radius: 14px; flex: none; }
+.fv-name { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.fv-name b { font-family: var(--font-en); font-size: 17px; }
+.fv-name small { font-size: 13px; color: var(--ink-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.fv-get { display: grid; place-items: center; flex: none; min-width: 74px; }
+.fv-get > * { grid-area: 1 / 1; }
+.fv-get-a, .fv-get-b { padding: 6px 16px; border-radius: 999px; background: #eef0f4; color: var(--accent); font-size: 15px; font-weight: 800; }
+.fv-get-a { opacity: clamp(0, (0.34 - var(--t)) * 20, 1); }
+.fv-get-b { opacity: clamp(0, (var(--t) - 0.78) * 20, 1); }
+.fv-ring { width: 30px; height: 30px; transform: rotate(-90deg); opacity: calc(clamp(0, (var(--t) - 0.32) * 20, 1) * clamp(0, (0.8 - var(--t)) * 20, 1)); }
+.fv-ring circle { fill: none; stroke: #d2d2d7; stroke-width: 3; }
+.fv-ring .fv-ring-on { stroke: var(--accent); stroke-linecap: round; stroke-dasharray: 100px; stroke-dashoffset: calc(100px * (1 - clamp(0, (var(--t) - 0.34) / 0.42, 1))); }
+
+/* 4. The subscription sheet comes up, «Subscribe» turns into a tick, and the subscription is the link's. */
+.fv-sheet {
+  flex-direction: column; gap: 4px; max-width: 270px; padding: 20px 20px 16px; text-align: center;
+  --k: clamp(0, var(--t) * 4, 1);
+  opacity: var(--k); transform: translateY(calc((1 - var(--k)) * 36px));
+}
+.fv-crown svg { display: block; width: 32px; height: 32px; color: var(--accent); }
+.fv-sheet > b { font-size: 18px; }
+.fv-price { font-size: 15px; color: var(--ink-2); }
+.fv-price bdi { font: 700 17px var(--font-num); color: var(--ink); }
+.fv-btn { display: grid; place-items: center; width: 100%; height: 44px; margin-top: 10px; border-radius: 999px; background: var(--accent); color: #fff; font-weight: 800; }
+.fv-btn > * { grid-area: 1 / 1; }
+.fv-btn-a { opacity: clamp(0, (0.55 - var(--t)) * 20, 1); }
+.fv-btn-b { display: grid; --k: clamp(0, (var(--t) - 0.55) * 8, 1); opacity: var(--k); transform: scale(calc(0.5 + 0.5 * var(--k))); }
+.fv-btn-b svg { width: 24px; height: 24px; }
+.sc-sub .fv-chip { --k: clamp(0, (var(--t) - 0.74) * 8, 1); }
+
+/* 5. Apple's daily report flows into the dashboard: each count goes up by one and the earnings bar grows. */
+.sc-dash .fv { gap: 0; }
+.fv-report {
+  display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px; background: var(--ink); color: #fff;
+  font-size: 14px; font-weight: 700; opacity: clamp(0, var(--t) * 5, 1);
+}
+.fv-report svg { width: 18px; height: 18px; }
+.fv-drop {
+  display: block; width: 2px; height: 30px; margin: 8px 0;
+  background: linear-gradient(var(--accent), var(--accent)) top / 100% calc(clamp(0, (var(--t) - 0.15) / 0.3, 1) * 100%) no-repeat, #d2d2d7;
+}
+.fv-board { flex-wrap: wrap; gap: 10px; max-width: 320px; padding: 14px; }
+.fv-stat { position: relative; flex: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 2px; padding: 12px; border-radius: 14px; background: var(--tint); }
+.fv-stat svg { width: 20px; height: 20px; color: var(--accent); }
+.fv-stat b { font: 700 28px/1.15 var(--font-num); }
+.fv-stat small { font-size: 13px; color: var(--ink-2); }
+.fv-stat em {
+  position: absolute; top: 10px; inset-inline-end: 10px; padding: 1px 8px; border-radius: 999px; background: var(--accent); color: #fff;
+  font: 700 12px/1.5 var(--font-num); font-style: normal;
+  --k: clamp(0, (var(--t) - 0.55) * 8, 1);
+  opacity: var(--k); transform: scale(calc(0.5 + 0.5 * var(--k)));
+}
+.fv-earn { flex-basis: 100%; display: flex; align-items: center; gap: 10px; padding-inline: 2px; font-size: 13px; font-weight: 700; color: var(--ink-2); }
+.fv-earn > i { flex: 1; height: 8px; border-radius: 999px; background: var(--tint); overflow: hidden; }
+.fv-earn > i > i {
+  display: block; height: 100%; border-radius: inherit; background: var(--accent); transform-origin: left center;
+  transform: scaleX(calc(0.45 + 0.4 * clamp(0, (var(--t) - 0.6) / 0.3, 1)));
+}
+[dir="rtl"] .fv-earn > i > i { transform-origin: right center; }
+.fv-earn svg { width: 20px; height: 20px; color: var(--accent); flex: none; }
+
+/* ---------- affiliates: where the numbers come from ---------- */
+.formula { display: flex; justify-content: center; align-items: center; gap: 6px; margin-top: 44px; }
+.fx {
+  flex: 1; max-width: 170px; display: flex; flex-direction: column; align-items: center; gap: 10px;
+  padding: 18px 8px; border-radius: 22px; background: #fff; text-align: center; font-size: 13px; font-weight: 700; line-height: 1.35;
+}
+.fx-ico svg { display: block; width: 30px; height: 30px; color: var(--ink); }
+.fx-out { background: var(--accent); color: #fff; }
+.fx-out .fx-ico svg { color: #fff; }
+.fx-op { flex: none; font: 700 24px/1 var(--font-num); color: var(--ink-3); }
+.trust-tiles { margin-top: 16px; }
+.trust-tiles .cell { background: #fff; }
+.fine { max-width: 48ch; margin: 28px auto 0; font-size: 14px; line-height: 1.6; color: var(--ink-3); text-align: center; text-wrap: balance; }
+.dash-grid { margin-top: 40px; }
+
 /* ---------- wider screens ---------- */
 @media (min-width: 600px) {
   .ways { gap: 18px 36px; }
@@ -488,6 +679,10 @@ html.motion .hero-copy > :nth-child(3) { animation-delay: 120ms; }
   .cell-dash { min-height: 640px; }
   .plan-tiles { grid-template-columns: 1fr 1fr; }
   .plan-tiles .mini.alert { grid-column: 1 / -1; }
+  .trust-tiles { grid-template-columns: repeat(3, 1fr); }
+  .trust-tiles .cell { flex-direction: column; }
+  .fx { padding: 26px 12px; font-size: 15px; }
+  .dash-grid { margin-top: 52px; }
   .icon-grid li, .plan-ways li { flex: 1 1 0; width: auto; }
   .plan-ways li, .icon-grid li { font-size: 14px; }
   .cell-plan { min-height: 640px; }
