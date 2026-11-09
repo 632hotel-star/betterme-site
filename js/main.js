@@ -19,6 +19,8 @@
   });
 
   function lang() { return root.lang === 'en' ? 'en' : 'ar'; }
+  function rtl() { return root.dir === 'rtl'; }
+  function ui(key) { return BM.strings.ui[lang()][key]; }
 
   function money(n) { return Number(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
 
@@ -61,9 +63,13 @@
     toggle.setAttribute('lang', l === 'ar' ? 'en' : 'ar');
     document.title = l === 'ar' ? arabic.title : en['meta.title'];
     if (descMeta) descMeta.content = l === 'ar' ? arabic.desc : en['meta.description'];
-    // The app's own screens, captured in each language.
+    // The app's own screens (dark mode), captured in each language.
     document.querySelectorAll('img[data-shot]').forEach(function (img) {
       var src = 'assets/app-' + img.getAttribute('data-shot') + '-' + l + '.webp';
+      if (img.getAttribute('src') !== src) img.setAttribute('src', src);
+    });
+    document.querySelectorAll('img[data-hero]').forEach(function (img) {
+      var src = 'assets/hero-' + l + '.webp';
       if (img.getAttribute('src') !== src) img.setAttribute('src', src);
     });
     // Clips recorded in the app, in each language (their source is set once they come near the screen).
@@ -81,6 +87,7 @@
       a.href = cfg.legal[a.getAttribute('data-doc')][l];
     });
     renderPricing(l);
+    if (highlights) highlights.relabel();
     root.classList.remove('i18n-pending');
   }
 
@@ -92,6 +99,7 @@
       history.replaceState(null, '', url);
     } catch (e) {}
     applyLanguage(l);
+    if (highlights) highlights.go(0);
     BM.relayout();
   }
 
@@ -128,6 +136,96 @@
     document.querySelectorAll('video[data-clip]').forEach(function (v) { io.observe(v); });
   }
 
+  // ---------- highlights: a swipeable row that moves on by itself while it is on screen ----------
+  // Each dot fills over a few seconds and then the next tile slides in; the button pauses it. Never with Reduce Motion.
+  var highlights = (function () {
+    var sec = document.querySelector('.highlights');
+    if (!sec) return null;
+    var trackEl = sec.querySelector('.hl-track'), tiles = Array.prototype.slice.call(trackEl.children);
+    var dotsEl = sec.querySelector('.hl-dots'), btn = sec.querySelector('.hl-play');
+    var current = -1, inView = false, paused = false, auto = !BM.reduced(), quietUntil = 0;
+    if (!auto) sec.classList.add('static');
+
+    var dots = tiles.map(function (tile, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.appendChild(document.createElement('i'));
+      b.addEventListener('click', function () { go(i); });
+      b.firstChild.addEventListener('animationend', function () { if (i === current) go((current + 1) % tiles.length); });
+      dotsEl.appendChild(b);
+      return b;
+    });
+
+    function setActive(i) {
+      if (i === current) return;
+      current = i;
+      dots.forEach(function (d, k) {
+        var on = k === i;
+        d.classList.toggle('on', on);
+        d.setAttribute('aria-current', on ? 'true' : 'false');
+        // Restart the fill of the dot that just became current.
+        var bar = d.firstChild;
+        bar.style.animation = 'none';
+        void bar.offsetWidth;
+        bar.style.animation = '';
+      });
+    }
+
+    function edgeDistance(tile) {
+      var tr = trackEl.getBoundingClientRect(), r = tile.getBoundingClientRect();
+      var pad = parseFloat(getComputedStyle(trackEl).scrollPaddingInlineStart) || 0;
+      return rtl() ? r.right - (tr.right - pad) : r.left - (tr.left + pad);
+    }
+
+    // A tap on a dot shows that tile (and keeps the row paused if it was).
+    function go(i) {
+      quietUntil = Date.now() + 900;
+      trackEl.scrollBy({ left: edgeDistance(tiles[i]), behavior: BM.reduced() || !inView ? 'auto' : 'smooth' });
+      setActive(i);
+    }
+
+    // Swiping by hand: the dot follows the tile nearest the start edge (at the far end, keep the one chosen).
+    var raf = 0;
+    trackEl.addEventListener('scroll', function () {
+      if (raf) return;
+      raf = requestAnimationFrame(function () {
+        raf = 0;
+        if (Date.now() < quietUntil) return;
+        var best = 0, bd = Infinity;
+        tiles.forEach(function (t, k) { var d = Math.abs(edgeDistance(t)); if (d < bd) { bd = d; best = k; } });
+        var atEnd = Math.abs(Math.abs(trackEl.scrollLeft) - (trackEl.scrollWidth - trackEl.clientWidth)) < 2;
+        if (atEnd && current > best) return;
+        setActive(best);
+      });
+    }, { passive: true });
+
+    function sync() {
+      var on = auto && inView && !paused && !document.hidden;
+      sec.classList.toggle('playing', on);
+      sec.classList.toggle('paused', paused);
+    }
+    btn.addEventListener('click', function () {
+      paused = !paused;
+      relabel();
+      sync();
+    });
+    function relabel() {
+      btn.setAttribute('aria-label', paused ? ui('play') : ui('pause'));
+      dots.forEach(function (d, k) { d.setAttribute('aria-label', ui('dot') + ' ' + (k + 1)); });
+    }
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        inView = entries[0].isIntersecting;
+        sync();
+      }, { threshold: 0.4 }).observe(trackEl);
+    }
+    document.addEventListener('visibilitychange', sync);
+    setActive(0);
+    relabel();
+    sync();
+    return { go: go, relabel: relabel };
+  })();
+
   // ---------- start ----------
   applyLanguage(lang());
   BM.initMotion();
@@ -135,7 +233,6 @@
     setLanguage(lang() === 'ar' ? 'en' : 'ar');
   });
 
-  // The sideways track measures itself: measure again when the width changes or the fonts arrive.
   var lastW = window.innerWidth, timer = null;
   window.addEventListener('resize', function () {
     clearTimeout(timer);

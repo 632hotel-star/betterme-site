@@ -18,6 +18,9 @@
     var top = el.getBoundingClientRect().top;
     return clamp((vh * start - top) / (vh * (start - end)));
   }
+  function each(sel, fn) { Array.prototype.forEach.call(document.querySelectorAll(sel), fn); }
+
+  function smooth(t) { return t * t * (3 - 2 * t); }
   function rtl() { return root.dir === 'rtl'; }
 
   var tracks = [], layouts = [];
@@ -37,161 +40,139 @@
       else { t.cur += (tg - t.cur) * 0.22; moving = true; }
       if (t.cur !== t.last) { t.last = t.cur; t.write(t.cur); }
     });
-    root.classList.toggle('scrolled-down', window.scrollY > 40);
     if (moving) schedule();
   }
 
   // ---------- the page's motion ----------
+  // The headline lifts away and the phone settles back a little as the page starts to move.
   function hero() {
-    var statue = document.querySelector('.hero-statue'), copy = document.querySelector('.hero-copy');
-    if (!statue || !copy) return;
+    var copy = document.querySelector('.hero-copy'), phone = document.querySelector('.hero-phone');
+    if (!copy || !phone) return;
     track(function (vh) { return clamp(window.scrollY / vh); }, function (p) {
-      statue.style.transform = p ? 'translate3d(0,' + (p * 16).toFixed(2) + 'vh,0) scale(' + (1 + p * 0.06).toFixed(4) + ')' : '';
-      copy.style.opacity = p ? String(clamp(1 - p * 1.6)) : '';
-      copy.style.transform = p ? 'translate3d(0,' + (-p * 64).toFixed(1) + 'px,0)' : '';
+      copy.style.opacity = p ? String(clamp(1 - p * 1.8)) : '';
+      copy.style.transform = p ? 'translate3d(0,' + (-p * 60).toFixed(1) + 'px,0)' : '';
+      phone.style.transform = p ? 'translate3d(0,' + (-p * 6).toFixed(2) + 'vh,0) scale(' + (1 - p * 0.07).toFixed(4) + ')' : '';
     });
   }
 
-  // The five tabs: the band pins for as long as the track needs to pan from the first screen to the last.
-  function tour() {
-    var section = document.querySelector('.tour'), trackEl = section && section.querySelector('.tour-track');
-    if (!trackEl) return;
-    var shots = Array.prototype.slice.call(trackEl.children), travel = 0, step = 1;
-    layouts.push(function () {
-      trackEl.style.transform = '';
-      var a = shots[0].getBoundingClientRect(), b = shots[shots.length - 1].getBoundingClientRect();
-      travel = Math.abs(b.left - a.left);
-      step = travel / Math.max(1, shots.length - 1);
-      section.style.setProperty('--travel', travel + 'px');
-    });
-    track(function () { return travel ? clamp(-section.getBoundingClientRect().top / travel) : 0; }, function (p) {
-      var x = p * travel * (rtl() ? 1 : -1);
-      trackEl.style.transform = 'translate3d(' + x.toFixed(1) + 'px,0,0)';
-      shots.forEach(function (s, i) {
-        var d = Math.min(1, Math.abs(i * step - p * travel) / step);
-        s.style.transform = 'scale(' + (1 - d * 0.08).toFixed(4) + ')';
-        s.style.opacity = String(1 - d * 0.5);
-      });
-    });
-  }
-
-  // Headlines, tiles and panels rise into place as they come up the screen.
+  // Headlines and panels rise into place as they come up the screen.
   function reveals() {
-    document.querySelectorAll('[data-reveal]').forEach(function (el) {
+    each('[data-reveal]', function (el) {
       var d = (Number(el.getAttribute('data-delay')) || 0) * 0.05;
-      track(function (vh) { return through(el, vh, 0.98 - d, 0.66 - d); }, function (p) {
+      track(function (vh) { return through(el, vh, 0.98 - d, 0.7 - d); }, function (p) {
         var e = out(p);
         el.style.opacity = p >= 1 ? '' : String(e);
-        el.style.transform = p >= 1 ? '' : 'translate3d(0,' + ((1 - e) * 36).toFixed(1) + 'px,0)';
-      });
-    });
-    // Screens inside the tiles slide up a little later than their tile.
-    document.querySelectorAll('.peek').forEach(function (el) {
-      var tile = el.closest('.tile');
-      track(function (vh) { return through(tile, vh, 0.9, 0.4); }, function (p) {
-        el.style.transform = p >= 1 ? '' : 'translate3d(0,' + ((1 - out(p)) * 70).toFixed(1) + 'px,0)';
+        el.style.transform = p >= 1 ? '' : 'translate3d(0,' + ((1 - e) * 40).toFixed(1) + 'px,0)';
       });
     });
   }
 
-  // 0 → 566 clips, and the rest timer running from 3:00 down to 2:19, as their tiles come in.
-  function counters() {
-    var count = document.querySelector('.js-count'), timer = document.querySelector('.js-timer');
-    if (count) {
-      var to = Number(count.getAttribute('data-to'));
-      track(function (vh) { return through(count, vh, 0.98, 0.74); }, function (p) {
-        count.textContent = String(Math.round(lerp(0, to, out(p))));
-      });
-    }
-    if (timer) {
-      track(function (vh) { return through(timer, vh, 0.95, 0.45); }, function (p) {
-        var s = Math.round(lerp(180, 139, p));
-        timer.textContent = Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
-      });
-    }
-  }
-
-  // The problem: everything you have to keep track of drops in, one after another.
-  function pile() {
-    var list = document.querySelector('.pile');
-    if (!list) return;
-    var items = Array.prototype.slice.call(list.children), n = items.length;
-    track(function (vh) { return through(list, vh, 0.95, 0.35); }, function (p) {
-      items.forEach(function (li, k) {
-        var a = (k / n) * 0.78, t = out(seg(p, a, a + 0.22));
-        li.style.opacity = t >= 1 ? '' : String(t);
-        li.style.transform = t >= 1 ? '' : 'translate3d(0,' + ((1 - t) * -26).toFixed(1) + 'px,0) scale(' + (0.86 + 0.14 * t).toFixed(4) + ')';
+  // The app's screens grow up into place, the way a product rises onto an Apple page.
+  function rises() {
+    each('[data-rise]', function (fig) {
+      var dev = fig.querySelector('.device');
+      track(function (vh) { return through(fig, vh, 1.02, 0.42); }, function (p) {
+        var e = out(p);
+        dev.style.opacity = p >= 1 ? '' : String(0.2 + 0.8 * e);
+        dev.style.transform = p >= 1 ? '' : 'translate3d(0,' + ((1 - e) * 110).toFixed(1) + 'px,0) scale(' + (0.86 + 0.14 * e).toFixed(4) + ')';
       });
     });
   }
 
-  // Icon lists: each icon pops in after the one before it.
-  function iconLists() {
-    document.querySelectorAll('.icon-list').forEach(function (list) {
+  // Icon rows: each icon comes in after the one before it.
+  function staggers() {
+    each('[data-stagger]', function (list) {
       var items = Array.prototype.slice.call(list.children), n = items.length;
-      track(function (vh) { return through(list, vh, 0.95, 0.55); }, function (p) {
+      track(function (vh) { return through(list, vh, 0.98, 0.7); }, function (p) {
         items.forEach(function (li, k) {
-          var a = (k / n) * 0.7, t = out(seg(p, a, a + 0.3));
+          var a = (k / n) * 0.6, t = out(seg(p, a, a + 0.4));
           li.style.opacity = t >= 1 ? '' : String(t);
-          li.style.transform = t >= 1 ? '' : 'translate3d(0,' + ((1 - t) * 18).toFixed(1) + 'px,0) scale(' + (0.7 + 0.3 * t).toFixed(4) + ')';
+          li.style.transform = t >= 1 ? '' : 'translate3d(0,' + ((1 - t) * 22).toFixed(1) + 'px,0) scale(' + (0.8 + 0.2 * t).toFixed(4) + ')';
         });
       });
     });
   }
 
-  // Consistency: the app's streak coins light up one after another, each in its colour.
-  function streaks() {
-    var row = document.querySelector('.streak-row');
-    if (!row) return;
-    var items = row.querySelectorAll('.sk'), n = items.length;
-    track(function (vh) { return through(row, vh, 0.92, 0.55); }, function (p) {
-      items.forEach(function (li, k) { li.classList.toggle('lit', p >= (k + 1) / n - 0.001); });
-    });
+  // 0 → 566 videos; the rest timer runs from 3:00 down to 2:19 and its ring empties with it.
+  function counters() {
+    var count = document.querySelector('.js-count'), timer = document.querySelector('.js-timer');
+    if (count) {
+      var to = Number(count.getAttribute('data-to'));
+      track(function (vh) { return through(count, vh, 0.98, 0.6); }, function (p) {
+        count.textContent = String(Math.round(lerp(0, to, out(p))));
+      });
+    }
+    if (timer) {
+      var ring = timer.closest('.rest-ring');
+      track(function (vh) { return through(timer, vh, 0.98, 0.45); }, function (p) {
+        var s = Math.round(lerp(180, 139, p));
+        timer.textContent = Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
+        ring.style.setProperty('--left', (s / 180).toFixed(4));
+      });
+    }
   }
 
   // The journey: the day counter climbs to 73 while the progress line draws itself.
   function journey() {
-    var art = document.querySelector('.journey-art');
-    if (!art) return;
-    var days = art.querySelector('.js-days'), chart = art.querySelector('.growth'), to = Number(days.getAttribute('data-to'));
-    track(function (vh) { return through(art, vh, 0.95, 0.5); }, function (p) {
+    var board = document.querySelector('.board');
+    if (!board) return;
+    var days = board.querySelector('.js-days'), chart = board.querySelector('.growth'), to = Number(days.getAttribute('data-to'));
+    track(function (vh) { return through(board, vh, 0.9, 0.4); }, function (p) {
       days.textContent = String(Math.max(1, Math.round(lerp(1, to, out(p)))));
       chart.style.setProperty('--draw', (1 - p).toFixed(4));
     });
   }
 
-  // The gold line climbs the four levels; the statue in flames drifts the way he is running.
+  // The app's streak coins light up one after another.
   function levels() {
-    var ladder = document.querySelector('.ladder'), statue = document.querySelector('.levels-statue');
-    var section = document.querySelector('.levels');
-    if (ladder) {
-      var steps = ladder.querySelectorAll('li');
-      track(function (vh) { return through(ladder, vh, 0.9, 0.5); }, function (p) {
-        ladder.style.setProperty('--fill', p.toFixed(4));
-        steps.forEach(function (li, i) { li.classList.toggle('on', p > 0.02 && p >= i / (steps.length - 1) - 0.001); });
-      });
-    }
-    if (statue && section) {
-      track(function (vh) {
-        var r = section.getBoundingClientRect();
-        return clamp((vh - r.top) / (vh + r.height));
-      }, function (p) {
-        statue.style.transform = 'translate3d(' + ((p - 0.5) * 120 * (rtl() ? 1 : -1)).toFixed(1) + 'px,0,0)';
+    var row = document.querySelector('.streak-row');
+    if (row) {
+      var coins = row.querySelectorAll('.sk'), n = coins.length;
+      track(function (vh) { return through(row, vh, 0.92, 0.55); }, function (p) {
+        coins.forEach(function (li, k) { li.classList.toggle('lit', p >= (k + 1) / n - 0.001); });
       });
     }
   }
 
-  function ending() {
-    var statue = document.querySelector('.end-statue'), art = document.querySelector('.end-art');
-    if (!statue) return;
-    track(function (vh) { return through(art, vh, 1, 0.55); }, function (p) {
-      var e = out(p);
-      statue.style.transform = p >= 1 ? '' : 'translate3d(0,' + ((1 - e) * 90).toFixed(1) + 'px,0)';
-      statue.style.opacity = p >= 1 ? '' : String(0.25 + 0.75 * e);
+  // The four levels. Phones: the scene pins and the row slides sideways with the scroll; the level in the middle is
+  // full size and the others shrink and fade, with a short rest on each one. Wide screens: they rise in turn.
+  function lineup() {
+    var stage = document.querySelector('.lineup-stage'), row = stage && stage.querySelector('.lineup');
+    if (!row) return;
+    var people = Array.prototype.slice.call(row.children), m = people.length;
+    var phone = window.matchMedia('(max-width: 899px)'), slot = 0, dist = 1;
+    layouts.push(function () {
+      row.style.transform = '';
+      people.forEach(function (li) { li.style.transform = ''; li.style.opacity = ''; });
+      slot = 0;
+      if (!phone.matches) { stage.style.removeProperty('--dist'); return; }
+      slot = Math.abs(people[1].getBoundingClientRect().left - people[0].getBoundingClientRect().left);
+      dist = (m - 1) * (root.clientHeight || window.innerHeight) * 0.75;
+      stage.style.setProperty('--dist', dist + 'px');
+    });
+    track(function (vh) {
+      return slot ? clamp(-stage.getBoundingClientRect().top / dist) : through(row, vh, 1, 0.45);
+    }, function (p) {
+      if (slot) {
+        var raw = p * (m - 1), k = Math.min(m - 2, Math.floor(raw));
+        var pos = k + smooth(clamp((raw - k - 0.2) / 0.6));
+        row.style.transform = 'translate3d(' + (pos * slot * (rtl() ? 1 : -1)).toFixed(1) + 'px,0,0)';
+        people.forEach(function (li, i) {
+          var d = Math.min(1, Math.abs(i - pos));
+          li.style.transform = 'scale(' + (1 - d * 0.42).toFixed(4) + ')';
+          li.style.opacity = String((1 - d * 0.6).toFixed(3));
+        });
+        return;
+      }
+      people.forEach(function (li, i) {
+        var a = (i / m) * 0.55, t = out(seg(p, a, a + 0.45));
+        li.style.opacity = t >= 1 ? '' : String(t);
+        li.style.transform = t >= 1 ? '' : 'translate3d(0,' + ((1 - t) * 70).toFixed(1) + 'px,0)';
+      });
     });
   }
 
-  // Measure (track widths), then move everything to the current scroll position at once.
+  // Measure, then move everything to the current scroll position at once.
   BM.relayout = function () {
     layouts.forEach(function (fn) { fn(); });
     tracks.forEach(function (t) { t.cur = null; t.last = null; });
@@ -200,7 +181,7 @@
 
   BM.initMotion = function () {
     if (!BM.reduced()) {
-      hero(); tour(); reveals(); pile(); iconLists(); counters(); journey(); streaks(); levels(); ending();
+      hero(); reveals(); rises(); staggers(); counters(); journey(); levels(); lineup();
     }
     window.addEventListener('scroll', schedule, { passive: true });
     BM.relayout();
