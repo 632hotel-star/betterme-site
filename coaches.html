@@ -29,7 +29,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&display=swap">
-  <link rel="stylesheet" href="css/site.css?v=20261109i">
+  <link rel="stylesheet" href="css/site.css?v=20261109j">
 </head>
 <body>
   <a class="skip" href="#main" data-i18n="nav.skip">تخطَّ إلى المحتوى</a>
@@ -49,6 +49,83 @@
       <figure class="page-media" data-rise>
         <div class="device page-device"><img data-shot="coachdash" src="assets/app-coachdash-ar.webp" width="660" height="1434" alt="صفحة «متدربيني» عند المدرب" data-i18n-attr="alt:tr.dashAlt" fetchpriority="high"></div>
       </figure>
+    </section>
+
+    <!-- What the coach follows, cell by cell, each in the shape the app shows it (one trainee, Saad, on a Thursday) -->
+    <section class="chapter" aria-labelledby="t-tr-eye">
+      <div class="wrap">
+        <h2 class="section-title" id="t-tr-eye" data-reveal><span data-i18n="tr.eyeA">تشوف كل شي بعينك.</span> <span class="soft" data-i18n="tr.eyeB">وتعرف مين ملتزم ومين لا.</span></h2>
+        <div class="bento coach-bento">
+
+          <div class="cell ck-commit" data-play data-reveal>
+            <p class="cell-cap"><b data-i18n="tr.k1a">تعرف مين ملتزم بخطتك.</b> <span data-i18n="tr.k1b">كم تمرين سوّى هذا الأسبوع، وكم أكل اليوم من هدفه، ويطلع لك تنبيه أحمر لو غيّر الجدول أو السعرات.</span></p>
+            <div class="ck-card" aria-hidden="true">
+              <div class="ck-who">
+                <span class="ck-avatar" data-i18n="tr.kInitial">س</span>
+                <span class="ck-name"><b data-i18n="tr.kName">سعد</b><small dir="ltr">@saad</small></span>
+                <span class="ck-alert" data-i18n="tr.kAlert">غيّر السعرات</span>
+              </div>
+              <div class="ck-stats">
+                <span class="ck-stat"><small data-i18n="tr.sWeek">هذا الأسبوع</small><b><bdi class="n js-num" data-from="0" data-to="3">3</bdi> <span data-i18n="tr.sWorkouts">تمارين</span></b></span>
+                <span class="ck-stat"><small data-i18n="tr.sLast">آخر تمرين</small><b data-i18n="tr.sYesterday">أمس</b></span>
+                <span class="ck-stat ck-kcal"><small data-i18n="tr.sKcal">السعرات</small><b><bdi dir="ltr" class="n"><span class="js-num" data-from="0" data-to="1640" data-sep>1,640</span> / 2,100</bdi></b><i><i></i></i></span>
+                <span class="ck-stat"><small data-i18n="tr.sWeight">الوزن</small><b><bdi class="n">81.6</bdi> <span data-i18n="tr.kg">كغ</span></b></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="cell ck-days" data-play data-reveal>
+            <p class="cell-cap"><b data-i18n="tr.k2a">متى تمرّن، ومتى غاب.</b> <span data-i18n="tr.k2b">كل تمرين بيومه ومدته ومجموعاته وحجمه، فتقارن تمرينه من أسبوع لأسبوع.</span></p>
+            <ol class="ck-week" aria-hidden="true">
+              <li class="ok" data-at="0.15"><span data-i18n="tr.d1">ح</span><i></i></li>
+              <li class="ok" data-at="0.25"><span data-i18n="tr.d2">ن</span><i></i></li>
+              <li class="miss" data-at="0.35"><span data-i18n="tr.d3">ث</span><i></i></li>
+              <li class="ok" data-at="0.45"><span data-i18n="tr.d4">ر</span><i></i></li>
+              <li class="today"><span data-i18n="tr.d5">خ</span><i></i></li>
+              <li><span data-i18n="tr.d6">ج</span><i></i></li>
+              <li><span data-i18n="tr.d7">س</span><i></i></li>
+            </ol>
+            <ul class="ck-sessions" aria-hidden="true">
+              <li data-at="0.55"><b data-i18n="tr.kRoutine">صدر وكتف</b><small data-i18n="tr.kWed">الأربعاء</small><span class="ck-line">52 <span data-i18n="tr.min">د</span> · 18 <span data-i18n="tr.sets">مجموعة</span> · 6,240 <span data-i18n="tr.kg">كغ</span></span></li>
+              <li data-at="0.7"><b data-i18n="tr.kRoutine">صدر وكتف</b><small data-i18n="tr.kWedPrev">الأربعاء اللي قبله</small><span class="ck-line">50 <span data-i18n="tr.min">د</span> · 18 <span data-i18n="tr.sets">مجموعة</span> · 5,980 <span data-i18n="tr.kg">كغ</span></span></li>
+            </ul>
+          </div>
+
+          <div class="cell ck-food" data-play data-reveal data-delay="1">
+            <p class="cell-cap"><b data-i18n="tr.k3a">كم أكل، يوم بيوم.</b> <span data-i18n="tr.k3b">سعراته وبروتينه وكاربه ودهونه، قدام الهدف اللي حطيته له.</span></p>
+            <div class="ck-goal" aria-hidden="true"><span data-i18n="tr.kGoal">الهدف</span> <bdi dir="ltr" class="n">2,100</bdi> <span data-i18n="tr.kcal">سعرة</span> · <span data-i18n="tr.p">ب</span> <bdi class="n">160</bdi> · <span data-i18n="tr.c">ك</span> <bdi class="n">210</bdi> · <span data-i18n="tr.f">د</span> <bdi class="n">70</bdi></div>
+            <ul class="ck-meals" aria-hidden="true">
+              <li style="--v: 0.78"><span data-i18n="tr.today">اليوم</span><i><i></i></i><bdi dir="ltr" class="n">1,640</bdi></li>
+              <li style="--v: 0.99"><span data-i18n="tr.sYesterday">أمس</span><i><i></i></i><bdi dir="ltr" class="n">2,080</bdi></li>
+              <li class="over" style="--v: 1.26"><span data-i18n="tr.kTue">الثلاثاء</span><i><i></i></i><bdi dir="ltr" class="n">2,640</bdi></li>
+            </ul>
+          </div>
+
+          <div class="cell ck-lifts" data-play data-reveal>
+            <p class="cell-cap"><b data-i18n="tr.k4a">كم يشيل.</b> <span data-i18n="tr.k4b">أعلى وزن شاله في كل تمرين وكم عدّة، ومتى كسر رقمه.</span></p>
+            <ul class="ck-prs" aria-hidden="true">
+              <li data-at="0.2"><span class="latin">Bench Press</span><bdi dir="ltr" class="n"><span class="js-num" data-from="60" data-to="80">80</span> kg × 8</bdi><small data-i18n="tr.sYesterday">أمس</small></li>
+              <li data-at="0.35"><span class="latin">Squat</span><bdi dir="ltr" class="n"><span class="js-num" data-from="80" data-to="100">100</span> kg × 6</bdi><small data-i18n="tr.k3days">قبل 3 أيام</small></li>
+              <li data-at="0.5"><span class="latin">Lat Pulldown</span><bdi dir="ltr" class="n"><span class="js-num" data-from="45" data-to="65">65</span> kg × 10</bdi><small data-i18n="tr.k4days">قبل 4 أيام</small></li>
+            </ul>
+          </div>
+
+          <div class="cell ck-body" data-play data-reveal data-delay="1">
+            <p class="cell-cap"><b data-i18n="tr.k5a">وزنه يوم بيوم، وInBody.</b> <span data-i18n="tr.k5b">كل وزنة يسجّلها على رسم، ونتيجة كل فحص: الوزن والدهون والعضل.</span></p>
+            <div class="ck-weight" aria-hidden="true">
+              <p class="ck-kg"><bdi class="n js-num" data-from="84.2" data-to="81.6" data-dec="1">81.6</bdi> <small data-i18n="tr.kg">كغ</small></p>
+              <svg class="ck-chart" viewBox="0 0 320 120" preserveAspectRatio="none">
+                <path d="M0 12 L 40 18 L 80 16 L 120 34 L 160 40 L 200 58 L 240 66 L 280 88 L 320 104"/>
+              </svg>
+              <div class="ck-scan">
+                <span><small data-i18n="tr.fat">الدهون</small><span class="ck-from"><bdi class="n">22.4</bdi><span data-i18n="tr.pct">٪</span></span><i class="ck-arr"></i><b><bdi class="n js-num" data-from="22.4" data-to="19.8" data-dec="1">19.8</bdi><span data-i18n="tr.pct">٪</span></b></span>
+                <span><small data-i18n="tr.muscle">العضل</small><span class="ck-from"><bdi class="n">34.1</bdi></span><i class="ck-arr"></i><b><bdi class="n js-num" data-from="34.1" data-to="35.0" data-dec="1">35.0</bdi> <span data-i18n="tr.kg">كغ</span></b></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </section>
 
     <!-- What you see: one row, the trainee's numbers -->
@@ -134,9 +211,9 @@
     </div>
   </footer>
 
-  <script src="js/config.js?v=20261109i"></script>
-  <script src="js/strings.js?v=20261109i"></script>
-  <script src="js/motion.js?v=20261109i"></script>
-  <script src="js/main.js?v=20261109i"></script>
+  <script src="js/config.js?v=20261109j"></script>
+  <script src="js/strings.js?v=20261109j"></script>
+  <script src="js/motion.js?v=20261109j"></script>
+  <script src="js/main.js?v=20261109j"></script>
 </body>
 </html>
