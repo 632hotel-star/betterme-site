@@ -206,8 +206,8 @@
     var nodes = stage.querySelectorAll('.flow-rail > li:not(.flow-fill)'), fill = stage.querySelector('.flow-fill');
     var counts = stage.querySelectorAll('.js-fv-n'), dist = 1, slot = 0;
     layouts.push(function () {
-      row.style.transform = '';
-      slot = Math.abs(scenes[1].getBoundingClientRect().left - scenes[0].getBoundingClientRect().left);
+      // offsetLeft ignores the scale the scenes beside the current one carry.
+      slot = Math.abs(scenes[1].offsetLeft - scenes[0].offsetLeft);
       dist = n * 0.75 * (root.clientHeight || window.innerHeight);
       stage.style.setProperty('--dist', dist + 'px');
     });
@@ -228,6 +228,23 @@
     });
   }
 
+  // Coaches: each feature cell plays as it comes up the screen: --t for the CSS, its numbers count to their value and
+  // its items (days, sessions, lifts) light in turn. Without motion every cell shows its finished state.
+  function plays() {
+    each('[data-play]', function (cell) {
+      var nums = cell.querySelectorAll('.js-num'), items = cell.querySelectorAll('[data-at]');
+      track(function (vh) { return through(cell, vh, 0.9, 0.35); }, function (p) {
+        cell.style.setProperty('--t', p.toFixed(4));
+        var e = out(clamp(p / 0.8));
+        nums.forEach(function (el) {
+          var v = lerp(Number(el.getAttribute('data-from')), Number(el.getAttribute('data-to')), e);
+          el.textContent = el.hasAttribute('data-sep') ? Math.round(v).toLocaleString('en-US') : v.toFixed(Number(el.getAttribute('data-dec')) || 0);
+        });
+        items.forEach(function (el) { el.classList.toggle('pending', p < Number(el.getAttribute('data-at'))); });
+      });
+    });
+  }
+
   // Measure, then move everything to the current scroll position at once.
   BM.relayout = function () {
     layouts.forEach(function (fn) { fn(); });
@@ -237,7 +254,7 @@
 
   BM.initMotion = function () {
     if (!BM.reduced()) {
-      hero(); reveals(); rises(); staggers(); counters(); journey(); levels(); lineup(); steps(); period(); flow();
+      hero(); reveals(); rises(); staggers(); counters(); journey(); levels(); lineup(); steps(); period(); flow(); plays();
     }
     window.addEventListener('scroll', schedule, { passive: true });
     BM.relayout();
