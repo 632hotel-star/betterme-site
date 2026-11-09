@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>BetterMe · كل شيء تحتاجه للنادي في تطبيق واحد</title>
-  <meta name="description" content="تمارين بالفيديو، تغذية بالذكاء الاصطناعي، متابعة، ومدرب يعرف أرقامك. كل هذا في تطبيق واحد وتحت اشتراك واحد.">
-  <meta name="theme-color" content="#0A0909">
-  <meta name="color-scheme" content="dark">
+  <title>BetterMe · كل اللي تحتاجه للنادي، بتطبيق واحد</title>
+  <meta name="description" content="تمارين بالفيديو، تغذية بالذكاء الاصطناعي، متابعة تطوّرك، ومدرب يعرف أرقامك. كل هذا بتطبيق واحد واشتراك واحد.">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="color-scheme" content="light">
   <meta name="apple-itunes-app" content="app-id=6825474864">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="BetterMe · كل شيء تحتاجه للنادي في تطبيق واحد">
-  <meta property="og:description" content="تمارين بالفيديو، تغذية بالذكاء الاصطناعي، ومدرب يعرف أرقامك. كل هذا في تطبيق واحد.">
+  <meta property="og:title" content="BetterMe · كل اللي تحتاجه للنادي، بتطبيق واحد">
+  <meta property="og:description" content="تمارين بالفيديو، تغذية بالذكاء الاصطناعي، ومدرب يعرف أرقامك. كل هذا بتطبيق واحد.">
   <meta property="og:url" content="https://betterme.fitness/">
   <meta property="og:image" content="https://betterme.fitness/assets/og.png">
   <meta name="twitter:card" content="summary_large_image">
@@ -21,7 +21,7 @@
   <link rel="alternate" hreflang="en" href="https://betterme.fitness/?lang=en">
   <link rel="alternate" hreflang="x-default" href="https://betterme.fitness/">
   <script>
-    // Language and motion flags before first paint (no flash of the wrong language).
+    // Language, motion and in-app-browser flags before first paint (no flash of the wrong language).
     (function () {
       var d = document.documentElement, q = null, s = null;
       try { q = new URLSearchParams(location.search).get('lang'); } catch (e) {}
@@ -29,296 +29,280 @@
       var lang = (q === 'en' || q === 'ar') ? q : (s === 'en' || s === 'ar') ? s : 'ar';
       d.className = d.className.replace('no-js', 'js');
       try { if (!matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('motion'); } catch (e) {}
+      // Instagram, TikTok, Snapchat, Facebook and X open links inside their own browser, where the App Store link can fail.
+      if (/Instagram|FBAN|FBAV|musical_ly|Bytedance|TikTok|Snapchat|Twitter/i.test(navigator.userAgent)) d.classList.add('inapp');
       if (lang === 'en') { d.lang = 'en'; d.dir = 'ltr'; d.classList.add('i18n-pending'); }
     })();
   </script>
-  <link rel="preload" as="image" href="assets/statue-hero.webp?v=2" type="image/webp">
+  <link rel="preload" as="image" href="assets/hero-ar.webp" type="image/webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap">
-  <link rel="stylesheet" href="css/site.css?v=20261106i">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&display=swap">
+  <link rel="stylesheet" href="css/site.css?v=20261109b">
 </head>
 <body>
   <a class="skip" href="#main" data-i18n="nav.skip">تخطَّ إلى المحتوى</a>
 
-
   <main id="main">
 
-    <!-- Hero: the statue in the visor, one line, the download -->
-    <section class="hero" id="top" aria-labelledby="hero-title">
-      <div class="hero-art" aria-hidden="true">
-        <div class="hero-glow"></div>
-        <img class="hero-statue" src="assets/statue-hero.webp?v=2" width="1600" height="1543" alt="" fetchpriority="high">
-      </div>
-      <div class="wrap hero-in">
-        <div class="hero-copy">
-          <p class="hero-kicker" data-i18n="hero.kicker">رايح النادي؟</p>
-          <h1 class="hero-title" id="hero-title">
-            <span class="line" data-i18n="hero.l1">كل شيء تحتاجه للنادي.</span>
-            <span class="line accent" data-i18n="hero.l2">في تطبيق واحد.</span>
-          </h1>
-          <div class="hero-cta">
-            <a class="badge js-store" href="https://apps.apple.com/app/id6825474864">
-              <img class="js-badge" src="https://toolbox.marketingtools.apple.com/api/badges/download-on-the-app-store/black/ar-sa?size=250x83" width="250" height="83" alt="حمّله من App Store" data-i18n-attr="alt:cta.badgeAlt">
-            </a>
-            <p class="note" data-i18n="hero.note">إذا ما انفتح معك الرابط، افتحه في سفاري</p>
-          </div>
+    <!-- Hero: one line, the download, and the app in a hand -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="hero-brand">BetterMe</p>
+        <h1 class="hero-title" id="hero-title">
+          <span class="line" data-i18n="hero.l1">كل اللي تحتاجه للنادي،</span>
+          <span class="line" data-i18n="hero.l2">بتطبيق واحد.</span>
+        </h1>
+        <div class="cta">
+          <a class="badge js-store" href="https://apps.apple.com/app/id6825474864">
+            <img class="js-badge" src="https://toolbox.marketingtools.apple.com/api/badges/download-on-the-app-store/black/ar-sa?size=250x83" width="250" height="83" alt="حمّله من App Store" data-i18n-attr="alt:cta.badgeAlt">
+          </a>
+          <p class="note" data-i18n="cta.note">إذا ما انفتح معك الرابط، افتحه في سفاري</p>
         </div>
       </div>
-      <a class="hero-scroll" href="#app">
-        <span data-i18n="hero.scroll">انزل وشوف التطبيق</span>
-        <span class="scroll-line" aria-hidden="true"><i></i></span>
-      </a>
+      <div class="hero-media">
+        <img class="hero-phone" data-hero src="assets/hero-ar.webp" width="1669" height="2150" alt="الصفحة الرئيسية في تطبيق BetterMe على الجوال" data-i18n-attr="alt:hero.alt" fetchpriority="high">
+      </div>
     </section>
 
-    <!-- The problem: everything you have to keep track of -->
-    <section class="problem" id="problem" aria-labelledby="t-problem">
+    <!-- Get the highlights -->
+    <section class="highlights" aria-labelledby="t-hl">
       <div class="wrap">
-        <h2 class="display" id="t-problem" data-reveal data-i18n="problem.title">الكل يعرف إن الالتزام بالنادي صعب.</h2>
-        <p class="lead" data-reveal data-delay="1" data-i18n="problem.body">لأن عندك أشياء كثيرة لازم تنتبه لها:</p>
-        <ul class="pile">
-            <li data-i18n="problem.c1">أكلك</li>
-            <li data-i18n="problem.c2">السعرات</li>
-            <li data-i18n="problem.c3">البروتين</li>
-            <li data-i18n="problem.c4">تمارينك</li>
-            <li data-i18n="problem.c5">العدّات</li>
-            <li data-i18n="problem.c6">المجموعات</li>
-            <li data-i18n="problem.c7">الأداء الصح</li>
-            <li data-i18n="problem.c8">الكرياتين</li>
-            <li data-i18n="problem.c9">خطواتك اليومية</li>
-            <li data-i18n="problem.c10">الماء</li>
-            <li data-i18n="problem.c11">صور جسمك</li>
-            <li data-i18n="problem.c12">InBody</li>
-            <li data-i18n="problem.c13">وزنك اليومي</li>
-            <li data-i18n="problem.c14">مدرب تتابع معه</li>
-            <li data-i18n="problem.c15">أحد يساعدك تبدأ</li>
-            <li data-i18n="problem.c16">منافسة تشدّك</li>
+        <h2 class="section-title" id="t-hl" data-reveal data-i18n="hl.title">أبرز المزايا.</h2>
+      </div>
+      <div class="hl-track" id="hl-track" tabindex="0" aria-roledescription="carousel" aria-labelledby="t-hl">
+        <article class="hl-tile" aria-roledescription="slide">
+          <p class="hl-cap"><span data-i18n="hl.1a">صوّر وجبتك،</span> <b data-i18n="hl.1b">والسعرات تنحسب لحالها.</b></p>
+          <div class="device hl-device"><video data-clip="meal" muted playsinline loop preload="none" poster="assets/clip-meal-ar.webp" aria-label="مقطع: تصوير وجبة وتقدير سعراتها" data-i18n-attr="aria-label:food.alt"></video></div>
+        </article>
+        <article class="hl-tile" aria-roledescription="slide">
+          <p class="hl-cap"><span data-i18n="hl.2a">كل تمرين بفيديو،</span> <b data-i18n="hl.2b">والراحة تعدّ لك.</b></p>
+          <div class="device hl-device"><video data-clip="session" muted playsinline loop preload="none" poster="assets/clip-session-ar.webp" aria-label="مقطع: تمرين مباشر مع فيديو التمرين ومؤقت الراحة" data-i18n-attr="aria-label:train.alt"></video></div>
+        </article>
+        <article class="hl-tile" aria-roledescription="slide">
+          <p class="hl-cap"><span data-i18n="hl.3a">مدرب ذكي</span> <b data-i18n="hl.3b">يجاوبك من أرقامك.</b></p>
+          <div class="device hl-device"><img data-shot="coach" src="assets/app-coach-ar.webp" width="660" height="1434" alt="المدرب الذكي يجاوب حسب هدفك" data-i18n-attr="alt:coach.alt" loading="lazy"></div>
+        </article>
+        <article class="hl-tile" aria-roledescription="slide">
+          <p class="hl-cap"><span data-i18n="hl.4a">شوف جسمك</span> <b data-i18n="hl.4b">وهو يتغيّر.</b></p>
+          <div class="device hl-device"><img data-shot="progress" src="assets/app-progress-ar.webp" width="660" height="1434" alt="صفحة التقدّم في BetterMe" data-i18n-attr="alt:progress.alt" loading="lazy"></div>
+        </article>
+        <article class="hl-tile" aria-roledescription="slide">
+          <p class="hl-cap"><span data-i18n="hl.5a">نافس أخوياك</span> <b data-i18n="hl.5b">على القمة.</b></p>
+          <div class="device hl-device"><img data-shot="group" src="assets/app-group-ar.webp" width="660" height="1434" alt="ترتيب مجموعة أصدقاء" data-i18n-attr="alt:compete.alt" loading="lazy"></div>
+        </article>
+      </div>
+      <div class="hl-controls">
+        <div class="hl-dots" role="group" aria-label="المزايا" data-i18n-attr="aria-label:hl.dots"></div>
+        <button class="hl-play" type="button" aria-label="إيقاف مؤقت" data-label-pause="إيقاف مؤقت" data-label-play="تشغيل">
+          <span class="i-pause"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M216,48V208a16,16,0,0,1-16,16H160a16,16,0,0,1-16-16V48a16,16,0,0,1,16-16h40A16,16,0,0,1,216,48ZM96,32H56A16,16,0,0,0,40,48V208a16,16,0,0,0,16,16H96a16,16,0,0,0,16-16V48A16,16,0,0,0,96,32Z"/></svg></span><span class="i-play"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M240,128a15.74,15.74,0,0,1-7.6,13.51L88.32,229.65a16,16,0,0,1-16.2.3A15.86,15.86,0,0,1,64,216.13V39.87a15.86,15.86,0,0,1,8.12-13.82,16,16,0,0,1,16.2.3L232.4,114.49A15.74,15.74,0,0,1,240,128Z"/></svg></span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Food -->
+    <section class="chapter food" aria-labelledby="t-food">
+      <div class="wrap">
+        <h2 class="section-title" id="t-food" data-reveal><span data-i18n="food.t1">سجّل أكلك</span> <span class="soft" data-i18n="food.t2">بالطريقة اللي تناسبك.</span></h2>
+        <ul class="ways" data-stagger>
+          <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M208,58H179.21L165,36.67A6,6,0,0,0,160,34H96a6,6,0,0,0-5,2.67L76.78,58H48A22,22,0,0,0,26,80V192a22,22,0,0,0,22,22H208a22,22,0,0,0,22-22V80A22,22,0,0,0,208,58Zm10,134a10,10,0,0,1-10,10H48a10,10,0,0,1-10-10V80A10,10,0,0,1,48,70H80a6,6,0,0,0,5-2.67L99.21,46h57.57L171,67.33A6,6,0,0,0,176,70h32a10,10,0,0,1,10,10ZM128,90a42,42,0,1,0,42,42A42,42,0,0,0,128,90Zm0,72a30,30,0,1,1,30-30A30,30,0,0,1,128,162Z"/></svg><span data-i18n="food.i1">صوّرها</span></li>
+          <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M166,112a6,6,0,0,1-6,6H96a6,6,0,0,1,0-12h64A6,6,0,0,1,166,112Zm-6,26H96a6,6,0,0,0,0,12h64a6,6,0,0,0,0-12Zm70-10A102,102,0,0,1,79.31,217.65L44.44,229.27a14,14,0,0,1-17.71-17.71l11.62-34.87A102,102,0,1,1,230,128Zm-12,0A90,90,0,1,0,50.08,173.06a6,6,0,0,1,.5,4.91L38.12,215.35a2,2,0,0,0,2.53,2.53L78,205.42a6.2,6.2,0,0,1,1.9-.31,6.09,6.09,0,0,1,3,.81A90,90,0,0,0,218,128Z"/></svg><span data-i18n="food.i2">اوصفها</span></li>
+          <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M230,48V88a6,6,0,0,1-12,0V54H184a6,6,0,0,1,0-12h40A6,6,0,0,1,230,48ZM72,202H38V168a6,6,0,0,0-12,0v40a6,6,0,0,0,6,6H72a6,6,0,0,0,0-12Zm152-40a6,6,0,0,0-6,6v34H184a6,6,0,0,0,0,12h40a6,6,0,0,0,6-6V168A6,6,0,0,0,224,162ZM32,94a6,6,0,0,0,6-6V54H72a6,6,0,0,0,0-12H32a6,6,0,0,0-6,6V88A6,6,0,0,0,32,94ZM80,82a6,6,0,0,0-6,6v80a6,6,0,0,0,12,0V88A6,6,0,0,0,80,82Zm102,86V88a6,6,0,0,0-12,0v80a6,6,0,0,0,12,0ZM144,82a6,6,0,0,0-6,6v80a6,6,0,0,0,12,0V88A6,6,0,0,0,144,82Zm-32,0a6,6,0,0,0-6,6v80a6,6,0,0,0,12,0V88A6,6,0,0,0,112,82Z"/></svg><span data-i18n="food.i3">الباركود</span></li>
+          <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M222.72,67.91l-88-48.18a13.9,13.9,0,0,0-13.44,0l-88,48.18A14,14,0,0,0,26,80.18v95.64a14,14,0,0,0,7.28,12.27l88,48.18a13.92,13.92,0,0,0,13.44,0l88-48.18A14,14,0,0,0,230,175.82V80.18A14,14,0,0,0,222.72,67.91ZM127,30.25a2,2,0,0,1,1.92,0L212.51,76,178.57,94.57,94.05,48.31ZM122,223,39,177.57a2,2,0,0,1-1-1.75V86.66l84,46ZM43.49,76,81.56,55.15l84.51,46.26L128,122.24ZM218,175.82a2,2,0,0,1-1,1.75h0L134,223V132.64l36-19.71V152a6,6,0,0,0,12,0V106.37l36-19.71Z"/></svg><span data-i18n="food.i4">منتجات سعودية</span></li>
+          <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M26.22,94.41A6,6,0,0,0,26,96v16A38,38,0,0,0,42,143V216a6,6,0,0,0,6,6H208a6,6,0,0,0,6-6V143A38,38,0,0,0,230,112V96a5.91,5.91,0,0,0-.23-1.64L215.43,44.15A14.07,14.07,0,0,0,202,34H54A14.07,14.07,0,0,0,40.57,44.15Zm25.89-47A2,2,0,0,1,54,46H202a2,2,0,0,1,1.92,1.45L216.05,90H40ZM102,102h52v10a26,26,0,0,1-52,0Zm-64,0H90v10a26,26,0,0,1-38.18,23,6,6,0,0,0-1.65-1A26,26,0,0,1,38,112ZM202,210H54V148.66a38,38,0,0,0,42-16.21,37.95,37.95,0,0,0,64,0,38,38,0,0,0,42,16.21Zm3.83-76a6,6,0,0,0-1.65,1A26,26,0,0,1,166,112V102h52v10A26,26,0,0,1,205.83,134Z"/></svg><span data-i18n="food.i5">المتجر</span></li>
         </ul>
+        <figure class="stage" data-rise>
+          <div class="device stage-device"><img data-shot="nutrition" src="assets/app-nutrition-ar.webp" width="660" height="1434" alt="صفحة التغذية في BetterMe" data-i18n-attr="alt:nutrition.alt" loading="lazy"></div>
+        </figure>
       </div>
     </section>
 
-    <!-- More than one app, and their prices -->
-    <section class="apps" id="apps" aria-labelledby="t-apps">
-      <div class="wrap apps-in">
-        <div class="apps-copy">
-          <h2 class="display" id="t-apps" data-reveal data-i18n="apps.title">وأكيد بتحتاج أكثر من تطبيق.</h2>
-          <p class="lead" data-reveal data-delay="1" data-i18n="apps.body">كل تطبيق يعطيك شوي مجانًا، والباقي باشتراكات نار.</p>
-        </div>
-        <div class="apps-list" data-reveal data-delay="1">
-          <ul class="others" id="others"></ul>
-          <p class="others-total"><span data-i18n="price.total">المجموع كل شهر</span><s><bdi dir="ltr" class="js-total">191.96</bdi> <span data-i18n="price.currency">ريال</span></s></p>
-        </div>
-      </div>
-    </section>
-
-    <!-- One app -->
-    <section class="one" id="one" aria-labelledby="t-one">
+    <!-- Training -->
+    <section class="chapter train tint" aria-labelledby="t-train">
       <div class="wrap">
-        <h2 class="display" id="t-one" data-reveal><span class="line small" data-i18n="one.l1">طيب ليش ما نجمعها لك كلها</span> <span class="line accent" data-i18n="one.l2">في تطبيق واحد؟</span></h2>
-        <p class="lead" data-reveal data-delay="1" data-i18n="one.body">بكل مزاياها، وأكثر.</p>
-      </div>
-    </section>
-
-    <!-- The app: its five tabs, panned sideways as the page scrolls -->
-    <section class="tour" id="app" aria-labelledby="t-tour">
-      <div class="tour-pin">
-        <h2 class="h2 tour-title" id="t-tour"><span class="line" data-i18n="tour.title1">خمس صفحات،</span> <span class="line" data-i18n="tour.title2">وكل شي في مكانه.</span></h2>
-        <div class="tour-viewport">
-          <ol class="tour-track">
-            <li class="shot">
-              <div class="phone"><img data-shot="home" src="assets/app-home-ar.webp" width="660" height="1434" alt="الصفحة الرئيسية في BetterMe" data-i18n-attr="alt:tour.home.alt" fetchpriority="low" decoding="async"></div>
-              <p class="shot-tab" data-i18n="tour.home.tab">الرئيسية</p>
-              <h3 data-i18n="tour.home.t">يومك كله في شاشة وحدة.</h3>
-              <p data-i18n="tour.home.d">نجومك وستريكاتك وتمرين اليوم، أول ما تفتح.</p>
-            </li>
-            <li class="shot">
-              <div class="phone"><img data-shot="workout" src="assets/app-workout-ar.webp" width="660" height="1434" alt="صفحة التمرين في BetterMe" data-i18n-attr="alt:tour.workout.alt" fetchpriority="low" decoding="async"></div>
-              <p class="shot-tab" data-i18n="tour.workout.tab">التمرين</p>
-              <h3 data-i18n="tour.workout.t">جدولك جاهز، وكل تمرين بفيديو.</h3>
-              <p data-i18n="tour.workout.d">تعرف وش تلعب اليوم، وكيف تلعبه صح.</p>
-            </li>
-            <li class="shot">
-              <div class="phone"><img data-shot="nutrition" src="assets/app-nutrition-ar.webp" width="660" height="1434" alt="صفحة التغذية في BetterMe" data-i18n-attr="alt:tour.nutrition.alt" fetchpriority="low" decoding="async"></div>
-              <p class="shot-tab" data-i18n="tour.nutrition.tab">التغذية</p>
-              <h3 data-i18n="tour.nutrition.t">صوّر أكلك، والسعرات تنحسب لحالها.</h3>
-              <p data-i18n="tour.nutrition.d">أو اوصفه بكلمتين، أو امسح الباركود.</p>
-            </li>
-            <li class="shot">
-              <div class="phone"><img data-shot="progress" src="assets/app-progress-ar.webp" width="660" height="1434" alt="صفحة التقدّم في BetterMe" data-i18n-attr="alt:tour.progress.alt" fetchpriority="low" decoding="async"></div>
-              <p class="shot-tab" data-i18n="tour.progress.tab">التقدّم</p>
-              <h3 data-i18n="tour.progress.t">شوف جسمك وهو يتغيّر.</h3>
-              <p data-i18n="tour.progress.d">وزنك وصورك وخطتك وتقارير InBody، كلها قدامك.</p>
-            </li>
-            <li class="shot">
-              <div class="phone"><img data-shot="group" src="assets/app-group-ar.webp" width="660" height="1434" alt="مجموعة أصدقاء في BetterMe" data-i18n-attr="alt:tour.friends.alt" fetchpriority="low" decoding="async"></div>
-              <p class="shot-tab" data-i18n="tour.friends.tab">الأصدقاء</p>
-              <h3 data-i18n="tour.friends.t">نافس شلّتك على القمة.</h3>
-              <p data-i18n="tour.friends.d">على الالتزام والأوزان، ووزنك ما يشوفه أحد.</p>
-            </li>
-          </ol>
+        <h2 class="section-title" id="t-train" data-reveal><span data-i18n="train.t1">تعرف متى تزيد الوزن،</span> <span class="soft" data-i18n="train.t2">ومتى تخفّف.</span></h2>
+        <div class="bento">
+          <div class="cell cell-plan" data-reveal>
+            <p class="cell-cap"><b data-i18n="train.planA">جدولك جاهز.</b> <span data-i18n="train.planB">يبنيه الذكاء الاصطناعي، أو تنقله من تطبيقك القديم.</span></p>
+            <div class="device cell-device"><img data-shot="workout" src="assets/app-workout-ar.webp" width="660" height="1434" alt="صفحة التمرين في BetterMe" data-i18n-attr="alt:workout.alt" loading="lazy"></div>
+          </div>
+          <div class="cell cell-num" data-reveal data-delay="1">
+            <p class="big-num"><bdi dir="ltr" class="js-count" data-to="566">566</bdi></p>
+            <p class="cell-cap" data-i18n="train.clips">تمرين، كلها بالفيديو.</p>
+          </div>
+          <div class="cell cell-rest" data-reveal data-delay="2">
+            <div class="rest-ring" aria-hidden="true">
+              <svg viewBox="0 0 120 120"><circle class="track" cx="60" cy="60" r="52"/><circle class="arc" cx="60" cy="60" r="52" pathLength="100"/></svg>
+              <bdi dir="ltr" class="js-timer">2:19</bdi>
+            </div>
+            <p class="cell-cap" data-i18n="train.rest">الراحة تعدّ على شاشة القفل.</p>
+          </div>
+          <div class="cell cell-list" data-reveal>
+            <ul class="icon-grid" data-stagger>
+              <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M222,128a6,6,0,0,1-6,6H128a6,6,0,0,1,0-12h88A6,6,0,0,1,222,128ZM128,70h88a6,6,0,0,0,0-12H128a6,6,0,0,0,0,12Zm88,116H128a6,6,0,0,0,0,12h88a6,6,0,0,0,0-12ZM83.76,43.76,56,71.51,44.24,59.76a6,6,0,0,0-8.48,8.48l16,16a6,6,0,0,0,8.48,0l32-32a6,6,0,0,0-8.48-8.48Zm0,64L56,135.51,44.24,123.76a6,6,0,1,0-8.48,8.48l16,16a6,6,0,0,0,8.48,0l32-32a6,6,0,0,0-8.48-8.48Zm0,64L56,199.51,44.24,187.76a6,6,0,0,0-8.48,8.48l16,16a6,6,0,0,0,8.48,0l32-32a6,6,0,0,0-8.48-8.48Z"/></svg><span data-i18n="train.i1">العدّات والمجموعات</span></li>
+              <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M222,144v64a6,6,0,0,1-6,6H40a6,6,0,0,1-6-6V144a6,6,0,0,1,12,0v58H210V144a6,6,0,0,1,12,0Zm-98.24,4.24a6,6,0,0,0,8.48,0l40-40a6,6,0,0,0-8.48-8.48L134,129.51V32a6,6,0,0,0-12,0v97.51L92.24,99.76a6,6,0,0,0-8.48,8.48Z"/></svg><span data-i18n="train.i2">انقل جدولك</span></li>
+              <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M196.89,130.94,144.4,111.6,125.06,59.11a13.92,13.92,0,0,0-26.12,0L79.6,111.6,27.11,130.94a13.92,13.92,0,0,0,0,26.12L79.6,176.4l19.34,52.49a13.92,13.92,0,0,0,26.12,0L144.4,176.4l52.49-19.34a13.92,13.92,0,0,0,0-26.12Zm-4.15,14.86-55.08,20.3a6,6,0,0,0-3.56,3.56l-20.3,55.08a1.92,1.92,0,0,1-3.6,0L89.9,169.66a6,6,0,0,0-3.56-3.56L31.26,145.8a1.92,1.92,0,0,1,0-3.6l55.08-20.3a6,6,0,0,0,3.56-3.56l20.3-55.08a1.92,1.92,0,0,1,3.6,0l20.3,55.08a6,6,0,0,0,3.56,3.56l55.08,20.3a1.92,1.92,0,0,1,0,3.6ZM146,40a6,6,0,0,1,6-6h18V16a6,6,0,0,1,12,0V34h18a6,6,0,0,1,0,12H182V64a6,6,0,0,1-12,0V46H152A6,6,0,0,1,146,40ZM246,88a6,6,0,0,1-6,6H230v10a6,6,0,0,1-12,0V94H208a6,6,0,0,1,0-12h10V72a6,6,0,0,1,12,0V82h10A6,6,0,0,1,246,88Z"/></svg><span data-i18n="train.i3">جدول بالذكاء الاصطناعي</span></li>
+              <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M243.6,148.8a6,6,0,0,1-8.4-1.2A53.58,53.58,0,0,0,192,126a6,6,0,0,1,0-12,26,26,0,1,0-25.18-32.5,6,6,0,0,1-11.62-3,38,38,0,1,1,59.91,39.63A65.69,65.69,0,0,1,244.8,140.4,6,6,0,0,1,243.6,148.8ZM189.19,213a6,6,0,0,1-2.19,8.2,5.9,5.9,0,0,1-3,.81,6,6,0,0,1-5.2-3,59,59,0,0,0-101.62,0,6,6,0,1,1-10.38-6A70.1,70.1,0,0,1,103,182.55a46,46,0,1,1,50.1,0A70.1,70.1,0,0,1,189.19,213ZM128,178a34,34,0,1,0-34-34A34,34,0,0,0,128,178ZM70,120a6,6,0,0,0-6-6A26,26,0,1,1,89.18,81.49a6,6,0,1,0,11.62-3,38,38,0,1,0-59.91,39.63A65.69,65.69,0,0,0,11.2,140.4a6,6,0,1,0,9.6,7.2A53.58,53.58,0,0,1,64,126,6,6,0,0,0,70,120Z"/></svg><span data-i18n="train.i4">جداول المجتمع</span></li>
+              <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,26A102,102,0,1,0,230,128,102.12,102.12,0,0,0,128,26Zm0,192a90,90,0,1,1,90-90A90.1,90.1,0,0,1,128,218Zm47.18-95.09-64-40A6,6,0,0,0,102,88v80a6,6,0,0,0,9.18,5.09l64-40a6,6,0,0,0,0-10.18ZM114,157.17V98.83L160.68,128Z"/></svg><span data-i18n="train.i5">فيديو لكل تمرين</span></li>
+              <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M222,48V152a14,14,0,0,1-14,14H94.49l13.75,13.76a6,6,0,1,1-8.48,8.48l-24-24a6,6,0,0,1,0-8.48l24-24a6,6,0,0,1,8.48,8.48L94.49,154H208a2,2,0,0,0,2-2V48a2,2,0,0,0-2-2H96a2,2,0,0,0-2,2v8a6,6,0,0,1-12,0V48A14,14,0,0,1,96,34H208A14,14,0,0,1,222,48ZM168,194a6,6,0,0,0-6,6v8a2,2,0,0,1-2,2H48a2,2,0,0,1-2-2V104a2,2,0,0,1,2-2H161.51l-13.75,13.76a6,6,0,1,0,8.48,8.48l24-24a6,6,0,0,0,0-8.48l-24-24a6,6,0,0,0-8.48,8.48L161.51,90H48a14,14,0,0,0-14,14V208a14,14,0,0,0,14,14H160a14,14,0,0,0,14-14v-8A6,6,0,0,0,168,194Z"/></svg><span data-i18n="train.i6">بدائل التمارين</span></li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- The app, chapter by chapter: food, training, coaching, tracking -->
-    <section class="chapters" id="features" aria-label="المزايا" data-i18n-attr="aria-label:chapters.label">
+    <!-- AI coach -->
+    <section class="chapter coach" aria-labelledby="t-coach">
+      <div class="wrap split">
+        <div class="split-copy">
+          <h2 class="section-title" id="t-coach" data-reveal><span data-i18n="coach.t1">اسأله أي شي.</span> <span class="soft" data-i18n="coach.t2">يجاوبك من أرقامك.</span></h2>
+          <p class="lead" data-reveal data-delay="1"><span data-i18n="coach.b1">مدرب بالذكاء الاصطناعي يعرف</span> <b data-i18n="coach.b2">هدفك وخطتك وأوزانك،</b> <span data-i18n="coach.b3">ويرد عليك على أساسها.</span></p>
+        </div>
+        <figure class="split-media" data-rise>
+          <div class="device split-device"><img data-shot="coach" src="assets/app-coach-ar.webp" width="660" height="1434" alt="المدرب الذكي يجاوب حسب هدفك" data-i18n-attr="alt:coach.alt" loading="lazy"></div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Progress -->
+    <section class="chapter journey" aria-labelledby="t-journey">
       <div class="wrap">
-        <article class="chapter ch-food" data-reveal>
-          <div class="chapter-text">
-            <p class="kicker" data-i18n="food.kicker">الأكل؟</p>
-            <h3 data-i18n="food.title">سجّل وجبتك بأكثر من طريقة.</h3>
-            <ul class="icon-list">
-              <li><span class="ico"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M208,58H179.21L165,36.67A6,6,0,0,0,160,34H96a6,6,0,0,0-5,2.67L76.78,58H48A22,22,0,0,0,26,80V192a22,22,0,0,0,22,22H208a22,22,0,0,0,22-22V80A22,22,0,0,0,208,58Zm10,134a10,10,0,0,1-10,10H48a10,10,0,0,1-10-10V80A10,10,0,0,1,48,70H80a6,6,0,0,0,5-2.67L99.21,46h57.57L171,67.33A6,6,0,0,0,176,70h32a10,10,0,0,1,10,10ZM128,90a42,42,0,1,0,42,42A42,42,0,0,0,128,90Zm0,72a30,30,0,1,1,30-30A30,30,0,0,1,128,162Z"/></svg></span><span data-i18n="food.i1">صوّرها</span></li>
-              <li><span class="ico"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M166,112a6,6,0,0,1-6,6H96a6,6,0,0,1,0-12h64A6,6,0,0,1,166,112Zm-6,26H96a6,6,0,0,0,0,12h64a6,6,0,0,0,0-12Zm70-10A102,102,0,0,1,79.31,217.65L44.44,229.27a14,14,0,0,1-17.71-17.71l11.62-34.87A102,102,0,1,1,230,128Zm-12,0A90,90,0,1,0,50.08,173.06a6,6,0,0,1,.5,4.91L38.12,215.35a2,2,0,0,0,2.53,2.53L78,205.42a6.2,6.2,0,0,1,1.9-.31,6.09,6.09,0,0,1,3,.81A90,90,0,0,0,218,128Z"/></svg></span><span data-i18n="food.i2">اوصفها</span></li>
-              <li><span class="ico"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M230,48V88a6,6,0,0,1-12,0V54H184a6,6,0,0,1,0-12h40A6,6,0,0,1,230,48ZM72,202H38V168a6,6,0,0,0-12,0v40a6,6,0,0,0,6,6H72a6,6,0,0,0,0-12Zm152-40a6,6,0,0,0-6,6v34H184a6,6,0,0,0,0,12h40a6,6,0,0,0,6-6V168A6,6,0,0,0,224,162ZM32,94a6,6,0,0,0,6-6V54H72a6,6,0,0,0,0-12H32a6,6,0,0,0-6,6V88A6,6,0,0,0,32,94ZM80,82a6,6,0,0,0-6,6v80a6,6,0,0,0,12,0V88A6,6,0,0,0,80,82Zm102,86V88a6,6,0,0,0-12,0v80a6,6,0,0,0,12,0ZM144,82a6,6,0,0,0-6,6v80a6,6,0,0,0,12,0V88A6,6,0,0,0,144,82Zm-32,0a6,6,0,0,0-6,6v80a6,6,0,0,0,12,0V88A6,6,0,0,0,112,82Z"/></svg></span><span data-i18n="food.i3">الباركود</span></li>
-              <li><span class="ico"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M222.72,67.91l-88-48.18a13.9,13.9,0,0,0-13.44,0l-88,48.18A14,14,0,0,0,26,80.18v95.64a14,14,0,0,0,7.28,12.27l88,48.18a13.92,13.92,0,0,0,13.44,0l88-48.18A14,14,0,0,0,230,175.82V80.18A14,14,0,0,0,222.72,67.91ZM127,30.25a2,2,0,0,1,1.92,0L212.51,76,178.57,94.57,94.05,48.31ZM122,223,39,177.57a2,2,0,0,1-1-1.75V86.66l84,46ZM43.49,76,81.56,55.15l84.51,46.26L128,122.24ZM218,175.82a2,2,0,0,1-1,1.75h0L134,223V132.64l36-19.71V152a6,6,0,0,0,12,0V106.37l36-19.71Z"/></svg></span><span data-i18n="food.i4">منتجات سعودية</span></li>
-              <li><span class="ico"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M26.22,94.41A6,6,0,0,0,26,96v16A38,38,0,0,0,42,143V216a6,6,0,0,0,6,6H208a6,6,0,0,0,6-6V143A38,38,0,0,0,230,112V96a5.91,5.91,0,0,0-.23-1.64L215.43,44.15A14.07,14.07,0,0,0,202,34H54A14.07,14.07,0,0,0,40.57,44.15Zm25.89-47A2,2,0,0,1,54,46H202a2,2,0,0,1,1.92,1.45L216.05,90H40ZM102,102h52v10a26,26,0,0,1-52,0Zm-64,0H90v10a26,26,0,0,1-38.18,23,6,6,0,0,0-1.65-1A26,26,0,0,1,38,112ZM202,210H54V148.66a38,38,0,0,0,42-16.21,37.95,37.95,0,0,0,64,0,38,38,0,0,0,42,16.21Zm3.83-76a6,6,0,0,0-1.65,1A26,26,0,0,1,166,112V102h52v10A26,26,0,0,1,205.83,134Z"/></svg></span><span data-i18n="food.i5">المتجر</span></li>
-            </ul>
-          </div>
-          <div class="chapter-phone"><div class="phone"><video class="clip" data-clip="meal" muted playsinline loop preload="none" poster="assets/clip-meal-ar.webp" aria-label="مقطع: تصوير الوجبة وتقدير سعراتها" data-i18n-attr="aria-label:food.alt"></video></div></div>
-        </article>
-        <article class="chapter ch-train" data-reveal>
-          <div class="chapter-text">
-            <p class="kicker" data-i18n="train.kicker">التمرين؟</p>
-            <h3 data-i18n="train.title">تعرف متى تزيد الوزن، ومتى تخفّف.</h3>
-            <ul class="icon-list">
-              <li><span class="ico"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M222,128a6,6,0,0,1-6,6H128a6,6,0,0,1,0-12h88A6,6,0,0,1,222,128ZM128,70h88a6,6,0,0,0,0-12H128a6,6,0,0,0,0,12Zm88,116H128a6,6,0,0,0,0,12h88a6,6,0,0,0,0-12ZM83.76,43.76,56,71.51,44.24,59.76a6,6,0,0,0-8.48,8.48l16,16a6,6,0,0,0,8.48,0l32-32a6,6,0,0,0-8.48-8.48Zm0,64L56,135.51,44.24,123.76a6,6,0,1,0-8.48,8.48l16,16a6,6,0,0,0,8.48,0l32-32a6,6,0,0,0-8.48-8.48Zm0,64L56,199.51,44.24,187.76a6,6,0,0,0-8.48,8.48l16,16a6,6,0,0,0,8.48,0l32-32a6,6,0,0,0-8.48-8.48Z"/></svg></span><span data-i18n="train.i1">العدّات والمجموعات</span></li>
-              <li><span class="ico"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M222,144v64a6,6,0,0,1-6,6H40a6,6,0,0,1-6-6V144a6,6,0,0,1,12,0v58H210V144a6,6,0,0,1,12,0Zm-98.24,4.24a6,6,0,0,0,8.48,0l40-40a6,6,0,0,0-8.48-8.48L134,129.51V32a6,6,0,0,0-12,0v97.51L92.24,99.76a6,6,0,0,0-8.48,8.48Z"/></svg></span><span data-i18n="train.i2">انقل جدولك</span></li>
-              <li><span class="ico"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M196.89,130.94,144.4,111.6,125.06,59.11a13.92,13.92,0,0,0-26.12,0L79.6,111.6,27.11,130.94a13.92,13.92,0,0,0,0,26.12L79.6,176.4l19.34,52.49a13.92,13.92,0,0,0,26.12,0L144.4,176.4l52.49-19.34a13.92,13.92,0,0,0,0-26.12Zm-4.15,14.86-55.08,20.3a6,6,0,0,0-3.56,3.56l-20.3,55.08a1.92,1.92,0,0,1-3.6,0L89.9,169.66a6,6,0,0,0-3.56-3.56L31.26,145.8a1.92,1.92,0,0,1,0-3.6l55.08-20.3a6,6,0,0,0,3.56-3.56l20.3-55.08a1.92,1.92,0,0,1,3.6,0l20.3,55.08a6,6,0,0,0,3.56,3.56l55.08,20.3a1.92,1.92,0,0,1,0,3.6ZM146,40a6,6,0,0,1,6-6h18V16a6,6,0,0,1,12,0V34h18a6,6,0,0,1,0,12H182V64a6,6,0,0,1-12,0V46H152A6,6,0,0,1,146,40ZM246,88a6,6,0,0,1-6,6H230v10a6,6,0,0,1-12,0V94H208a6,6,0,0,1,0-12h10V72a6,6,0,0,1,12,0V82h10A6,6,0,0,1,246,88Z"/></svg></span><span data-i18n="train.i3">جدول بالذكاء الاصطناعي</span></li>
-              <li><span class="ico"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M243.6,148.8a6,6,0,0,1-8.4-1.2A53.58,53.58,0,0,0,192,126a6,6,0,0,1,0-12,26,26,0,1,0-25.18-32.5,6,6,0,0,1-11.62-3,38,38,0,1,1,59.91,39.63A65.69,65.69,0,0,1,244.8,140.4,6,6,0,0,1,243.6,148.8ZM189.19,213a6,6,0,0,1-2.19,8.2,5.9,5.9,0,0,1-3,.81,6,6,0,0,1-5.2-3,59,59,0,0,0-101.62,0,6,6,0,1,1-10.38-6A70.1,70.1,0,0,1,103,182.55a46,46,0,1,1,50.1,0A70.1,70.1,0,0,1,189.19,213ZM128,178a34,34,0,1,0-34-34A34,34,0,0,0,128,178ZM70,120a6,6,0,0,0-6-6A26,26,0,1,1,89.18,81.49a6,6,0,1,0,11.62-3,38,38,0,1,0-59.91,39.63A65.69,65.69,0,0,0,11.2,140.4a6,6,0,1,0,9.6,7.2A53.58,53.58,0,0,1,64,126,6,6,0,0,0,70,120Z"/></svg></span><span data-i18n="train.i4">جداول المجتمع</span></li>
-              <li><span class="ico"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,26A102,102,0,1,0,230,128,102.12,102.12,0,0,0,128,26Zm0,192a90,90,0,1,1,90-90A90.1,90.1,0,0,1,128,218Zm47.18-95.09-64-40A6,6,0,0,0,102,88v80a6,6,0,0,0,9.18,5.09l64-40a6,6,0,0,0,0-10.18ZM114,157.17V98.83L160.68,128Z"/></svg></span><span data-i18n="train.i5">فيديو لكل تمرين</span></li>
-              <li><span class="ico"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M222,48V152a14,14,0,0,1-14,14H94.49l13.75,13.76a6,6,0,1,1-8.48,8.48l-24-24a6,6,0,0,1,0-8.48l24-24a6,6,0,0,1,8.48,8.48L94.49,154H208a2,2,0,0,0,2-2V48a2,2,0,0,0-2-2H96a2,2,0,0,0-2,2v8a6,6,0,0,1-12,0V48A14,14,0,0,1,96,34H208A14,14,0,0,1,222,48ZM168,194a6,6,0,0,0-6,6v8a2,2,0,0,1-2,2H48a2,2,0,0,1-2-2V104a2,2,0,0,1,2-2H161.51l-13.75,13.76a6,6,0,1,0,8.48,8.48l24-24a6,6,0,0,0,0-8.48l-24-24a6,6,0,0,0-8.48,8.48L161.51,90H48a14,14,0,0,0-14,14V208a14,14,0,0,0,14,14H160a14,14,0,0,0,14-14v-8A6,6,0,0,0,168,194Z"/></svg></span><span data-i18n="train.i6">بدائل التمارين</span></li>
-            </ul>
-          </div>
-          <div class="chapter-phone"><div class="phone"><video class="clip" data-clip="session" muted playsinline loop preload="none" poster="assets/clip-session-ar.webp" aria-label="مقطع: تمرين حيّ مع فيديو التمرين ومؤقت الراحة" data-i18n-attr="aria-label:train.alt"></video></div></div>
-        </article>
-        <article class="chapter ch-coach" data-reveal>
-          <div class="chapter-text">
-            <p class="kicker" data-i18n="coach.kicker">المتابعة؟</p>
-            <h3 data-i18n="coach.title">ذكاء اصطناعي يجاوبك حسب هدفك وخطتك.</h3>
-            <p class="chapter-body" data-i18n="coach.body">اسأله أي شي، ويجاوبك من أرقامك.</p>
-          </div>
-          <div class="chapter-phone"><div class="phone"><img data-shot="coach" src="assets/app-coach-ar.webp" width="660" height="1434" alt="المدرب الذكي يجاوب حسب هدفك" data-i18n-attr="alt:coach.alt" loading="lazy" decoding="async"></div></div>
-        </article>
-        <div class="journey">
-          <div class="journey-copy">
-            <p class="kicker" data-i18n="journey.kicker">قياس التطوّر؟</p>
-            <h3 class="journey-title" data-reveal data-i18n="journey.title">شوف تطوّرك بعينك.</h3>
-            <ul class="icon-list">
-              <li><span class="ico"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M237.57,133.77l-32-80h0a6,6,0,0,0-6.86-3.63L134,64.52V40a6,6,0,0,0-12,0V67.19l-67.3,15a6,6,0,0,0-4.27,3.63h0v0l-32,80A6.1,6.1,0,0,0,18,168c0,21.86,23.31,30,38,30s38-8.14,38-30a6.1,6.1,0,0,0-.43-2.23L64.19,92.33,122,79.48V210H104a6,6,0,0,0,0,12h48a6,6,0,0,0,0-12H134V76.81l56.21-12.49-27.78,69.45A6.1,6.1,0,0,0,162,136c0,21.86,23.31,30,38,30s38-8.14,38-30A6.1,6.1,0,0,0,237.57,133.77ZM56,186a36.89,36.89,0,0,1-17.48-4.56c-5.37-3.13-8.15-7.18-8.49-12.37l26-64.91,26,64.91C81.06,182.85,62.58,186,56,186Zm144-32a36.89,36.89,0,0,1-17.48-4.56c-5.37-3.13-8.15-7.18-8.49-12.37l26-64.91,26,64.91C225.06,150.85,206.58,154,200,154Z"/></svg></span><span data-i18n="journey.i1">وزنك كل يوم</span></li>
-              <li><span class="ico"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M208,58H179.21L165,36.67A6,6,0,0,0,160,34H96a6,6,0,0,0-5,2.67L76.78,58H48A22,22,0,0,0,26,80V192a22,22,0,0,0,22,22H208a22,22,0,0,0,22-22V80A22,22,0,0,0,208,58Zm10,134a10,10,0,0,1-10,10H48a10,10,0,0,1-10-10V80A10,10,0,0,1,48,70H80a6,6,0,0,0,5-2.67L99.21,46h57.57L171,67.33A6,6,0,0,0,176,70h32a10,10,0,0,1,10,10ZM128,90a42,42,0,1,0,42,42A42,42,0,0,0,128,90Zm0,72a30,30,0,1,1,30-30A30,30,0,0,1,128,162Z"/></svg></span><span data-i18n="journey.i2">صورة كل أسبوع</span></li>
-              <li><span class="ico"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M212.24,83.76l-56-56A6,6,0,0,0,152,26H56A14,14,0,0,0,42,40V216a14,14,0,0,0,14,14H200a14,14,0,0,0,14-14V88A6,6,0,0,0,212.24,83.76ZM158,46.48,193.52,82H158ZM200,218H56a2,2,0,0,1-2-2V40a2,2,0,0,1,2-2h90V88a6,6,0,0,0,6,6h50V216A2,2,0,0,1,200,218Zm-34-82a6,6,0,0,1-6,6H96a6,6,0,0,1,0-12h64A6,6,0,0,1,166,136Zm0,32a6,6,0,0,1-6,6H96a6,6,0,0,1,0-12h64A6,6,0,0,1,166,168Z"/></svg></span><span data-i18n="journey.i3">InBody كل شهر</span></li>
-            </ul>
-          </div>
-          <div class="journey-art" aria-hidden="true">
-            <p class="day"><span data-i18n="journey.day">اليوم</span> <bdi dir="ltr" class="js-days" data-to="73">73</bdi> <span data-i18n="journey.of">من 113</span></p>
-            <svg class="growth" viewBox="0 0 320 140" preserveAspectRatio="none">
-              <defs><linearGradient id="growth-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF7A2E" stop-opacity="0.34"/><stop offset="1" stop-color="#FF7A2E" stop-opacity="0"/></linearGradient></defs>
-              <path class="area" d="M0 128 C 40 124, 60 112, 90 106 S 140 92, 170 80 S 230 50, 260 40 S 300 18, 320 12 L 320 140 L 0 140 Z" fill="url(#growth-fill)"/>
-              <path class="line" pathLength="1" d="M0 128 C 40 124, 60 112, 90 106 S 140 92, 170 80 S 230 50, 260 40 S 300 18, 320 12"/>
-            </svg>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Consistency: streaks, stars, levels -->
-    <section class="levels" id="levels" aria-labelledby="t-levels">
-      <div class="levels-art" aria-hidden="true">
-        <img class="levels-statue" src="assets/statue-fire.webp" width="1018" height="1001" alt="" loading="lazy" decoding="async">
-      </div>
-      <div class="wrap levels-in">
-        <div class="levels-copy">
-          <p class="kicker" data-i18n="levels.kicker">والالتزام؟</p>
-          <h2 class="h2" id="t-levels" data-reveal data-i18n="levels.title">التطبيق يمشي بالستريكات.</h2>
-          <p class="lead" data-reveal data-delay="1" data-i18n="levels.body">تقفل سعراتك وتتمرّن، وتجمع ستريك كل يوم.</p>
-          <ul class="streak-row">
-            <li class="sk lit sk-nutrition"><span class="sk-ico" aria-hidden="true"><img src="assets/streak-nutrition-off.png" width="96" height="96" alt=""><img class="on" src="assets/streak-nutrition.png" width="96" height="96" alt=""></span><span data-i18n="levels.s1">السعرات</span></li>
-            <li class="sk lit sk-training"><span class="sk-ico" aria-hidden="true"><img src="assets/streak-training-off.png" width="96" height="96" alt=""><img class="on" src="assets/streak-training.png" width="96" height="96" alt=""></span><span data-i18n="levels.s2">التمرين</span></li>
-            <li class="sk lit sk-water"><span class="sk-ico" aria-hidden="true"><img src="assets/streak-water-off.png" width="96" height="96" alt=""><img class="on" src="assets/streak-water.png" width="96" height="96" alt=""></span><span data-i18n="levels.s3">الماء</span></li>
-            <li class="sk lit sk-steps"><span class="sk-ico" aria-hidden="true"><img src="assets/streak-steps-off.png" width="96" height="96" alt=""><img class="on" src="assets/streak-steps.png" width="96" height="96" alt=""></span><span data-i18n="levels.s4">الخطوات</span></li>
-            <li class="sk lit sk-supplements"><span class="sk-ico" aria-hidden="true"><img src="assets/streak-supplements-off.png" width="96" height="96" alt=""><img class="on" src="assets/streak-supplements.png" width="96" height="96" alt=""></span><span data-i18n="levels.s5">المكملات</span></li>
+        <h2 class="section-title" id="t-journey" data-reveal><span data-i18n="journey.t1">شوف تطوّرك</span> <span class="soft" data-i18n="journey.t2">بعينك.</span></h2>
+        <div class="board" data-reveal>
+          <p class="day"><span data-i18n="journey.day">اليوم</span> <bdi dir="ltr" class="js-days" data-to="73">73</bdi> <span data-i18n="journey.of">من 113</span></p>
+          <svg class="growth" viewBox="0 0 320 140" preserveAspectRatio="none" aria-hidden="true">
+            <defs><linearGradient id="growth-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0060F0" stop-opacity="0.18"/><stop offset="1" stop-color="#0060F0" stop-opacity="0"/></linearGradient></defs>
+            <path class="area" d="M0 128 C 40 124, 60 112, 90 106 S 140 92, 170 80 S 230 50, 260 40 S 300 18, 320 12 L 320 140 L 0 140 Z" fill="url(#growth-fill)"/>
+            <path class="line" d="M0 128 C 40 124, 60 112, 90 106 S 140 92, 170 80 S 230 50, 260 40 S 300 18, 320 12" pathLength="1"/>
+          </svg>
+          <ul class="rhythm" data-stagger>
+            <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M237.57,133.77l-32-80h0a6,6,0,0,0-6.86-3.63L134,64.52V40a6,6,0,0,0-12,0V67.19l-67.3,15a6,6,0,0,0-4.27,3.63h0v0l-32,80A6.1,6.1,0,0,0,18,168c0,21.86,23.31,30,38,30s38-8.14,38-30a6.1,6.1,0,0,0-.43-2.23L64.19,92.33,122,79.48V210H104a6,6,0,0,0,0,12h48a6,6,0,0,0,0-12H134V76.81l56.21-12.49-27.78,69.45A6.1,6.1,0,0,0,162,136c0,21.86,23.31,30,38,30s38-8.14,38-30A6.1,6.1,0,0,0,237.57,133.77ZM56,186a36.89,36.89,0,0,1-17.48-4.56c-5.37-3.13-8.15-7.18-8.49-12.37l26-64.91,26,64.91C81.06,182.85,62.58,186,56,186Zm144-32a36.89,36.89,0,0,1-17.48-4.56c-5.37-3.13-8.15-7.18-8.49-12.37l26-64.91,26,64.91C225.06,150.85,206.58,154,200,154Z"/></svg><span data-i18n="journey.i1">وزنك كل يوم</span></li>
+            <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M208,58H179.21L165,36.67A6,6,0,0,0,160,34H96a6,6,0,0,0-5,2.67L76.78,58H48A22,22,0,0,0,26,80V192a22,22,0,0,0,22,22H208a22,22,0,0,0,22-22V80A22,22,0,0,0,208,58Zm10,134a10,10,0,0,1-10,10H48a10,10,0,0,1-10-10V80A10,10,0,0,1,48,70H80a6,6,0,0,0,5-2.67L99.21,46h57.57L171,67.33A6,6,0,0,0,176,70h32a10,10,0,0,1,10,10ZM128,90a42,42,0,1,0,42,42A42,42,0,0,0,128,90Zm0,72a30,30,0,1,1,30-30A30,30,0,0,1,128,162Z"/></svg><span data-i18n="journey.i2">صورة كل أسبوع</span></li>
+            <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M212.24,83.76l-56-56A6,6,0,0,0,152,26H56A14,14,0,0,0,42,40V216a14,14,0,0,0,14,14H200a14,14,0,0,0,14-14V88A6,6,0,0,0,212.24,83.76ZM158,46.48,193.52,82H158ZM200,218H56a2,2,0,0,1-2-2V40a2,2,0,0,1,2-2h90V88a6,6,0,0,0,6,6h50V216A2,2,0,0,1,200,218Zm-34-82a6,6,0,0,1-6,6H96a6,6,0,0,1,0-12h64A6,6,0,0,1,166,136Zm0,32a6,6,0,0,1-6,6H96a6,6,0,0,1,0-12h64A6,6,0,0,1,166,168Z"/></svg><span data-i18n="journey.i3">InBody كل شهر</span></li>
           </ul>
-          <p class="lead levels-more" data-reveal data-i18n="levels.more">ستريكات أكثر، نجوم أكثر، ومستوى أعلى.</p>
-          <ol class="ladder" data-reveal data-delay="1">
-            <li class="on"><b data-i18n="levels.l1">مبتدئ</b><span><bdi dir="ltr">0</bdi><img src="assets/icon-starLGold.png" width="216" height="216" alt=""></span></li>
-            <li class="on"><b data-i18n="levels.l2">قوي</b><span><bdi dir="ltr">7</bdi><img src="assets/icon-starLGold.png" width="216" height="216" alt=""></span></li>
-            <li class="on"><b data-i18n="levels.l3">وحش</b><span><bdi dir="ltr">30</bdi><img src="assets/icon-starLGold.png" width="216" height="216" alt=""></span></li>
-            <li class="on"><b data-i18n="levels.l4">آكل حديد</b><span><bdi dir="ltr">90</bdi><img src="assets/icon-starLGold.png" width="216" height="216" alt=""></span></li>
+        </div>
+      </div>
+    </section>
+
+    <!-- Streaks and levels -->
+    <section class="chapter levels tint" aria-labelledby="t-levels">
+      <div class="wrap">
+        <h2 class="section-title" id="t-levels" data-reveal><span data-i18n="levels.t1">التزم كل يوم.</span> <span class="soft" data-i18n="levels.t2">واجمع ستريكاتك.</span></h2>
+        <ul class="streak-row">
+          <li class="sk lit"><span class="sk-ico" aria-hidden="true"><img src="assets/streak-nutrition-off.png" width="96" height="96" alt=""><img class="on" src="assets/streak-nutrition.png" width="96" height="96" alt=""></span><span data-i18n="levels.s1">السعرات</span></li>
+          <li class="sk lit"><span class="sk-ico" aria-hidden="true"><img src="assets/streak-training-off.png" width="96" height="96" alt=""><img class="on" src="assets/streak-training.png" width="96" height="96" alt=""></span><span data-i18n="levels.s2">التمرين</span></li>
+          <li class="sk lit"><span class="sk-ico" aria-hidden="true"><img src="assets/streak-water-off.png" width="96" height="96" alt=""><img class="on" src="assets/streak-water.png" width="96" height="96" alt=""></span><span data-i18n="levels.s3">الماء</span></li>
+          <li class="sk lit"><span class="sk-ico" aria-hidden="true"><img src="assets/streak-steps-off.png" width="96" height="96" alt=""><img class="on" src="assets/streak-steps.png" width="96" height="96" alt=""></span><span data-i18n="levels.s4">الخطوات</span></li>
+          <li class="sk lit"><span class="sk-ico" aria-hidden="true"><img src="assets/streak-supplements-off.png" width="96" height="96" alt=""><img class="on" src="assets/streak-supplements.png" width="96" height="96" alt=""></span><span data-i18n="levels.s5">المكملات</span></li>
+        </ul>
+      </div>
+      <!-- On phones the four levels pass one by one through the middle as you scroll; on wide screens they stand in a row. -->
+      <div class="lineup-stage">
+        <div class="lineup-pin">
+          <p class="lead center" data-reveal><span data-i18n="levels.m1">ستريكات أكثر، نجوم أكثر،</span> <b data-i18n="levels.m2">ومستوى أعلى.</b></p>
+          <ol class="lineup">
+            <li><img src="assets/level-beginner.webp" width="278" height="560" alt="" loading="lazy"><span class="lv-name" data-i18n="levels.l1">مبتدئ</span><span class="lv-when" data-i18n="levels.w1">من أول يوم</span></li>
+            <li><img src="assets/level-strong.webp" width="282" height="560" alt="" loading="lazy"><span class="lv-name" data-i18n="levels.l2">قوي</span><span class="lv-when"><span data-i18n="levels.after">بعد</span> <bdi dir="ltr">7</bdi> <span data-i18n="levels.days7">أيام التزام</span> <bdi dir="ltr">100%</bdi></span></li>
+            <li><img src="assets/level-beast.webp" width="431" height="560" alt="" loading="lazy"><span class="lv-name" data-i18n="levels.l3">وحش</span><span class="lv-when"><span data-i18n="levels.after">بعد</span> <bdi dir="ltr">30</bdi> <span data-i18n="levels.days">يوم التزام</span> <bdi dir="ltr">100%</bdi></span></li>
+            <li><img src="assets/level-ironEater.webp" width="496" height="560" alt="" loading="lazy"><span class="lv-name" data-i18n="levels.l4">آكل حديد</span><span class="lv-when"><span data-i18n="levels.after">بعد</span> <bdi dir="ltr">90</bdi> <span data-i18n="levels.days">يوم التزام</span> <bdi dir="ltr">100%</bdi></span></li>
           </ol>
         </div>
       </div>
     </section>
 
-    <!-- Competition, and a couple more -->
-    <section class="compete" id="compete" aria-labelledby="t-compete">
+    <!-- Friends -->
+    <section class="chapter friends" aria-labelledby="t-friends">
+      <div class="wrap split flip">
+        <div class="split-copy">
+          <h2 class="section-title" id="t-friends" data-reveal><span data-i18n="compete.t1">نافس أخوياك.</span> <span class="soft" data-i18n="compete.t2">على الالتزام والأوزان.</span></h2>
+          <ul class="icon-list" data-stagger>
+            <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M248,122H238V88a14,14,0,0,0-14-14H206V64a14,14,0,0,0-14-14H168a14,14,0,0,0-14,14v58H102V64A14,14,0,0,0,88,50H64A14,14,0,0,0,50,64V74H32A14,14,0,0,0,18,88v34H8a6,6,0,0,0,0,12H18v34a14,14,0,0,0,14,14H50v10a14,14,0,0,0,14,14H88a14,14,0,0,0,14-14V134h52v58a14,14,0,0,0,14,14h24a14,14,0,0,0,14-14V182h18a14,14,0,0,0,14-14V134h10a6,6,0,0,0,0-12ZM32,170a2,2,0,0,1-2-2V88a2,2,0,0,1,2-2H50v84Zm58,22a2,2,0,0,1-2,2H64a2,2,0,0,1-2-2V64a2,2,0,0,1,2-2H88a2,2,0,0,1,2,2Zm104,0a2,2,0,0,1-2,2H168a2,2,0,0,1-2-2V64a2,2,0,0,1,2-2h24a2,2,0,0,1,2,2Zm32-24a2,2,0,0,1-2,2H206V86h18a2,2,0,0,1,2,2Z"/></svg><span data-i18n="compete.i1">الأوزان</span></li>
+            <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M181.92,153A55.58,55.58,0,0,1,137,197.92a7,7,0,0,1-1,.08,6,6,0,0,1-1-11.92c17.38-2.92,32.13-17.68,35.08-35.08a6,6,0,1,1,11.84,2ZM214,144a86,86,0,0,1-172,0c0-27.47,10.85-55.61,32.25-83.64a6,6,0,0,1,9-.67l26.34,25.56,23.09-63.31a6,6,0,0,1,9.47-2.56C163.72,37.33,214,85.4,214,144Zm-12,0c0-48.4-38.65-89.84-61.07-109.8L117.64,98.06a6,6,0,0,1-9.82,2.25l-28-27.22C62.67,97.13,54,121,54,144a74,74,0,0,0,148,0Z"/></svg><span data-i18n="compete.i2">الالتزام</span></li>
+            <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M238,56v64a6,6,0,0,1-12,0V70.48l-85.76,85.76a6,6,0,0,1-8.48,0L96,120.49,28.24,188.24a6,6,0,0,1-8.48-8.48l72-72a6,6,0,0,1,8.48,0L136,143.51,217.52,62H168a6,6,0,0,1,0-12h64A6,6,0,0,1,238,56Z"/></svg><span data-i18n="compete.i3">نسبة التطوّر</span></li>
+            <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M232,66H206V48a6,6,0,0,0-6-6H56a6,6,0,0,0-6,6V66H24A14,14,0,0,0,10,80V96a38,38,0,0,0,38,38h5.14A78,78,0,0,0,122,189.75V218H96a6,6,0,0,0,0,12h64a6,6,0,0,0,0-12H134V189.75c32.44-2.52,59.43-25.3,68.62-55.75H208a38,38,0,0,0,38-38V80A14,14,0,0,0,232,66ZM48,122A26,26,0,0,1,22,96V80a2,2,0,0,1,2-2H50v34a80.87,80.87,0,0,0,.65,10Zm146-10.9c0,36.62-29.38,66.63-65.5,66.9A66,66,0,0,1,62,112V54H194ZM234,96a26,26,0,0,1-26,26h-2.77a78.45,78.45,0,0,0,.77-10.9V78h26a2,2,0,0,1,2,2Z"/></svg><span data-i18n="compete.i4">جوائز للأكثر التزام</span></li>
+          </ul>
+          <p class="fine" data-reveal data-i18n="compete.fine">ووزنك ما يشوفه أحد.</p>
+        </div>
+        <figure class="split-media" data-rise>
+          <div class="device split-device"><img data-shot="group" src="assets/app-group-ar.webp" width="660" height="1434" alt="ترتيب مجموعة أصدقاء" data-i18n-attr="alt:compete.alt" loading="lazy"></div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Everything you track -->
+    <section class="chapter all tint" aria-labelledby="t-all">
       <div class="wrap">
-        <article class="chapter ch-compete" data-reveal>
-          <div class="chapter-text">
-            <p class="kicker" data-i18n="compete.kicker">والمنافسة؟</p>
-            <h3 id="t-compete" data-i18n="compete.title">نافس أخوياك.</h3>
-            <ul class="icon-list">
-              <li><span class="ico"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M248,122H238V88a14,14,0,0,0-14-14H206V64a14,14,0,0,0-14-14H168a14,14,0,0,0-14,14v58H102V64A14,14,0,0,0,88,50H64A14,14,0,0,0,50,64V74H32A14,14,0,0,0,18,88v34H8a6,6,0,0,0,0,12H18v34a14,14,0,0,0,14,14H50v10a14,14,0,0,0,14,14H88a14,14,0,0,0,14-14V134h52v58a14,14,0,0,0,14,14h24a14,14,0,0,0,14-14V182h18a14,14,0,0,0,14-14V134h10a6,6,0,0,0,0-12ZM32,170a2,2,0,0,1-2-2V88a2,2,0,0,1,2-2H50v84Zm58,22a2,2,0,0,1-2,2H64a2,2,0,0,1-2-2V64a2,2,0,0,1,2-2H88a2,2,0,0,1,2,2Zm104,0a2,2,0,0,1-2,2H168a2,2,0,0,1-2-2V64a2,2,0,0,1,2-2h24a2,2,0,0,1,2,2Zm32-24a2,2,0,0,1-2,2H206V86h18a2,2,0,0,1,2,2Z"/></svg></span><span data-i18n="compete.i1">الأوزان</span></li>
-              <li><span class="ico"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M181.92,153A55.58,55.58,0,0,1,137,197.92a7,7,0,0,1-1,.08,6,6,0,0,1-1-11.92c17.38-2.92,32.13-17.68,35.08-35.08a6,6,0,1,1,11.84,2ZM214,144a86,86,0,0,1-172,0c0-27.47,10.85-55.61,32.25-83.64a6,6,0,0,1,9-.67l26.34,25.56,23.09-63.31a6,6,0,0,1,9.47-2.56C163.72,37.33,214,85.4,214,144Zm-12,0c0-48.4-38.65-89.84-61.07-109.8L117.64,98.06a6,6,0,0,1-9.82,2.25l-28-27.22C62.67,97.13,54,121,54,144a74,74,0,0,0,148,0Z"/></svg></span><span data-i18n="compete.i2">الالتزام</span></li>
-              <li><span class="ico"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M238,56v64a6,6,0,0,1-12,0V70.48l-85.76,85.76a6,6,0,0,1-8.48,0L96,120.49,28.24,188.24a6,6,0,0,1-8.48-8.48l72-72a6,6,0,0,1,8.48,0L136,143.51,217.52,62H168a6,6,0,0,1,0-12h64A6,6,0,0,1,238,56Z"/></svg></span><span data-i18n="compete.i3">نسبة التطوّر</span></li>
-              <li><span class="ico"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M232,66H206V48a6,6,0,0,0-6-6H56a6,6,0,0,0-6,6V66H24A14,14,0,0,0,10,80V96a38,38,0,0,0,38,38h5.14A78,78,0,0,0,122,189.75V218H96a6,6,0,0,0,0,12h64a6,6,0,0,0,0-12H134V189.75c32.44-2.52,59.43-25.3,68.62-55.75H208a38,38,0,0,0,38-38V80A14,14,0,0,0,232,66ZM48,122A26,26,0,0,1,22,96V80a2,2,0,0,1,2-2H50v34a80.87,80.87,0,0,0,.65,10Zm146-10.9c0,36.62-29.38,66.63-65.5,66.9A66,66,0,0,1,62,112V54H194ZM234,96a26,26,0,0,1-26,26h-2.77a78.45,78.45,0,0,0,.77-10.9V78h26a2,2,0,0,1,2,2Z"/></svg></span><span data-i18n="compete.i4">جوائز للأكثر التزام</span></li>
-            </ul>
-          </div>
-          <div class="chapter-phone"><div class="phone"><img data-shot="group" src="assets/app-group-ar.webp" width="660" height="1434" alt="ترتيب مجموعة أصدقاء" data-i18n-attr="alt:compete.alt" loading="lazy" decoding="async"></div></div>
-        </article>
-        <ul class="stats">
-          <li data-reveal>
-            <p class="stat-num"><bdi dir="ltr" class="js-count" data-to="566">566</bdi></p>
-            <div><h3 data-i18n="new.clips.t">تمرين، كلها بالفيديو.</h3><p data-i18n="new.clips.d">تشوف الحركة صح قبل ما تشيل.</p></div>
-          </li>
-          <li data-reveal data-delay="1">
-            <p class="stat-num"><bdi dir="ltr" class="js-timer">2:19</bdi></p>
-            <div><h3 data-i18n="new.lock.t">الراحة تعدّ على شاشة القفل.</h3><p data-i18n="new.lock.d">والويدجت يعطيك يومك بدون ما تفتح التطبيق.</p></div>
-          </li>
+        <h2 class="section-title" id="t-all" data-reveal><span data-i18n="all.t1">وكل اللي تتابعه،</span> <span class="soft" data-i18n="all.t2">في مكان واحد.</span></h2>
+        <ul class="all-grid" data-stagger>
+          <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M74,88V40a6,6,0,0,1,12,0V88a6,6,0,0,1-12,0ZM214,40V224a6,6,0,0,1-12,0V174H152a6,6,0,0,1-6-6c0-4.41.68-108.25,59.64-133.51A6,6,0,0,1,214,40ZM202,50c-36.79,24.29-42.82,91.48-43.81,112H202ZM117.92,39a6,6,0,1,0-11.84,2L114,88.48a34,34,0,0,1-68,0L53.92,41a6,6,0,0,0-11.84-2l-8,48A6.61,6.61,0,0,0,34,88a46.06,46.06,0,0,0,40,45.6V224a6,6,0,0,0,12,0V133.6A46.06,46.06,0,0,0,126,88a6.61,6.61,0,0,0-.08-1Z"/></svg><span data-i18n="problem.c1">أكلك</span></li>
+          <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M172.34,52.86a218.34,218.34,0,0,0-41.25-34,6,6,0,0,0-6.18,0,218.34,218.34,0,0,0-41.25,34C56.4,81.48,42,113,42,144a86,86,0,0,0,172,0C214,113,199.6,81.48,172.34,52.86ZM94,184c0-29.8,25.11-50.41,34-56.78,8.91,6.35,34,26.87,34,56.78a34.05,34.05,0,0,1-32.25,34c-.59,0-1.16,0-1.75,0s-1.16,0-1.75,0A34.05,34.05,0,0,1,94,184Zm74.42,21.94A45.68,45.68,0,0,0,174,184c0-42.9-41.16-68.09-42.91-69.14a6,6,0,0,0-6.18,0C123.16,115.91,82,141.1,82,184a45.68,45.68,0,0,0,5.58,21.94A74,74,0,0,1,54,144c0-59.83,59.62-103.26,74-112.86,14.39,9.6,74,53,74,112.86A74,74,0,0,1,168.42,205.94Z"/></svg><span data-i18n="problem.c2">السعرات</span></li>
+          <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M185,60.67C167.18,34,145.87,18,128,18S88.82,34,71,60.67C52.57,88.32,42,121.61,42,152a86,86,0,0,0,172,0C214,121.61,203.43,88.32,185,60.67ZM128,226a74.09,74.09,0,0,1-74-74c0-28.08,9.84-58.94,27-84.67C96.11,44.65,114.56,30,128,30s31.89,14.65,47,37.33c17.15,25.73,27,56.59,27,84.67A74.09,74.09,0,0,1,128,226Z"/></svg><span data-i18n="problem.c3">البروتين</span></li>
+          <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M248,122H238V88a14,14,0,0,0-14-14H206V64a14,14,0,0,0-14-14H168a14,14,0,0,0-14,14v58H102V64A14,14,0,0,0,88,50H64A14,14,0,0,0,50,64V74H32A14,14,0,0,0,18,88v34H8a6,6,0,0,0,0,12H18v34a14,14,0,0,0,14,14H50v10a14,14,0,0,0,14,14H88a14,14,0,0,0,14-14V134h52v58a14,14,0,0,0,14,14h24a14,14,0,0,0,14-14V182h18a14,14,0,0,0,14-14V134h10a6,6,0,0,0,0-12ZM32,170a2,2,0,0,1-2-2V88a2,2,0,0,1,2-2H50v84Zm58,22a2,2,0,0,1-2,2H64a2,2,0,0,1-2-2V64a2,2,0,0,1,2-2H88a2,2,0,0,1,2,2Zm104,0a2,2,0,0,1-2,2H168a2,2,0,0,1-2-2V64a2,2,0,0,1,2-2h24a2,2,0,0,1,2,2Zm32-24a2,2,0,0,1-2,2H206V86h18a2,2,0,0,1,2,2Z"/></svg><span data-i18n="problem.c4">تمارينك</span></li>
+          <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M26,128A70.08,70.08,0,0,1,96,58H209.51L195.76,44.24a6,6,0,0,1,8.48-8.48l24,24a6,6,0,0,1,0,8.48l-24,24a6,6,0,0,1-8.48-8.48L209.51,70H96a58.07,58.07,0,0,0-58,58,6,6,0,0,1-12,0Zm198-6a6,6,0,0,0-6,6,58.07,58.07,0,0,1-58,58H46.49l13.75-13.76a6,6,0,0,0-8.48-8.48l-24,24a6,6,0,0,0,0,8.48l24,24a6,6,0,0,0,8.48-8.48L46.49,198H160a70.08,70.08,0,0,0,70-70A6,6,0,0,0,224,122Z"/></svg><span data-i18n="problem.c5">العدّات</span></li>
+          <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M229.18,173a6,6,0,0,1-2.16,8.2l-96,56a6,6,0,0,1-6,0l-96-56a6,6,0,0,1,6-10.36l93,54.23,93-54.23A6,6,0,0,1,229.18,173ZM221,122.82l-93,54.23L35,122.82a6,6,0,0,0-6,10.36l96,56a6,6,0,0,0,6,0l96-56a6,6,0,0,0-6-10.36ZM26,80a6,6,0,0,1,3-5.18l96-56a6,6,0,0,1,6,0l96,56a6,6,0,0,1,0,10.36l-96,56a6,6,0,0,1-6,0l-96-56A6,6,0,0,1,26,80Zm17.91,0L128,129.05,212.09,80,128,31Z"/></svg><span data-i18n="problem.c6">المجموعات</span></li>
+          <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M172.24,99.76a6,6,0,0,1,0,8.48l-56,56a6,6,0,0,1-8.48,0l-24-24a6,6,0,0,1,8.48-8.48L112,151.51l51.76-51.75A6,6,0,0,1,172.24,99.76ZM230,128A102,102,0,1,1,128,26,102.12,102.12,0,0,1,230,128Zm-12,0a90,90,0,1,0-90,90A90.1,90.1,0,0,0,218,128Z"/></svg><span data-i18n="problem.c7">الأداء الصح</span></li>
+          <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M215,41a51.28,51.28,0,0,0-72.5,0L41,142.5A51.26,51.26,0,0,0,113.49,215L215,113.5A51.31,51.31,0,0,0,215,41ZM105,206.5A39.26,39.26,0,0,1,49.48,151L96,104.49,151.52,160ZM206.52,105,160,151.51,104.48,96,151,49.5A39.26,39.26,0,0,1,206.52,105ZM188.26,83.76a6,6,0,0,1,0,8.48l-24,24a6,6,0,0,1-8.49-8.48l24-24A6,6,0,0,1,188.26,83.76Z"/></svg><span data-i18n="problem.c8">الكرياتين</span></li>
+          <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M104,162H48a6,6,0,0,0-6,6v12a34,34,0,0,0,68,0V168A6,6,0,0,0,104,162Zm-6,18a22,22,0,0,1-44,0v-6H98ZM76,18C65.2,18,54.56,27.91,46,45.9c-13.66,28.82-18.29,71.53,0,93.9a6,6,0,0,0,4.65,2.2h50.53a6,6,0,0,0,4.65-2.2c18.32-22.37,13.69-65.08,0-93.9C97.41,27.91,86.77,18,76,18ZM98.23,130H53.74c-10.09-15.18-11.69-47.65,3.14-79C64.24,35.51,71.77,30,76,30s11.75,5.51,19.1,21C109.92,82.35,108.32,114.82,98.23,130ZM208,186H152a6,6,0,0,0-6,6v12a34,34,0,0,0,68,0V192A6,6,0,0,0,208,186Zm-6,18a22,22,0,0,1-44,0v-6h44Zm-47.27-38h50.53a6,6,0,0,0,4.65-2.2c18.32-22.37,13.69-65.08,0-93.9C201.44,51.91,190.8,42,180,42s-21.43,9.91-30,27.9c-13.66,28.82-18.29,71.53,0,93.9A6,6,0,0,0,154.75,166Zm6.17-91c7.35-15.53,14.88-21,19.1-21s11.74,5.51,19.1,21c14.83,31.31,13.23,63.78,3.14,79H157.77C147.68,138.82,146.08,106.35,160.92,75Z"/></svg><span data-i18n="problem.c9">خطواتك</span></li>
+          <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M172.53,49.06a252.86,252.86,0,0,0-41.09-38,6,6,0,0,0-6.88,0,252.86,252.86,0,0,0-41.09,38C56.34,80.26,42,113.09,42,144a86,86,0,0,0,172,0C214,113.09,199.66,80.26,172.53,49.06ZM128,218a74.09,74.09,0,0,1-74-74c0-59.62,59-108.93,74-120.51C143,35.07,202,84.38,202,144A74.09,74.09,0,0,1,128,218Zm53.92-65A55.58,55.58,0,0,1,137,197.92a7,7,0,0,1-1,.08,6,6,0,0,1-1-11.92c17.38-2.92,32.13-17.68,35.08-35.08a6,6,0,1,1,11.84,2Z"/></svg><span data-i18n="problem.c10">الماء</span></li>
+          <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M208,58H179.21L165,36.67A6,6,0,0,0,160,34H96a6,6,0,0,0-5,2.67L76.78,58H48A22,22,0,0,0,26,80V192a22,22,0,0,0,22,22H208a22,22,0,0,0,22-22V80A22,22,0,0,0,208,58Zm10,134a10,10,0,0,1-10,10H48a10,10,0,0,1-10-10V80A10,10,0,0,1,48,70H80a6,6,0,0,0,5-2.67L99.21,46h57.57L171,67.33A6,6,0,0,0,176,70h32a10,10,0,0,1,10,10ZM128,90a42,42,0,1,0,42,42A42,42,0,0,0,128,90Zm0,72a30,30,0,1,1,30-30A30,30,0,0,1,128,162Z"/></svg><span data-i18n="problem.c11">صور جسمك</span></li>
+          <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M212.24,83.76l-56-56A6,6,0,0,0,152,26H56A14,14,0,0,0,42,40V216a14,14,0,0,0,14,14H200a14,14,0,0,0,14-14V88A6,6,0,0,0,212.24,83.76ZM158,46.48,193.52,82H158ZM200,218H56a2,2,0,0,1-2-2V40a2,2,0,0,1,2-2h90V88a6,6,0,0,0,6,6h50V216A2,2,0,0,1,200,218Zm-34-82a6,6,0,0,1-6,6H96a6,6,0,0,1,0-12h64A6,6,0,0,1,166,136Zm0,32a6,6,0,0,1-6,6H96a6,6,0,0,1,0-12h64A6,6,0,0,1,166,168Z"/></svg><span data-i18n="problem.c12">InBody</span></li>
+          <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M237.57,133.77l-32-80h0a6,6,0,0,0-6.86-3.63L134,64.52V40a6,6,0,0,0-12,0V67.19l-67.3,15a6,6,0,0,0-4.27,3.63h0v0l-32,80A6.1,6.1,0,0,0,18,168c0,21.86,23.31,30,38,30s38-8.14,38-30a6.1,6.1,0,0,0-.43-2.23L64.19,92.33,122,79.48V210H104a6,6,0,0,0,0,12h48a6,6,0,0,0,0-12H134V76.81l56.21-12.49-27.78,69.45A6.1,6.1,0,0,0,162,136c0,21.86,23.31,30,38,30s38-8.14,38-30A6.1,6.1,0,0,0,237.57,133.77ZM56,186a36.89,36.89,0,0,1-17.48-4.56c-5.37-3.13-8.15-7.18-8.49-12.37l26-64.91,26,64.91C81.06,182.85,62.58,186,56,186Zm144-32a36.89,36.89,0,0,1-17.48-4.56c-5.37-3.13-8.15-7.18-8.49-12.37l26-64.91,26,64.91C225.06,150.85,206.58,154,200,154Z"/></svg><span data-i18n="problem.c13">وزنك اليومي</span></li>
+          <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M170,112a6,6,0,0,1-6,6H96a6,6,0,0,1,0-12h68A6,6,0,0,1,170,112Zm-6,26H96a6,6,0,0,0,0,12h68a6,6,0,0,0,0-12Zm66-14a98.11,98.11,0,0,1-98,98H48a14,14,0,0,1-14-14V124a98,98,0,0,1,196,0Zm-12,0a86,86,0,0,0-172,0v84a2,2,0,0,0,2,2h84A86.1,86.1,0,0,0,218,124Z"/></svg><span data-i18n="problem.c14">مدرب تتابع معه</span></li>
+          <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M221.86,47.24a14,14,0,0,0-13.11-13.1c-12.31-.73-43.77.39-69.88,26.5L133.52,66H74.35a13.9,13.9,0,0,0-9.89,4.1L30.11,104.44a14,14,0,0,0,7.94,23.76l39.13,5.46,45.16,45.16L127.8,218a14,14,0,0,0,23.76,7.92l34.35-34.35a13.91,13.91,0,0,0,4.1-9.89V122.48l5.35-5.35h0C221.46,91,222.59,59.56,221.86,47.24ZM38.11,115a2,2,0,0,1,.49-2L72.94,78.58A2,2,0,0,1,74.35,78h47.17L77.87,121.64l-38.14-5.32A1.93,1.93,0,0,1,38.11,115ZM178,181.65a2,2,0,0,1-.59,1.41L143.08,217.4a2,2,0,0,1-3.4-1.11l-5.32-38.16L178,134.48Zm8.87-73h0L128,167.51,88.49,128l58.87-58.88a78.47,78.47,0,0,1,60.69-23A2,2,0,0,1,209.88,48,78.47,78.47,0,0,1,186.88,108.64ZM100,190.31C95.68,199.84,81.13,222,40,222a6,6,0,0,1-6-6c0-41.13,22.16-55.68,31.69-60a6,6,0,1,1,5,10.92c-7,3.17-22.53,13.52-24.47,42.91,29.39-1.94,39.74-17.52,42.91-24.47a6,6,0,1,1,10.92,5Z"/></svg><span data-i18n="problem.c15">بداية سهلة</span></li>
+          <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M232,66H206V48a6,6,0,0,0-6-6H56a6,6,0,0,0-6,6V66H24A14,14,0,0,0,10,80V96a38,38,0,0,0,38,38h5.14A78,78,0,0,0,122,189.75V218H96a6,6,0,0,0,0,12h64a6,6,0,0,0,0-12H134V189.75c32.44-2.52,59.43-25.3,68.62-55.75H208a38,38,0,0,0,38-38V80A14,14,0,0,0,232,66ZM48,122A26,26,0,0,1,22,96V80a2,2,0,0,1,2-2H50v34a80.87,80.87,0,0,0,.65,10Zm146-10.9c0,36.62-29.38,66.63-65.5,66.9A66,66,0,0,1,62,112V54H194ZM234,96a26,26,0,0,1-26,26h-2.77a78.45,78.45,0,0,0,.77-10.9V78h26a2,2,0,0,1,2,2Z"/></svg><span data-i18n="problem.c16">منافسة تشدّك</span></li>
         </ul>
+      </div>
+    </section>
+
+    <!-- One subscription instead of four -->
+    <section class="chapter price" aria-labelledby="t-price">
+      <div class="wrap">
+        <h2 class="section-title" id="t-price" data-reveal><span data-i18n="price.t1">بدل أربع اشتراكات،</span> <span class="soft" data-i18n="price.t2">اشتراك واحد.</span></h2>
+        <div class="compare">
+          <div class="compare-col others-col" data-reveal>
+            <p class="compare-head" data-i18n="price.others">أربعة تطبيقات</p>
+            <ul class="others" id="others"></ul>
+            <p class="others-total"><span data-i18n="price.total">المجموع كل شهر</span> <s><bdi dir="ltr" class="js-total">191.96</bdi> <span data-i18n="price.currency">ريال</span></s></p>
+          </div>
+          <div class="compare-col ours-col" data-reveal data-delay="1">
+            <p class="compare-head latin">BetterMe</p>
+            <p class="our-price"><bdi dir="ltr" class="js-price">7.99</bdi> <span data-i18n="price.per">ريال / شهر</span></p>
+            <p class="trial"><span data-i18n="price.trialA">جرّبه</span> <bdi dir="ltr" class="js-trial">3</bdi> <span data-i18n="price.trialB">أيام مجانًا.</span></p>
+          </div>
+        </div>
       </div>
     </section>
 
   </main>
 
-  <footer class="end" id="download" aria-labelledby="t-end">
+  <footer class="end" aria-labelledby="t-end">
     <div class="wrap end-in">
-      <p class="end-aside" data-reveal data-i18n="end.aside">يمكن نسيت شي… المزايا كثيرة.</p>
-      <h2 class="end-title" id="t-end" data-reveal data-delay="1"><span class="line" data-i18n="end.l1">بس كل هذا وأكثر،</span> <span class="line accent" data-i18n="end.l2">في تطبيق واحد.</span></h2>
-      <p class="end-sub" data-reveal data-delay="1" data-i18n="end.sub">واجهة وحدة، واشتراك واحد.</p>
-      <div class="end-price" data-reveal data-delay="2">
-        <p class="price-big"><bdi dir="ltr" class="js-price">7.99</bdi><span data-i18n="price.per">ريال / شهر</span></p>
-        <p class="price-trial"><span data-i18n="price.trialA">جرّبه</span> <bdi dir="ltr" class="js-trial">3</bdi> <span data-i18n="price.trialB">أيام مجانًا.</span></p>
-      </div>
-      <div class="end-cta" data-reveal data-delay="2">
+      <img class="end-icon" src="assets/app-icon.webp" width="360" height="360" alt="" loading="lazy" data-reveal>
+      <h2 class="end-title" id="t-end" data-reveal><span class="line" data-i18n="end.l1">كل هذا وأكثر،</span> <span class="line" data-i18n="end.l2">بتطبيق واحد.</span></h2>
+      <div class="cta" data-reveal data-delay="1">
         <a class="badge js-store" href="https://apps.apple.com/app/id6825474864">
           <img class="js-badge" src="https://toolbox.marketingtools.apple.com/api/badges/download-on-the-app-store/black/ar-sa?size=250x83" width="250" height="83" alt="حمّله من App Store" data-i18n-attr="alt:cta.badgeAlt" loading="lazy">
         </a>
-        <p class="note" data-i18n="end.note">إذا ما انفتح معك الرابط، افتحه في سفاري</p>
+        <p class="note" data-i18n="cta.note">إذا ما انفتح معك الرابط، افتحه في سفاري</p>
       </div>
-    </div>
-    <div class="end-art" aria-hidden="true">
-      <div class="end-glow"></div>
-      <img class="end-statue" src="assets/statue-open.webp" width="1600" height="813" alt="" loading="lazy" decoding="async">
     </div>
     <div class="wrap end-foot">
       <div class="social">
         <a class="js-social" data-net="tiktok" href="https://www.tiktok.com/@betterme.ai1" target="_blank" rel="noopener" aria-label="BetterMe على تيك توك" data-i18n-attr="aria-label:social.tiktok"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
         <a class="js-social" data-net="instagram" href="https://www.instagram.com/betterme.ai1/" target="_blank" rel="noopener" aria-label="BetterMe على إنستقرام" data-i18n-attr="aria-label:social.instagram"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.3" cy="6.7" r="1.15" fill="currentColor" stroke="none"/></svg></a>
       </div>
-      <nav class="end-links" aria-label="روابط" data-i18n-attr="aria-label:end.linksLabel">
+      <nav class="legal" aria-label="روابط" data-i18n-attr="aria-label:end.linksLabel">
         <a class="js-legal" data-doc="privacy" href="https://zlmxdgavlbvsznsueemi.supabase.co/storage/v1/object/public/legal/ar/privacy.txt" data-i18n="end.privacy">الخصوصية</a>
         <a class="js-legal" data-doc="terms" href="https://zlmxdgavlbvsznsueemi.supabase.co/storage/v1/object/public/legal/ar/terms.txt" data-i18n="end.terms">الشروط</a>
         <a class="js-legal" data-doc="support" href="https://zlmxdgavlbvsznsueemi.supabase.co/storage/v1/object/public/legal/ar/support.txt" data-i18n="end.support">الدعم</a>
         <button class="end-lang" type="button" id="lang-toggle" lang="en" data-i18n="nav.lang" data-i18n-attr="aria-label:nav.langLabel" aria-label="Switch to English">English</button>
       </nav>
-      <p class="end-fine" dir="ltr">© 2026 BetterMe</p>
     </div>
   </footer>
 
-  <script src="js/config.js?v=20261106i"></script>
-  <script src="js/strings.js?v=20261106i"></script>
-  <script src="js/motion.js?v=20261106i"></script>
-  <script src="js/main.js?v=20261106i"></script>
+  <script src="js/config.js?v=20261109b"></script>
+  <script src="js/strings.js?v=20261109b"></script>
+  <script src="js/motion.js?v=20261109b"></script>
+  <script src="js/main.js?v=20261109b"></script>
 </body>
 </html>
