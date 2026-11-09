@@ -35,8 +35,16 @@ BM.config = {
     support: {
       ar: 'https://zlmxdgavlbvsznsueemi.supabase.co/storage/v1/object/public/legal/ar/support.txt',
       en: 'https://zlmxdgavlbvsznsueemi.supabase.co/storage/v1/object/public/legal/en/support.txt'
+    },
+    // «شاركنا الربح» terms (version 1.0, 2026-11-02), linked from the affiliates page.
+    affiliate: {
+      ar: 'https://zlmxdgavlbvsznsueemi.supabase.co/storage/v1/object/public/legal/ar/affiliate.txt',
+      en: 'https://zlmxdgavlbvsznsueemi.supabase.co/storage/v1/object/public/legal/en/affiliate.txt'
     }
   },
+
+  // Customer service on WhatsApp (the same number the app uses for «شاركنا الربح» and the coaches' feedback).
+  whatsapp: '966507047815',
 
   // BetterMe's own price (Saudi App Store): monthly 7.99 SAR since 2026-11-04 (owner), plus the app's own 3-day
   // trial per account (no Apple introductory offer). The page shows the monthly price only; yearly is not re-checked.

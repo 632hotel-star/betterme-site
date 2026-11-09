@@ -175,6 +175,27 @@
     });
   }
 
+  // Steps: the line fills as you read and each step lights when the line reaches it.
+  function steps() {
+    each('.steps', function (list) {
+      var items = list.querySelectorAll('.step'), fill = list.querySelector('.steps-fill'), n = items.length;
+      track(function (vh) { return through(list, vh, 0.75, 0.3); }, function (p) {
+        fill.style.setProperty('--p', p.toFixed(4));
+        items.forEach(function (li, k) { li.classList.toggle('on', p >= k / Math.max(1, n - 1) - 0.001); });
+      });
+    });
+  }
+
+  // Two weeks: the fourteen days fill one by one, then the payout.
+  function period() {
+    var box = document.querySelector('.period');
+    if (!box) return;
+    var days = box.querySelectorAll('i'), n = days.length;
+    track(function (vh) { return through(box, vh, 0.95, 0.5); }, function (p) {
+      days.forEach(function (d, k) { d.classList.toggle('on', p >= (k + 1) / n - 0.001); });
+    });
+  }
+
   // Measure, then move everything to the current scroll position at once.
   BM.relayout = function () {
     layouts.forEach(function (fn) { fn(); });
@@ -184,7 +205,7 @@
 
   BM.initMotion = function () {
     if (!BM.reduced()) {
-      hero(); reveals(); rises(); staggers(); counters(); journey(); levels(); lineup();
+      hero(); reveals(); rises(); staggers(); counters(); journey(); levels(); lineup(); steps(); period();
     }
     window.addEventListener('scroll', schedule, { passive: true });
     BM.relayout();

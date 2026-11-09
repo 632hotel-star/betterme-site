@@ -26,7 +26,10 @@
 
   // Pricing: BetterMe's own price and the four separate subscriptions, all from config.js.
   function renderPricing(l) {
+    document.querySelectorAll('.js-price').forEach(function (el) { el.textContent = money(cfg.price.monthly); });
+    document.querySelectorAll('.js-trial').forEach(function (el) { el.textContent = String(cfg.price.trialDays); });
     var rows = BM.strings.rows[l], list = document.getElementById('others'), total = 0;
+    if (!list) return; // the affiliates and coaches pages have no comparison
     list.textContent = '';
     cfg.comparison.rows.forEach(function (row) {
       total += row.monthly;
@@ -41,8 +44,6 @@
       list.append(li);
     });
     document.querySelectorAll('.js-total').forEach(function (el) { el.textContent = money(total); });
-    document.querySelectorAll('.js-price').forEach(function (el) { el.textContent = money(cfg.price.monthly); });
-    document.querySelectorAll('.js-trial').forEach(function (el) { el.textContent = String(cfg.price.trialDays); });
   }
 
   function applyLanguage(l) {
@@ -61,8 +62,11 @@
     });
     var toggle = document.getElementById('lang-toggle');
     toggle.setAttribute('lang', l === 'ar' ? 'en' : 'ar');
-    document.title = l === 'ar' ? arabic.title : en['meta.title'];
-    if (descMeta) descMeta.content = l === 'ar' ? arabic.desc : en['meta.description'];
+    // The home page's title and description; the other pages translate theirs through data-i18n.
+    if (!document.querySelector('title[data-i18n]')) {
+      document.title = l === 'ar' ? arabic.title : en['meta.title'];
+      if (descMeta) descMeta.content = l === 'ar' ? arabic.desc : en['meta.description'];
+    }
     // The app's own screens (dark mode), captured in each language.
     document.querySelectorAll('img[data-shot]').forEach(function (img) {
       var src = 'assets/app-' + img.getAttribute('data-shot') + '-' + l + '.webp';
@@ -85,6 +89,10 @@
     });
     document.querySelectorAll('.js-legal').forEach(function (a) {
       a.href = cfg.legal[a.getAttribute('data-doc')][l];
+    });
+    // WhatsApp buttons open customer service with a first message in the page's language.
+    document.querySelectorAll('.js-wa').forEach(function (a) {
+      a.href = 'https://wa.me/' + cfg.whatsapp + '?text=' + encodeURIComponent(BM.strings.wa[l][a.getAttribute('data-wa')]);
     });
     renderPricing(l);
     if (highlights) highlights.relabel();
