@@ -141,63 +141,30 @@
     });
   });
 
-  // ---------- TikTok: its browser never hands a link to the App Store ----------
-  // There the download button opens a sheet that shows how to open the page in the browser. While it is open the address
-  // carries ?get=app, so the page the browser opens goes straight on to the App Store.
-  var inTikTok = /musical_ly|Bytedance|TikTok/i.test(navigator.userAgent);
-  function markGet(on) {
-    try {
-      var url = new URL(location.href);
-      if (on) url.searchParams.set('get', 'app'); else url.searchParams.delete('get');
-      history.replaceState(null, '', url);
-    } catch (e) {}
-  }
-  function copyText(text) {
-    function legacy() {
-      var t = document.createElement('textarea');
-      t.value = text; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.opacity = '0';
-      document.body.appendChild(t);
-      t.select(); t.setSelectionRange(0, text.length);
-      var ok = false;
-      try { ok = document.execCommand('copy'); } catch (e) {}
-      t.remove();
-      return ok ? Promise.resolve() : Promise.reject();
-    }
-    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text).catch(legacy);
-    return legacy();
-  }
-  var getApp = (function () {
-    var sheet = document.getElementById('getapp');
-    if (!sheet) return null;
-    var copyBtn = sheet.querySelector('.getapp-copy'), opener = null, timer = 0;
-    function open(from) {
-      opener = from;
-      markGet(true);
-      root.classList.add('sheet-open');
-      sheet.classList.add('open');
-      sheet.querySelector('.getapp-sheet').focus({ preventScroll: true });
-    }
-    function close() {
-      markGet(false);
-      root.classList.remove('sheet-open');
-      sheet.classList.remove('open');
-      copyBtn.classList.remove('copied');
-      if (opener) opener.focus({ preventScroll: true });
-    }
-    sheet.querySelectorAll('[data-close]').forEach(function (el) { el.addEventListener('click', close); });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && sheet.classList.contains('open')) close(); });
-    copyBtn.addEventListener('click', function () {
-      copyText(cfg.appStoreUrl).then(function () {
-        copyBtn.classList.add('copied');
-        clearTimeout(timer);
-        timer = setTimeout(function () { copyBtn.classList.remove('copied'); }, 3000);
-      }, function () {});
-    });
-    return { open: open };
-  })();
-  if (inTikTok && getApp) {
+  // ---------- TikTok on an iPhone: its browser never hands a link to the App Store ----------
+  // The download button there asks iOS to open the App Store page in Safari instead (x-safari- from iOS 17,
+  // com-apple-mobilesafari-tab: before it). If TikTok refuses and the page is still on screen a moment later, a line under
+  // the button says to press and hold it and choose «Open Link» (Safari's compass in iOS's menu), and the button shows the
+  // press. BM.leaveTo is the one place that leaves the page (tests replace it).
+  var ua = navigator.userAgent;
+  if (/musical_ly|Bytedance|TikTok/i.test(ua) && /iPhone|iPad|iPod/.test(ua)) {
+    root.classList.add('tiktok');
+    var iosMajor = Number((ua.match(/OS (\d+)_/) || [])[1]) || 0;
+    BM.leaveTo = function (url) { location.href = url; };
     document.querySelectorAll('.js-store').forEach(function (a) {
-      a.addEventListener('click', function (e) { e.preventDefault(); getApp.open(a); });
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        BM.leaveTo((iosMajor && iosMajor < 17 ? 'com-apple-mobilesafari-tab:' : 'x-safari-') + cfg.appStoreUrl);
+        setTimeout(function () {
+          if (document.visibilityState !== 'visible') return;
+          document.querySelectorAll('.cta').forEach(function (cta) {
+            if (!cta.querySelector('.hold-hint')) return;
+            cta.classList.remove('hold');
+            void cta.offsetWidth;
+            cta.classList.add('hold');
+          });
+        }, 900);
+      });
     });
   }
 
@@ -326,11 +293,6 @@
   })();
 
   // ---------- start ----------
-  // Opened in the browser from TikTok's sheet: on to the App Store.
-  if (!inTikTok && /(?:^|[?&])get=app(?:&|$)/.test(location.search)) {
-    markGet(false);
-    location.assign(cfg.appStoreUrl);
-  }
   applyLanguage(lang());
   BM.initMotion();
   document.getElementById('lang-toggle').addEventListener('click', function () {
