@@ -38,7 +38,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&display=swap">
-  <link rel="stylesheet" href="css/site.css?v=20261109j">
+  <link rel="stylesheet" href="css/site.css?v=20261112a">
 </head>
 <body>
   <a class="skip" href="#main" data-i18n="nav.skip">تخطَّ إلى المحتوى</a>
@@ -58,6 +58,7 @@
             <img class="js-badge" src="https://toolbox.marketingtools.apple.com/api/badges/download-on-the-app-store/black/ar-sa?size=250x83" width="250" height="83" alt="حمّله من App Store" data-i18n-attr="alt:cta.badgeAlt">
           </a>
           <p class="note" data-i18n="cta.note">إذا ما انفتح معك الرابط، افتحه في سفاري</p>
+          <p class="hold-hint" role="status"><span data-i18n="cta.holdA">ما انفتح؟ اضغط مطوّلًا على الزر، واختر</span> <span class="hold-chip"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,26A102,102,0,1,0,230,128,102.12,102.12,0,0,0,128,26Zm0,192a90,90,0,1,1,90-90A90.1,90.1,0,0,1,128,218ZM173.32,74.63l-64,32a6,6,0,0,0-2.69,2.69l-32,64A6,6,0,0,0,80,182a6.06,6.06,0,0,0,2.68-.63l64-32a6,6,0,0,0,2.69-2.69l32-64a6,6,0,0,0-8.05-8.05Zm-33.79,64.9L93.42,162.58l23-46.11,46.11-23Z"/></svg><span data-i18n="cta.holdB">Open Link أو فتح الرابط</span></span></p>
         </div>
       </div>
       <div class="hero-media">
@@ -308,6 +309,7 @@
           <img class="js-badge" src="https://toolbox.marketingtools.apple.com/api/badges/download-on-the-app-store/black/ar-sa?size=250x83" width="250" height="83" alt="حمّله من App Store" data-i18n-attr="alt:cta.badgeAlt" loading="lazy">
         </a>
         <p class="note" data-i18n="cta.note">إذا ما انفتح معك الرابط، افتحه في سفاري</p>
+          <p class="hold-hint" role="status"><span data-i18n="cta.holdA">ما انفتح؟ اضغط مطوّلًا على الزر، واختر</span> <span class="hold-chip"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,26A102,102,0,1,0,230,128,102.12,102.12,0,0,0,128,26Zm0,192a90,90,0,1,1,90-90A90.1,90.1,0,0,1,128,218ZM173.32,74.63l-64,32a6,6,0,0,0-2.69,2.69l-32,64A6,6,0,0,0,80,182a6.06,6.06,0,0,0,2.68-.63l64-32a6,6,0,0,0,2.69-2.69l32-64a6,6,0,0,0-8.05-8.05Zm-33.79,64.9L93.42,162.58l23-46.11,46.11-23Z"/></svg><span data-i18n="cta.holdB">Open Link أو فتح الرابط</span></span></p>
       </div>
     </div>
     <div class="wrap end-foot">
@@ -326,25 +328,9 @@
     </div>
   </footer>
 
-  <!-- TikTok's browser never opens the App Store: the download button there shows how to open the page in the browser -->
-  <div class="getapp" id="getapp" role="dialog" aria-modal="true" aria-labelledby="getapp-t">
-    <div class="getapp-scrim" data-close></div>
-    <div class="getapp-sheet" tabindex="-1">
-      <button class="getapp-x" type="button" data-close aria-label="إغلاق" data-i18n-attr="aria-label:getapp.close"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M204.24,195.76a6,6,0,1,1-8.48,8.48L128,136.49,60.24,204.24a6,6,0,0,1-8.48-8.48L119.51,128,51.76,60.24a6,6,0,0,1,8.48-8.48L128,119.51l67.76-67.75a6,6,0,0,1,8.48,8.48L136.49,128Z"/></svg></button>
-      <img class="getapp-icon" src="assets/app-icon.webp" width="360" height="360" alt="">
-      <h2 class="getapp-title" id="getapp-t" data-i18n="getapp.title">افتح الموقع في المتصفح</h2>
-      <p class="getapp-text" data-i18n="getapp.text">تيك توك ما يفتح App&nbsp;Store من داخله. افتح الموقع في المتصفح، ويفتح لك على طول.</p>
-      <ol class="getapp-steps">
-        <li><span class="getapp-n">1</span><span data-i18n="getapp.s1">اضغط على</span><span class="getapp-dots"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M138,128a10,10,0,1,1-10-10A10,10,0,0,1,138,128ZM60,118a10,10,0,1,0,10,10A10,10,0,0,0,60,118Zm136,0a10,10,0,1,0,10,10A10,10,0,0,0,196,118Z"/></svg></span><span data-i18n="getapp.s1b">فوق</span></li>
-        <li><span class="getapp-n">2</span><span data-i18n="getapp.s2">واختر الفتح في المتصفح</span></li>
-      </ol>
-      <button class="getapp-copy" type="button"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M216,34H88a6,6,0,0,0-6,6V82H40a6,6,0,0,0-6,6V216a6,6,0,0,0,6,6H168a6,6,0,0,0,6-6V174h42a6,6,0,0,0,6-6V40A6,6,0,0,0,216,34ZM162,210H46V94H162Zm48-48H174V88a6,6,0,0,0-6-6H94V46H210Z"/></svg><span class="getapp-ask" data-i18n="getapp.copy">أو انسخ رابط التحميل</span><span class="getapp-done" data-i18n="getapp.copied">انتسخ، الصقه في سفاري</span></button>
-    </div>
-  </div>
-
-  <script src="js/config.js?v=20261109j"></script>
-  <script src="js/strings.js?v=20261109j"></script>
-  <script src="js/motion.js?v=20261109j"></script>
-  <script src="js/main.js?v=20261109j"></script>
+  <script src="js/config.js?v=20261112a"></script>
+  <script src="js/strings.js?v=20261112a"></script>
+  <script src="js/motion.js?v=20261112a"></script>
+  <script src="js/main.js?v=20261112a"></script>
 </body>
 </html>
