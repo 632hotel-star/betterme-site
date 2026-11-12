@@ -141,30 +141,37 @@
     });
   });
 
-  // ---------- TikTok on an iPhone: its browser never hands a link to the App Store ----------
-  // The download button there asks iOS to open the App Store page in Safari instead (x-safari- from iOS 17,
-  // com-apple-mobilesafari-tab: before it). If TikTok refuses and the page is still on screen a moment later, a line under
-  // the button says to press and hold it and choose «Open Link» (Safari's compass in iOS's menu), and the button shows the
-  // press. BM.leaveTo is the one place that leaves the page (tests replace it).
-  var ua = navigator.userAgent;
-  if (/musical_ly|Bytedance|TikTok/i.test(ua) && /iPhone|iPad|iPod/.test(ua)) {
+  // ---------- TikTok on an iPhone ----------
+  // TikTok refuses App Store links from a tap («Action can't be completed»; its rule for personal accounts since 2023) and
+  // refuses Safari too (x-safari-, tried 2026-11-12). Pressing and holding a link still gives iOS's own menu, whose «Open
+  // Link» opens it in Safari. So there a download button opens a sheet with one button to press and hold.
+  var ua = navigator.userAgent, holdSheet = document.getElementById('hold');
+  if (holdSheet && /musical_ly|Bytedance|TikTok/i.test(ua) && /iPhone|iPad|iPod/.test(ua)) {
     root.classList.add('tiktok');
-    var iosMajor = Number((ua.match(/OS (\d+)_/) || [])[1]) || 0;
-    BM.leaveTo = function (url) { location.href = url; };
+    var holdLink = holdSheet.querySelector('.js-hold-link'), holdOpener = null;
+    holdLink.href = cfg.appStoreUrl;
+    var openHold = function (from) {
+      holdOpener = from;
+      root.classList.add('hold-open');
+      holdSheet.classList.add('open');
+      holdSheet.querySelector('.hold-sheet').focus({ preventScroll: true });
+    };
+    var closeHold = function () {
+      root.classList.remove('hold-open');
+      holdSheet.classList.remove('open');
+      if (holdOpener) holdOpener.focus({ preventScroll: true });
+    };
     document.querySelectorAll('.js-store').forEach(function (a) {
-      a.addEventListener('click', function (e) {
-        e.preventDefault();
-        BM.leaveTo((iosMajor && iosMajor < 17 ? 'com-apple-mobilesafari-tab:' : 'x-safari-') + cfg.appStoreUrl);
-        setTimeout(function () {
-          if (document.visibilityState !== 'visible') return;
-          document.querySelectorAll('.cta').forEach(function (cta) {
-            if (!cta.querySelector('.hold-hint')) return;
-            cta.classList.remove('hold');
-            void cta.offsetWidth;
-            cta.classList.add('hold');
-          });
-        }, 900);
-      });
+      a.addEventListener('click', function (e) { e.preventDefault(); openHold(a); });
+    });
+    holdSheet.querySelectorAll('[data-close]').forEach(function (el) { el.addEventListener('click', closeHold); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && holdSheet.classList.contains('open')) closeHold(); });
+    // A plain tap would be refused again, so it shakes the button instead.
+    holdLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      holdLink.classList.remove('nudge');
+      void holdLink.offsetWidth;
+      holdLink.classList.add('nudge');
     });
   }
 
