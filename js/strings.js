@@ -198,6 +198,8 @@ BM.strings = {
       'hero.l2': 'in one app.',
       'hero.alt': 'The BetterMe home screen on a phone',
 
+      'so.title': 'One is all you need.',
+
       'hl.title': 'Get the highlights.',
       'hl.dots': 'Highlights',
       'hl.1a': 'Snap your meal,',
