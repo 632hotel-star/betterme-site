@@ -790,23 +790,50 @@ html.motion .flow-scene { flex: none; width: var(--slot); padding-inline: 8px; }
   .lineup li:nth-child(4) img { height: 355px; }
 }
 
-/* ---------- TikTok on an iPhone: when the App Store didn't open, press and hold the button and choose «Open Link» ----------
-   The line shows under the button that was tapped, and the button plays the press twice. */
-.hold-hint { display: none; }
+/* ---------- TikTok on an iPhone: a sheet with one button to press and hold, then «Open Link» ---------- */
 html.tiktok .note { display: none; }
-html.tiktok .cta.hold .hold-hint {
-  display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px;
-  max-width: 32ch; margin: 14px auto 0; font-size: 15px; font-weight: 700; line-height: 1.5; color: var(--ink); text-wrap: balance;
-  animation: hold-in 500ms var(--ease) both;
+html.hold-open { overflow: hidden; }
+.hold { position: fixed; inset: 0; z-index: 50; visibility: hidden; transition: visibility 0s 420ms; }
+.hold.open { visibility: visible; transition: none; }
+.hold-scrim { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.4); opacity: 0; transition: opacity 320ms var(--ease); }
+.hold.open .hold-scrim { opacity: 1; }
+.hold-sheet {
+  position: absolute; inset-inline: 0; bottom: 0; max-width: 480px; margin-inline: auto;
+  padding: 34px var(--gutter) calc(24px + env(safe-area-inset-bottom));
+  background: #fff; border-radius: var(--radius) var(--radius) 0 0; text-align: center;
+  transform: translateY(100%); transition: transform 420ms var(--ease);
 }
-.hold-chip {
-  display: inline-flex; align-items: center; gap: 7px; padding: 7px 14px; border-radius: 999px;
-  background: #2c2c2e; color: #fff; font-size: 14px; white-space: nowrap;
+.hold.open .hold-sheet { transform: none; }
+.hold-sheet:focus { outline: none; }
+.hold-x {
+  position: absolute; top: 14px; inset-inline-end: 14px; display: grid; place-items: center;
+  width: 32px; height: 32px; padding: 0; border: 0; border-radius: 50%; background: var(--tint); color: var(--ink-2); cursor: pointer;
 }
-.hold-chip svg { width: 18px; height: 18px; flex: none; }
-html.tiktok .cta.hold .badge { animation: hold-press 1.4s var(--ease) 0.2s 2; }
-@keyframes hold-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
-@keyframes hold-press { 0%, 100% { transform: scale(1); } 25%, 70% { transform: scale(0.93); } }
+.hold-x svg { width: 18px; height: 18px; }
+.hold-icon { width: 64px; height: 64px; margin: 0 auto; border-radius: 22.5%; }
+.hold-title { margin-top: 16px; font-size: 24px; font-weight: 800; line-height: 1.25; letter-spacing: -0.01em; text-wrap: balance; }
+.hold-text { max-width: 32ch; margin: 8px auto 0; font-size: 15px; color: var(--ink-2); text-wrap: balance; }
+.hold-steps { display: grid; gap: 2px; margin-top: 22px; border-radius: 18px; overflow: hidden; text-align: start; }
+.hold-steps li { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; min-height: 58px; padding: 10px 16px; background: var(--tint); font-size: 16px; font-weight: 700; }
+.hold-n {
+  display: grid; place-items: center; flex: none; width: 26px; height: 26px; margin-inline-end: 4px;
+  border-radius: 50%; background: var(--accent); color: #fff; font: 700 14px/1 var(--font-num);
+}
+.hold-chip { display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: 999px; background: #2c2c2e; color: #fff; font-size: 14px; white-space: nowrap; }
+.hold-chip svg { width: 17px; height: 17px; flex: none; }
+:lang(en) .hold-alt { display: none; }
+/* The button to press and hold: a real link (iOS shows its menu on a long press), with a ring that keeps pulsing. */
+.hold-link {
+  position: relative; display: flex; align-items: center; justify-content: center; gap: 10px;
+  width: 100%; margin-top: 18px; padding: 16px 22px; border-radius: 999px;
+  background: var(--accent); color: #fff; font-size: 18px; font-weight: 800; text-decoration: none;
+  -webkit-touch-callout: default; -webkit-user-select: none; user-select: none;
+}
+.hold-link svg { width: 24px; height: 24px; flex: none; }
+.hold-ring { position: absolute; inset: -6px; border: 3px solid var(--accent); border-radius: 999px; pointer-events: none; opacity: 0; animation: hold-ring 1.8s var(--ease) infinite; }
+.hold-link.nudge { animation: hold-nudge 500ms var(--ease); }
+@keyframes hold-ring { 0% { opacity: 0.7; transform: scale(0.98); } 70%, 100% { opacity: 0; transform: scale(1.05); } }
+@keyframes hold-nudge { 0%, 100% { transform: none; } 20%, 60% { transform: translateX(-6px); } 40%, 80% { transform: translateX(6px); } }
 
 /* ---------- Reduce Motion: the finished page, no movement ---------- */
 @media (prefers-reduced-motion: reduce) {
