@@ -38,7 +38,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&display=swap">
-  <link rel="stylesheet" href="css/site.css?v=20261112a">
+  <link rel="stylesheet" href="css/site.css?v=20261112c">
 </head>
 <body>
   <a class="skip" href="#main" data-i18n="nav.skip">تخطَّ إلى المحتوى</a>
@@ -58,7 +58,6 @@
             <img class="js-badge" src="https://toolbox.marketingtools.apple.com/api/badges/download-on-the-app-store/black/ar-sa?size=250x83" width="250" height="83" alt="حمّله من App Store" data-i18n-attr="alt:cta.badgeAlt">
           </a>
           <p class="note" data-i18n="cta.note">إذا ما انفتح معك الرابط، افتحه في سفاري</p>
-          <p class="hold-hint" role="status"><span data-i18n="cta.holdA">ما انفتح؟ اضغط مطوّلًا على الزر، واختر</span> <span class="hold-chip"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,26A102,102,0,1,0,230,128,102.12,102.12,0,0,0,128,26Zm0,192a90,90,0,1,1,90-90A90.1,90.1,0,0,1,128,218ZM173.32,74.63l-64,32a6,6,0,0,0-2.69,2.69l-32,64A6,6,0,0,0,80,182a6.06,6.06,0,0,0,2.68-.63l64-32a6,6,0,0,0,2.69-2.69l32-64a6,6,0,0,0-8.05-8.05Zm-33.79,64.9L93.42,162.58l23-46.11,46.11-23Z"/></svg><span data-i18n="cta.holdB">Open Link أو فتح الرابط</span></span></p>
         </div>
       </div>
       <div class="hero-media">
@@ -309,7 +308,6 @@
           <img class="js-badge" src="https://toolbox.marketingtools.apple.com/api/badges/download-on-the-app-store/black/ar-sa?size=250x83" width="250" height="83" alt="حمّله من App Store" data-i18n-attr="alt:cta.badgeAlt" loading="lazy">
         </a>
         <p class="note" data-i18n="cta.note">إذا ما انفتح معك الرابط، افتحه في سفاري</p>
-          <p class="hold-hint" role="status"><span data-i18n="cta.holdA">ما انفتح؟ اضغط مطوّلًا على الزر، واختر</span> <span class="hold-chip"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,26A102,102,0,1,0,230,128,102.12,102.12,0,0,0,128,26Zm0,192a90,90,0,1,1,90-90A90.1,90.1,0,0,1,128,218ZM173.32,74.63l-64,32a6,6,0,0,0-2.69,2.69l-32,64A6,6,0,0,0,80,182a6.06,6.06,0,0,0,2.68-.63l64-32a6,6,0,0,0,2.69-2.69l32-64a6,6,0,0,0-8.05-8.05Zm-33.79,64.9L93.42,162.58l23-46.11,46.11-23Z"/></svg><span data-i18n="cta.holdB">Open Link أو فتح الرابط</span></span></p>
       </div>
     </div>
     <div class="wrap end-foot">
@@ -328,9 +326,26 @@
     </div>
   </footer>
 
-  <script src="js/config.js?v=20261112a"></script>
-  <script src="js/strings.js?v=20261112a"></script>
-  <script src="js/motion.js?v=20261112a"></script>
-  <script src="js/main.js?v=20261112a"></script>
+  <!-- TikTok on an iPhone: a tap on a download button opens this sheet. TikTok refuses App Store links from a tap, but
+       pressing and holding a link gives iOS's own menu, whose «Open Link» opens it in Safari. -->
+  <div class="hold" id="hold" role="dialog" aria-modal="true" aria-labelledby="hold-t">
+    <div class="hold-scrim" data-close></div>
+    <div class="hold-sheet" tabindex="-1">
+      <button class="hold-x" type="button" data-close aria-label="إغلاق" data-i18n-attr="aria-label:hold.close"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M204.24,195.76a6,6,0,1,1-8.48,8.48L128,136.49,60.24,204.24a6,6,0,0,1-8.48-8.48L119.51,128,51.76,60.24a6,6,0,0,1,8.48-8.48L128,119.51l67.76-67.75a6,6,0,0,1,8.48,8.48L136.49,128Z"/></svg></button>
+      <img class="hold-icon" src="assets/app-icon.webp" width="360" height="360" alt="">
+      <h2 class="hold-title" id="hold-t" data-i18n="hold.title">حمّل التطبيق بخطوتين</h2>
+      <p class="hold-text" data-i18n="hold.text">تيك توك ما يفتح App&nbsp;Store بضغطة عادية.</p>
+      <ol class="hold-steps">
+        <li><span class="hold-n">1</span><span data-i18n="hold.s1">علّق إصبعك على الزر الأزرق</span></li>
+        <li><span class="hold-n">2</span><span data-i18n="hold.s2">اضغط</span><span class="hold-chip"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,26A102,102,0,1,0,230,128,102.12,102.12,0,0,0,128,26Zm0,192a90,90,0,1,1,90-90A90.1,90.1,0,0,1,128,218ZM173.32,74.63l-64,32a6,6,0,0,0-2.69,2.69l-32,64A6,6,0,0,0,80,182a6.06,6.06,0,0,0,2.68-.63l64-32a6,6,0,0,0,2.69-2.69l32-64a6,6,0,0,0-8.05-8.05Zm-33.79,64.9L93.42,162.58l23-46.11,46.11-23Z"/></svg><span data-i18n="hold.chip">فتح الرابط</span></span><span class="hold-alt"><span data-i18n="hold.s2b">أو</span> <span class="latin">Open Link</span></span></li>
+      </ol>
+      <a class="hold-link js-hold-link" href="https://apps.apple.com/app/id6825474864"><span class="hold-ring" aria-hidden="true"></span><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M219.4,167.84C201.71,155.69,198,135.12,198,120c0-18.42,13.86-34.29,22.12-42.12a6,6,0,0,0,0-8.71C208,57.7,187.07,50,168,50a70.23,70.23,0,0,0-40,12.55,69.6,69.6,0,0,0-89.31,8.08A72.63,72.63,0,0,0,18,123.35a125.11,125.11,0,0,0,39.53,88.33A37.85,37.85,0,0,0,83.6,222h87.7A37.83,37.83,0,0,0,199,210.07a122.6,122.6,0,0,0,17.54-24.2c6.55-12,5.77-13.75,5-15.48A6.07,6.07,0,0,0,219.4,167.84Zm-29.23,34A25.82,25.82,0,0,1,171.3,210H83.6A25.85,25.85,0,0,1,65.78,203,113.21,113.21,0,0,1,30,123a60.55,60.55,0,0,1,17.21-44A56.82,56.82,0,0,1,88,62h.81a57.35,57.35,0,0,1,35.44,12.71,6,6,0,0,0,7.5,0A57.39,57.39,0,0,1,168,62c13.89,0,28.81,4.68,39.11,12-9.44,10.14-21.1,26.59-21.1,46,0,23.78,7.81,42.6,22.66,54.77A107.33,107.33,0,0,1,190.17,201.89Zm-60-171.39A38,38,0,0,1,167,2h1a6,6,0,0,1,0,12h-1a26,26,0,0,0-25.18,19.5,6,6,0,1,1-11.62-3Z"/></svg><span data-i18n="hold.button">علّق هنا</span></a>
+    </div>
+  </div>
+
+  <script src="js/config.js?v=20261112c"></script>
+  <script src="js/strings.js?v=20261112c"></script>
+  <script src="js/motion.js?v=20261112c"></script>
+  <script src="js/main.js?v=20261112c"></script>
 </body>
 </html>
