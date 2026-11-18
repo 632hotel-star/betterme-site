@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>BetterMe</title>
+  <meta name="robots" content="noindex">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+  <meta property="og:site_name" content="BetterMe">
+  <meta property="og:title" content="BetterMe">
+  <meta property="og:description" content="كل اللي تحتاجه للنادي، بتطبيق واحد">
+  <meta property="og:image" content="https://betterme.fitness/assets/og.png">
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&display=swap">
+  <!-- GitHub Pages serves this page for any path it doesn't have. Two of those paths are links from the app:
+       · /c/<code>  a coach's invite (0089): opens the app on betterme://coach/join/<code> and shows the code to type;
+       · /s/<code>  something shared from the app (0093, owner 2026-11-18): a meal from «وجباتي», a routine or a whole
+                    program, read from the server (share_get: the snapshot only, never who shared it) and shown tidy,
+                    with «افتح في BetterMe» (betterme://share/<code>) and the App Store.
+       Anything else is the site's plain «not found». -->
+  <style>
+    :root {
+      --bg: #ffffff; --tint: #f5f5f7; --card: #f5f5f7; --ink: #1d1d1f; --soft: #6e6e73; --faint: #86868b; --line: #e3e3e8;
+      --accent: #0060f0; --btn: #1d1d1f; --btn-ink: #ffffff; --btn2: #ececf0; --btn2-ink: #1d1d1f;
+      --meal: #00648f; --train: #e95002; --protein: #db002d; --carbs: #945f00; --fat: #7e3dff;
+      --font: "Almarai", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --font-en: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", "Almarai", sans-serif;
+      --font-num: ui-rounded, "SF Pro Rounded", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      color-scheme: light dark;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #000000; --tint: #0d0d0f; --card: #161618; --ink: #f5f5f7; --soft: #a1a1a6; --faint: #7c7c80; --line: #2a2a2e;
+        --btn: #f5f5f7; --btn-ink: #000000; --btn2: #232326; --btn2-ink: #f5f5f7;
+        --meal: #8ab8cb; --train: #f26a10; --protein: #ff5578; --carbs: #ffbd45; --fat: #a77bff;
+      }
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font); -webkit-font-smoothing: antialiased; }
+    html[lang="en"] body { font-family: var(--font-en); }
+    a { color: inherit; }
+    [hidden] { display: none !important; }
+    .num { font-family: var(--font-num); font-variant-numeric: tabular-nums; }
+    .ltr { direction: ltr; unicode-bidi: isolate; }
+
+    /* the coach's invite and «not found» (one card in the middle) */
+    main.center { min-height: 100svh; display: grid; place-items: center; padding: 32px 20px; }
+    .card { width: min(440px, 100%); text-align: center; }
+    .icon { width: 84px; height: 84px; border-radius: 20px; display: block; margin: 0 auto 20px; }
+    .card h1 { font-size: 26px; line-height: 1.35; margin: 0 0 10px; font-weight: 800; }
+    .card p { color: var(--soft); font-size: 16px; line-height: 1.7; margin: 0 0 22px; }
+    .code { direction: ltr; font: 700 30px/1 ui-monospace, "SF Mono", Menlo, monospace; letter-spacing: 4px; padding: 18px 12px;
+            border: 1px solid var(--line); border-radius: 16px; margin: 0 0 22px; user-select: all; }
+    .btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; min-height: 54px; padding: 14px 18px;
+           border-radius: 999px; background: var(--btn); color: var(--btn-ink); font-weight: 700; font-size: 17px; text-decoration: none;
+           margin-bottom: 10px; -webkit-tap-highlight-color: transparent; transition: transform .15s ease; }
+    .btn:active { transform: scale(.98); }
+    .btn.light { background: var(--btn2); color: var(--btn2-ink); }
+    .btn svg { width: 20px; height: 20px; flex: none; }
+    .small { font-size: 13px; line-height: 1.6; color: var(--soft); }
+
+    /* ---------- something shared (/s/<code>) ---------- */
+    .share { width: min(560px, 100%); margin: 0 auto; padding: max(14px, env(safe-area-inset-top)) 20px 0; }
+    .top { display: flex; align-items: center; justify-content: space-between; height: 52px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font: 700 17px/1 var(--font-en); letter-spacing: -.01em; }
+    .brand img { width: 30px; height: 30px; border-radius: 7px; }
+    .hero { padding: 22px 0 6px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px 7px 14px; border-radius: 999px; font-size: 14px; font-weight: 700;
+               color: var(--kind); background: color-mix(in srgb, var(--kind) 12%, transparent); }
+    html[dir="ltr"] .eyebrow { padding: 7px 14px 7px 12px; }
+    .eyebrow svg { width: 17px; height: 17px; }
+    .hero h1 { font-size: clamp(30px, 8.4vw, 40px); line-height: 1.22; font-weight: 800; margin: 14px 0 8px; text-wrap: balance; overflow-wrap: anywhere; }
+    .hero .sub { margin: 0; color: var(--soft); font-size: 16px; line-height: 1.6; }
+    .hero .about { margin: 10px 0 0; font-size: 16px; line-height: 1.7; overflow-wrap: anywhere; }
+    .photo { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 24px; margin-top: 18px; background: var(--card); }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px; font-size: 14px; font-weight: 700;
+            background: var(--card); color: var(--soft); }
+    .chip svg { width: 15px; height: 15px; }
+    .step { display: flex; gap: 12px; align-items: flex-start; padding: 12px 0; }
+    .step + .step { border-top: 1px solid var(--line); }
+    .step .idx { width: 28px; height: 28px; font-size: 13px; }
+    .step p { margin: 3px 0 0; font-size: 16px; line-height: 1.65; overflow-wrap: anywhere; }
+
+    .block { margin-top: 22px; }
+    .block h2 { font-size: 14px; font-weight: 700; color: var(--soft); margin: 0 0 10px; }
+    .panel { background: var(--card); border-radius: 22px; padding: 6px 18px; }
+    .row { display: flex; align-items: center; gap: 14px; min-height: 62px; padding: 12px 0; }
+    .row + .row { border-top: 1px solid var(--line); }
+    .main { flex: 1; min-width: 0; }
+    .name { font-size: 16px; font-weight: 700; line-height: 1.4; overflow-wrap: anywhere; }
+    .meta { font-size: 13px; color: var(--soft); margin-top: 3px; }
+    .end { flex: none; font-size: 15px; font-weight: 700; color: var(--soft); }
+    .idx { flex: none; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-size: 14px; font-weight: 700;
+           color: var(--kind); background: color-mix(in srgb, var(--kind) 13%, transparent); }
+
+    /* a meal: its calories big, the macros, the ingredients */
+    .energy { background: var(--card); border-radius: 26px; padding: 22px 20px 18px; display: grid; gap: 18px; }
+    .kcal { display: flex; align-items: baseline; gap: 8px; }
+    .kcal b { font-size: 58px; line-height: 1; font-weight: 800; letter-spacing: -.02em; }
+    .kcal span { font-size: 17px; font-weight: 700; color: var(--soft); }
+    .macros { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .macro { border-radius: 16px; padding: 12px 12px 11px; background: color-mix(in srgb, var(--m) 11%, transparent); }
+    .macro b { display: block; font-size: 21px; line-height: 1.1; font-weight: 800; color: var(--m); white-space: nowrap; }
+    .macro b small { font-size: 13px; font-weight: 700; margin-inline-start: 2px; }
+    .macro span { display: block; margin-top: 4px; font-size: 13px; color: var(--soft); font-weight: 700; }
+    .bar { display: flex; height: 8px; border-radius: 99px; overflow: hidden; gap: 3px; }
+    .bar i { display: block; height: 100%; border-radius: 99px; }
+
+    /* a program: the week in one strip, then each day (opens to its exercises) */
+    .days { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
+    .days::-webkit-scrollbar { display: none; }
+    .day-chip { flex: none; width: 54px; border-radius: 16px; padding: 10px 0 9px; text-align: center; background: var(--card); }
+    .day-chip b { display: block; font-size: 17px; font-weight: 800; }
+    .day-chip span { display: block; margin-top: 3px; font-size: 11px; color: var(--soft); font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 4px; }
+    .day-chip.on { background: color-mix(in srgb, var(--kind) 14%, var(--card)); }
+    .day-chip.on b { color: var(--kind); }
+    details.day { background: var(--card); border-radius: 20px; margin-bottom: 10px; }
+    details.day > summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 14px; padding: 14px 18px; min-height: 64px; }
+    details.day > summary::-webkit-details-marker { display: none; }
+    details.day .chev { flex: none; width: 18px; height: 18px; color: var(--faint); transition: transform .2s ease; }
+    html[dir="rtl"] details.day .chev { transform: scaleX(-1); }
+    details.day[open] .chev, html[dir="rtl"] details.day[open] .chev { transform: rotate(90deg); }
+    details.day .list { padding: 0 18px 8px; }
+    details.day.rest { opacity: .62; }
+    details.day.rest > summary { cursor: default; }
+
+    .hint { margin: 26px 0 0; text-align: center; font-size: 15px; line-height: 1.6; color: var(--soft); text-wrap: balance; }
+    .cta { position: sticky; bottom: 0; z-index: 2; margin: 14px -20px 0; padding: 12px 20px max(12px, env(safe-area-inset-bottom));
+           background: color-mix(in srgb, var(--bg) 78%, transparent); -webkit-backdrop-filter: saturate(1.6) blur(18px); backdrop-filter: saturate(1.6) blur(18px); }
+    .cta .btn { margin: 0; }
+    .after { padding-top: 10px; }
+    .foot { text-align: center; padding: 6px 20px 30px; }
+
+    .skeleton { display: grid; gap: 14px; padding-top: 26px; }
+    .skeleton i { display: block; height: 18px; border-radius: 10px; background: var(--card); animation: pulse 1.2s ease-in-out infinite; }
+    .skeleton i:nth-child(1) { width: 40%; height: 30px; border-radius: 99px; }
+    .skeleton i:nth-child(2) { width: 75%; height: 40px; }
+    .skeleton i:nth-child(3) { height: 160px; border-radius: 24px; }
+    @keyframes pulse { 50% { opacity: .5; } }
+    @media (prefers-reduced-motion: reduce) { .skeleton i { animation: none; } .btn { transition: none; } }
+  </style>
+</head>
+<body>
+  <main class="center" id="center">
+    <div class="card" id="invite" hidden>
+      <img class="icon" src="/assets/apple-touch-icon.png" alt="">
+      <h1>مدربك يدعوك تتدرب معه في BetterMe</h1>
+      <p>افتح التطبيق وتطلع لك الدعوة: تشوف اسم مدربك ووش بيشوف، توافق، ويتفعّل اشتراكك من باقته بدون ما تدفع شي.</p>
+      <div class="code" id="code"></div>
+      <a class="btn" id="open" href="#">افتح الدعوة في التطبيق</a>
+      <a class="btn light" href="https://apps.apple.com/app/id6825474864">حمّل BetterMe من App Store</a>
+      <div class="small">ما فتح؟ حمّل التطبيق واكتب الكود في «عندي كود مدرب» بصفحة الاشتراك.</div>
+    </div>
+    <div class="card" id="missing" hidden>
+      <img class="icon" src="/assets/apple-touch-icon.png" alt="">
+      <h1 id="missing-title">الصفحة غير موجودة</h1>
+      <p id="missing-body">الرابط اللي فتحته ما له صفحة.</p>
+      <a class="btn" href="/" id="missing-home">الصفحة الرئيسية</a>
+    </div>
+  </main>
+
+  <div class="share" id="share" hidden>
+    <header class="top">
+      <a class="brand" href="/"><img src="/assets/apple-touch-icon.png" alt="">BetterMe</a>
+    </header>
+    <div class="skeleton" id="share-loading" aria-label="…"><i></i><i></i><i></i></div>
+    <div id="share-body" hidden>
+      <section class="hero">
+        <div class="eyebrow" id="share-kind"></div>
+        <h1 id="share-title"></h1>
+        <p class="sub" id="share-sub"></p>
+        <p class="about" id="share-about" hidden></p>
+        <img class="photo" id="share-photo" alt="" hidden>
+      </section>
+      <div id="share-content"></div>
+      <p class="hint" id="share-hint"></p>
+      <div class="cta"><a class="btn" id="share-open" href="#"></a></div>
+      <div class="after">
+        <a class="btn light" id="share-store" href="https://apps.apple.com/app/id6825474864"></a>
+        <div class="small" id="share-small" style="text-align:center"></div>
+      </div>
+    </div>
+    <div class="foot small" id="share-foot"></div>
+  </div>
+
+  <script>
+  (function () {
+    // The server (Supabase, project in js/config.js's legal links). The key is the PUBLIC anon key the app itself ships
+    // with: it can only call what anon may call; here only share_get (0093), which returns a shared snapshot by its code.
+    var API = {
+      url: 'https://zlmxdgavlbvsznsueemi.supabase.co',
+      key: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpsbXhkZ2F2bGJ2c3puc3VlZW1pIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIzMTY5MTcsImV4cCI6MjEwNzg5MjkxN30.W7EjbYFzws7mxy7yTO5HmIVlKnpjCndLeHgUn7BvMVs'
+    };
+    var APP_STORE = 'https://apps.apple.com/app/id6825474864';
+    var ALPHABET = /^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{8}$/;
+    var path = location.pathname;
+
+    // ---- a coach's invite (/c/<code>) ----
+    var c = path.match(/^\/c\/([A-Za-z0-9-]{8,10})\/?$/);
+    if (c) {
+      var code = c[1].replace(/[^A-Za-z0-9]/g, '').toUpperCase();
+      if (code.length === 8) {
+        document.title = 'دعوة مدرب · BetterMe';
+        document.getElementById('invite').hidden = false;
+        document.getElementById('code').textContent = code.slice(0, 4) + ' ' + code.slice(4);
+        var deep = 'betterme://coach/join/' + code;
+        document.getElementById('open').href = deep;
+        // On a phone with the app, straight in.
+        setTimeout(function () { location.href = deep; }, 250);
+        return;
+      }
+    }
+
+    // ---- something shared (/s/<code>) ----
+    var s = path.match(/^\/s\/([A-Za-z0-9-]{8,10})\/?$/);
+    var shareCode = s ? s[1].replace(/[^A-Za-z0-9]/g, '').toUpperCase() : '';
+    if (!ALPHABET.test(shareCode)) {
+      document.getElementById('missing').hidden = false;
+      return;
+    }
+
+    // Arabic first (the app's own language); English when the browser asks for English (?lang=ar|en picks one)
+    var forced = (location.search.match(/[?&]lang=(ar|en)\b/) || [])[1];
+    var ar = forced ? forced === 'ar' : !/^en\b/i.test((navigator.languages && navigator.languages[0]) || navigator.language || 'ar');
+    var T = ar ? {
+      kind: { meal: 'وصفة انشاركت معك', routine: 'روتين انشارك معك', program: 'جدول تمرين انشارك معك' },
+      steps: 'طريقة التحضير', minutes: ['دقيقة', 'دقيقتين', '%d دقائق', '%d دقيقة'],
+      kcal: 'سعرة', protein: 'بروتين', carbs: 'كارب', fat: 'دهون', items: 'المقادير', exercises: 'التمارين',
+      days: 'الأيام والتمارين', rest: 'راحة', day: function (n) { return 'اليوم ' + n; },
+      weekdays: ['الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'],
+      weekShort: ['أحد', 'اثنين', 'ثلاثاء', 'أربعاء', 'خميس', 'جمعة', 'سبت'],
+      open: 'افتح في BetterMe', store: 'حمّل BetterMe من App Store',
+      hint: { meal: 'افتحها في التطبيق: تحفظها في «وجباتي»، أو تضيفها ليومك بضغطة.',
+              routine: 'افتحه في التطبيق وينضاف إلى «روتيناتي» بضغطة.',
+              program: 'افتحه في التطبيق: تخليه جدولك، أو تحفظه في «جداولي» وجدولك يبقى مثل ما هو.' },
+      small: 'ما عندك التطبيق؟ حمّله، وبعدها ارجع لهالرابط واضغط «افتح في BetterMe».',
+      foot: 'BetterMe · كل اللي تحتاجه للنادي، بتطبيق واحد',
+      goneTitle: 'الرابط ما عاد يفتح', goneBody: 'يمكن انحذف، أو الرابط ناقص.',
+      offTitle: 'ما قدرنا نفتح الرابط', offBody: 'تأكد من الإنترنت وحدّث الصفحة.', home: 'الصفحة الرئيسية',
+      units: { g: 'غ', kg: 'كغ', oz: 'أونصة', ml: 'مل', l: 'لتر', piece: 'حبة', serving: 'حصة', slice: 'شريحة', cup: 'كوب', tbsp: 'ملعقة كبيرة', tsp: 'ملعقة صغيرة' },
+      count: {
+        items: ['مكوّن واحد', 'مكوّنين', '%d مكوّنات', '%d مكوّنًا'],
+        exercises: ['تمرين واحد', 'تمرينين', '%d تمارين', '%d تمرينًا'],
+        sets: ['مجموعة وحدة', 'مجموعتين', '%d مجموعات', '%d مجموعة'],
+        days: ['يوم واحد', 'يومين', '%d أيام', '%d يومًا'],
+        training: ['يوم تمرين واحد', 'يومين تمرين', '%d أيام تمرين', '%d يوم تمرين'],
+        rest: ['يوم راحة واحد', 'يومين راحة', '%d أيام راحة', '%d يوم راحة']
+      }
+    } : {
+      kind: { meal: 'A recipe shared with you', routine: 'A routine shared with you', program: 'A workout program shared with you' },
+      steps: 'How to make it', minutes: ['1 min', '2 min', '%d min', '%d min'],
+      kcal: 'kcal', protein: 'Protein', carbs: 'Carbs', fat: 'Fat', items: 'Ingredients', exercises: 'Exercises',
+      days: 'Days and exercises', rest: 'Rest', day: function (n) { return 'Day ' + n; },
+      weekdays: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      weekShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+      open: 'Open in BetterMe', store: 'Get BetterMe on the App Store',
+      hint: { meal: 'Open it in the app to save it to My meals or add it to your day in one tap.',
+              routine: 'Open it in the app and it goes to My routines in one tap.',
+              program: 'Open it in the app to make it your program, or keep it in My programs and leave yours as it is.' },
+      small: 'No app yet? Get it, then come back to this link and tap “Open in BetterMe”.',
+      foot: 'BetterMe · Everything you need for the gym, in one app',
+      goneTitle: 'This link doesn’t open', goneBody: 'It may have been removed, or the link is incomplete.',
+      offTitle: 'Couldn’t open the link', offBody: 'Check your connection and refresh the page.', home: 'Home page',
+      units: { g: 'g', kg: 'kg', oz: 'oz', ml: 'ml', l: 'L', piece: 'piece', serving: 'serving', slice: 'slice', cup: 'cup', tbsp: 'tbsp', tsp: 'tsp' },
+      count: {
+        items: ['1 ingredient', '2 ingredients', '%d ingredients', '%d ingredients'],
+        exercises: ['1 exercise', '2 exercises', '%d exercises', '%d exercises'],
+        sets: ['1 set', '2 sets', '%d sets', '%d sets'],
+        days: ['1 day', '2 days', '%d days', '%d days'],
+        training: ['1 training day', '2 training days', '%d training days', '%d training days'],
+        rest: ['1 rest day', '2 rest days', '%d rest days', '%d rest days']
+      }
+    };
+    if (!ar) { document.documentElement.lang = 'en'; document.documentElement.dir = 'ltr'; }
+
+    // Arabic counts: 1 and 2 are words, 3–10 take the plural, 11+ the singular (as the app's plural rules).
+    function count(n, forms) {
+      var f = n === 1 ? forms[0] : n === 2 ? forms[1] : (n % 100 >= 3 && n % 100 <= 10) ? forms[2] : forms[3];
+      return f.replace('%d', n);
+    }
+    function num(v, digits) {
+      var d = digits == null ? 1 : digits;
+      var r = Math.round(v * Math.pow(10, d)) / Math.pow(10, d);
+      return String(r);
+    }
+    function el(tag, cls, text) {
+      var e = document.createElement(tag);
+      if (cls) e.className = cls;
+      if (text != null) e.textContent = text;
+      return e;
+    }
+    var ICON = {
+      meal: '<path d="M7 3v8a2 2 0 0 0 2 2v8M5 3v5M9 3v5M17 21V3c-2.2 1.4-3 4.2-3 7v3h3"/>',
+      routine: '<path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11"/>',
+      program: '<rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/>',
+      open: '<path d="M14 4h6v6M20 4l-9 9M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"/>',
+      clock: '<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>',
+      chev: '<path d="M9 6l6 6-6 6"/>'
+    };
+    function svg(name) {
+      return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + ICON[name] + '</svg>';
+    }
+
+    document.getElementById('center').hidden = true;
+    var share = document.getElementById('share');
+    share.hidden = false;
+    document.getElementById('share-foot').textContent = T.foot;
+
+    function fail(gone) {
+      share.hidden = true;
+      document.getElementById('center').hidden = false;
+      document.getElementById('missing').hidden = false;
+      document.getElementById('missing-title').textContent = gone ? T.goneTitle : T.offTitle;
+      document.getElementById('missing-body').textContent = gone ? T.goneBody : T.offBody;
+      document.getElementById('missing-home').textContent = T.home;
+    }
+
+    // Local preview (localhost): the dev server answers share_get from a local database at the same path.
+    var local = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+    fetch((local ? '' : API.url) + '/rest/v1/rpc/share_get', {
+      method: 'POST',
+      headers: { 'apikey': API.key, 'Authorization': 'Bearer ' + API.key, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ p_code: shareCode })
+    }).then(function (r) {
+      if (!r.ok) throw new Error('http ' + r.status);
+      return r.json();
+    }).then(function (data) {
+      if (!data || data.error || !data.payload || !T.kind[data.kind]) return fail(true);
+      render(data);
+    }).catch(function () { fail(false); });
+
+    function render(d) {
+      var kind = d.kind, p = d.payload, names = d.exercise_names || {};
+      var tint = kind === 'meal' ? 'var(--meal)' : 'var(--train)';
+      share.style.setProperty('--kind', tint);
+      document.title = d.title + ' · BetterMe';
+      document.getElementById('share-kind').innerHTML = svg(kind);
+      document.getElementById('share-kind').appendChild(document.createTextNode(T.kind[kind]));
+      document.getElementById('share-title').textContent = d.title || T.kind[kind];
+      // what its author wrote, and a recipe's photo (the public `community` bucket)
+      if (d.about) {
+        var about = document.getElementById('share-about');
+        about.textContent = d.about;
+        about.hidden = false;
+      }
+      if (kind === 'meal' && typeof d.photo_path === 'string' && d.photo_path) {
+        var img = document.getElementById('share-photo');
+        img.src = (local ? '' : API.url) + '/storage/v1/object/public/community/' + d.photo_path.split('/').map(encodeURIComponent).join('/');
+        img.alt = d.title || '';
+        img.onerror = function () { img.hidden = true; };
+        img.hidden = false;
+      }
+      var content = document.getElementById('share-content');
+      var sub = [];
+
+      function exName(e) { return (ar && e.slug && names[e.slug]) || e.name; }
+      function exRows(list, into) {
+        list.forEach(function (e, i) {
+          var row = el('div', 'row');
+          row.appendChild(el('div', 'idx num', String(i + 1)));
+          var main = el('div', 'main');
+          main.appendChild(el('div', 'name', exName(e)));
+          if (e.rest_s) main.appendChild(el('div', 'meta', (ar ? 'راحة ' : 'Rest ') + Math.floor(e.rest_s / 60) + ':' + ('0' + (e.rest_s % 60)).slice(-2)));
+          row.appendChild(main);
+          var reps = e.reps_min === e.reps_max ? e.reps_min : e.reps_min + '–' + e.reps_max;
+          row.appendChild(el('div', 'end num ltr', e.sets + ' × ' + reps));
+          into.appendChild(row);
+        });
+      }
+      function block(title, child) {
+        var b = el('section', 'block');
+        if (title) b.appendChild(el('h2', null, title));
+        b.appendChild(child);
+        content.appendChild(b);
+        return b;
+      }
+
+      if (kind === 'meal') {
+        var items = p.items || [];
+        var t = items.reduce(function (a, i) { return { k: a.k + i.kcal, p: a.p + i.protein_g, c: a.c + i.carbs_g, f: a.f + i.fat_g }; }, { k: 0, p: 0, c: 0, f: 0 });
+        sub.push(count(items.length, T.count.items));
+        if (p.minutes) {
+          var chips = el('div', 'chips');
+          var chip = el('span', 'chip');
+          chip.innerHTML = svg('clock');
+          chip.appendChild(document.createTextNode(count(p.minutes, T.minutes)));
+          chips.appendChild(chip);
+          block(null, chips);
+        }
+        var energy = el('div', 'energy');
+        var kc = el('div', 'kcal');
+        kc.appendChild(el('b', 'num', String(Math.round(t.k))));
+        kc.appendChild(el('span', null, T.kcal));
+        energy.appendChild(kc);
+        var macros = el('div', 'macros');
+        [['protein', t.p], ['carbs', t.c], ['fat', t.f]].forEach(function (m) {
+          var box = el('div', 'macro');
+          box.style.setProperty('--m', 'var(--' + m[0] + ')');
+          var v = el('b', 'num', num(m[1]));
+          v.appendChild(el('small', null, ar ? 'غ' : 'g'));
+          box.appendChild(v);
+          box.appendChild(el('span', null, T[m[0]]));
+          macros.appendChild(box);
+        });
+        energy.appendChild(macros);
+        // where the calories come from (protein and carbs 4 kcal/g, fat 9)
+        var total = t.p * 4 + t.c * 4 + t.f * 9;
+        if (total > 0) {
+          var bar = el('div', 'bar');
+          [['protein', t.p * 4], ['carbs', t.c * 4], ['fat', t.f * 9]].forEach(function (m) {
+            if (m[1] <= 0) return;
+            var seg = el('i');
+            seg.style.flex = String(m[1] / total);
+            seg.style.background = 'var(--' + m[0] + ')';
+            bar.appendChild(seg);
+          });
+          energy.appendChild(bar);
+        }
+        block(null, energy);
+        var list = el('div', 'panel');
+        items.forEach(function (i) {
+          var row = el('div', 'row');
+          var main = el('div', 'main');
+          main.appendChild(el('div', 'name', i.name));
+          var unit = T.units[i.unit] || i.unit;
+          main.appendChild(el('div', 'meta num', num(i.quantity) + ' ' + unit));
+          row.appendChild(main);
+          row.appendChild(el('div', 'end num', Math.round(i.kcal) + ' ' + T.kcal));
+          list.appendChild(row);
+        });
+        block(T.items, list);
+        var steps = (p.steps || []).filter(function (x) { return typeof x === 'string' && x; });
+        if (steps.length) {
+          var how = el('div', 'panel');
+          steps.forEach(function (text, i) {
+            var row = el('div', 'step');
+            row.appendChild(el('div', 'idx num', String(i + 1)));
+            row.appendChild(el('p', null, text));
+            how.appendChild(row);
+          });
+          block(T.steps, how);
+        }
+      } else if (kind === 'routine') {
+        var ex = p.exercises || [];
+        var sets = ex.reduce(function (a, e) { return a + (e.sets || 0); }, 0);
+        sub.push(count(ex.length, T.count.exercises), count(sets, T.count.sets));
+        var panel = el('div', 'panel');
+        exRows(ex, panel);
+        block(T.exercises, panel);
+      } else {
+        var routines = p.routines || [];
+        var days = (p.program_days && p.program_days.length) ? p.program_days
+          : (p.schedule && p.schedule.length) ? p.schedule.slice().sort(function (a, b) { return a.weekday - b.weekday; })
+          : routines.map(function (_, i) { return { routine: i }; });
+        var training = days.filter(function (x) { return x.routine != null && routines[x.routine]; }).length;
+        sub.push(count(training, T.count.training));
+        if (days.length > training) sub.push(count(days.length - training, T.count.rest));
+        // the week, one chip a day
+        var strip = el('div', 'days');
+        days.forEach(function (x, i) {
+          var r = x.routine != null ? routines[x.routine] : null;
+          var chip = el('div', 'day-chip' + (r ? ' on' : ''));
+          chip.appendChild(el('b', 'num', String(i + 1)));
+          chip.appendChild(el('span', null, x.weekday != null ? T.weekShort[x.weekday] : (r ? r.name : T.rest)));
+          chip.title = r ? r.name : T.rest;
+          strip.appendChild(chip);
+        });
+        block(null, strip);
+        var wrap = el('div');
+        days.forEach(function (x, i) {
+          var r = x.routine != null ? routines[x.routine] : null;
+          var det = el('details', 'day' + (r ? '' : ' rest'));
+          var sum = el('summary');
+          sum.appendChild(el('div', 'idx num', String(i + 1)));
+          var main = el('div', 'main');
+          var label = T.day(i + 1) + (x.weekday != null ? ' · ' + T.weekdays[x.weekday] : '');
+          main.appendChild(el('div', 'meta', label));
+          var nm = r ? r.name : T.rest;
+          if (r && x.routine_b != null && routines[x.routine_b]) nm += ' / ' + routines[x.routine_b].name;
+          main.appendChild(el('div', 'name', nm));
+          sum.appendChild(main);
+          if (r) {
+            sum.appendChild(el('div', 'end', count(r.exercises.length, T.count.exercises)));
+            var chev = el('span');
+            chev.innerHTML = svg('chev');
+            chev.firstChild.setAttribute('class', 'chev');
+            sum.appendChild(chev.firstChild);
+          } else {
+            sum.addEventListener('click', function (e) { e.preventDefault(); });
+          }
+          det.appendChild(sum);
+          if (r) {
+            var list = el('div', 'list');
+            exRows(r.exercises, list);
+            det.appendChild(list);
+          }
+          wrap.appendChild(det);
+        });
+        // the first training day starts open
+        var first = wrap.querySelector('details.day:not(.rest)');
+        if (first) first.open = true;
+        block(T.days, wrap);
+      }
+
+      document.getElementById('share-sub').textContent = sub.join(' · ');
+      document.getElementById('share-hint').textContent = T.hint[kind];
+      var open = document.getElementById('share-open');
+      open.href = 'betterme://share/' + shareCode;
+      open.innerHTML = svg('open');
+      open.appendChild(document.createTextNode(T.open));
+      var store = document.getElementById('share-store');
+      store.href = APP_STORE;
+      store.textContent = T.store;
+      document.getElementById('share-small').textContent = T.small;
+      document.getElementById('share-loading').hidden = true;
+      document.getElementById('share-body').hidden = false;
+    }
+  })();
+  </script>
+</body>
+</html>
