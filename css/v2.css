@@ -70,7 +70,7 @@
 
 /* The AI coach: three phones, then what it does for you (the side phones are cut by the section, as on the hero). */
 .chapter.coach { overflow: hidden; }
-.ai-trio { height: clamp(500px, 134vw, 820px); margin-top: 8px; }
+.ai-trio { height: clamp(500px, 134vw, 820px); margin-top: clamp(64px, 16vw, 120px); margin-bottom: clamp(40px, 10vw, 72px); }
 .ai-asks { display: grid; gap: 18px; max-width: 34ch; margin: 8px auto 0; text-align: center; }
 .ai-asks li { font-size: clamp(18px, 2vw, 21px); line-height: 1.45; font-weight: 700; color: var(--ink-2); }
 .ai-asks b { color: var(--ink); }
