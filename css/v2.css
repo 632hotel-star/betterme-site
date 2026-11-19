@@ -1,0 +1,89 @@
+/*
+ * The 2026-11-19 look (owner's references): real-looking iPhones in titanium, floating in 3-D; the weekly report coming
+ * out of the phone like paper (a mockup picture).
+ */
+
+/* ---------- the phone: a titanium frame, a black bezel, the screen and its island, and an edge in depth ----------
+   --w is the phone's width; everything else follows it. js/v2.js stacks thin copies behind the front for the edge. */
+.iph { --w: 260px; position: relative; width: var(--w); aspect-ratio: 0.4765; transform-style: preserve-3d; }
+.iph > .iph-front, .iph > .iph-l { position: absolute; inset: 0; border-radius: calc(var(--w) * 0.158); }
+.iph-l { background: linear-gradient(150deg, #d5dae1 0%, #8b95a1 30%, #c9cfd6 52%, #5b6470 78%, #aeb5be 100%); }
+.iph-l.deep { background: linear-gradient(150deg, #9aa3ad, #4c545e 60%, #7e8792); }
+.iph-front {
+  background: linear-gradient(140deg, #f5f7f9 0%, #a5aeb9 15%, #edf0f3 29%, #7a848f 49%, #d3d9df 67%, #89929d 84%, #f2f4f6 100%);
+  box-shadow: inset 0 0 0 0.6px rgba(255, 255, 255, 0.75), inset 0 0 0 calc(var(--w) * 0.006) rgba(255, 255, 255, 0.12);
+}
+.iph-bezel {
+  position: absolute; inset: calc(var(--w) * 0.011); border-radius: calc(var(--w) * 0.148);
+  padding: calc(var(--w) * 0.022); background: #040405;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+.iph-screen { position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(var(--w) * 0.128); background: #000; }
+.iph-shot { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.iph-island {
+  position: absolute; top: calc(var(--w) * 0.058); left: 50%; width: 30%; height: calc(var(--w) * 0.088);
+  transform: translateX(-50%); border-radius: 999px; background: #000;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+.iph-glare {
+  position: absolute; inset: calc(var(--w) * 0.033); border-radius: calc(var(--w) * 0.128); pointer-events: none;
+  background: linear-gradient(116deg, rgba(255, 255, 255, 0.17) 0%, rgba(255, 255, 255, 0.05) 26%, rgba(255, 255, 255, 0) 42%);
+}
+/* Side buttons, on the right and left edges, standing out of the frame. */
+.iph-btn { position: absolute; width: calc(var(--w) * 0.012); border-radius: 2px; background: linear-gradient(#c6ccd3, #7d8691); }
+.iph-btn.r1 { right: calc(var(--w) * -0.009); top: 30%; height: 13%; }
+.iph-btn.l1 { left: calc(var(--w) * -0.009); top: 21%; height: 6%; }
+.iph-btn.l2 { left: calc(var(--w) * -0.009); top: 30%; height: 9%; }
+.iph-btn.l3 { left: calc(var(--w) * -0.009); top: 41%; height: 9%; }
+
+/* ---------- hero: three phones floating at angles (reference 1) ---------- */
+.trio { position: relative; height: clamp(480px, 128vw, 880px); margin-top: 18px; perspective: 1900px; perspective-origin: 50% 40%; }
+.trio::before {
+  content: ""; position: absolute; left: 50%; top: 52%; width: 120%; aspect-ratio: 1.6; transform: translate(-50%, -50%);
+  background: radial-gradient(closest-side, rgba(0, 96, 240, 0.12), rgba(0, 96, 240, 0.04) 55%, transparent);
+}
+.trio .iph { position: absolute; left: 50%; top: 50%; }
+.trio .t-mid { --w: min(54vw, 300px); transform: translate(-50%, -50%) translate3d(0, calc(var(--lift, 0) * -1px), 60px) rotateX(10deg) rotateY(-16deg) rotateZ(5deg); z-index: 3; }
+.trio .t-left { --w: min(46vw, 262px); transform: translate(-50%, -50%) translate3d(calc(min(54vw, 300px) * -0.78), calc(min(54vw, 300px) * 0.36 + var(--lift, 0) * 0.4px), -40px) rotateX(34deg) rotateY(26deg) rotateZ(-26deg); z-index: 2; }
+.trio .t-right { --w: min(46vw, 262px); transform: translate(-50%, -50%) translate3d(calc(min(54vw, 300px) * 0.8), calc(min(54vw, 300px) * -0.34 + var(--lift, 0) * 0.7px), -80px) rotateX(14deg) rotateY(-34deg) rotateZ(14deg); z-index: 1; }
+
+/* ---------- the weekly report coming out of the phone like paper (reference 3: a ready-made mockup picture) ---------- */
+.paper { position: relative; overflow: hidden; padding-top: clamp(64px, 10vw, 120px); padding-bottom: clamp(24px, 4vw, 48px);
+  background: linear-gradient(var(--bg) 0, var(--tint) 46%); }
+.paper .section-title { text-align: center; }
+.paper-shot { width: min(92vw, 540px); margin: clamp(8px, 2vw, 20px) auto 0; }
+.paper-shot img { display: block; width: 100%; height: auto; }
+
+/* ---------- the phones in the page's sections ---------- */
+.iph.cell-device, .iph.hl-device { position: absolute; }
+.iph.hl-device { --w: min(60vw, 270px); }
+.iph.cell-device { --w: min(60vw, 270px); }
+/* A phone turned a little toward the text beside it (mirrored with .flip), as on the hero. */
+.tilt { perspective: 1700px; display: flex; justify-content: center; }
+.tilt .iph { transform: rotateX(7deg) rotateY(-17deg) rotateZ(2.5deg); }
+.tilt.flip .iph { transform: rotateX(7deg) rotateY(17deg) rotateZ(-2.5deg); }
+.stage-phone { --w: min(62vw, 300px); }
+.split-phone { --w: min(62vw, 290px); }
+.section-title.sub { font-size: clamp(26px, 5.6vw, 44px); }
+.rest-split { margin-top: clamp(64px, 10vw, 110px); }
+.rest-split .lead .n { font-family: var(--font-num); font-weight: 800; color: var(--ink); }
+
+/* The AI coach: three phones, then what it does for you (the side phones are cut by the section, as on the hero). */
+.chapter.coach { overflow: hidden; }
+.ai-trio { height: clamp(500px, 134vw, 820px); margin-top: 8px; }
+.ai-asks { display: grid; gap: 18px; max-width: 34ch; margin: 8px auto 0; text-align: center; }
+.ai-asks li { font-size: clamp(18px, 2vw, 21px); line-height: 1.45; font-weight: 700; color: var(--ink-2); }
+.ai-asks b { color: var(--ink); }
+
+@media (min-width: 900px) {
+  .iph.hl-device { --w: 280px; }
+  .iph.cell-device { --w: 290px; }
+  .stage-phone { --w: 340px; }
+  .split-phone { --w: 320px; }
+  .ai-asks { grid-template-columns: repeat(3, 1fr); max-width: var(--max); gap: 32px; }
+  .paper-shot { width: 600px; }
+  /* Wide screens: the hero's phones a little smaller and lower, under the button. */
+  .hero .trio { height: 640px; margin-top: 36px; flex: none; }
+  .hero .trio .t-mid { --w: 262px; }
+  .hero .trio .t-left, .hero .trio .t-right { --w: 228px; }
+}
