@@ -46,7 +46,7 @@
   // ---------- the page's motion ----------
   // The headline lifts away and the phone settles back a little as the page starts to move.
   function hero() {
-    var copy = document.querySelector('.hero-copy'), phone = document.querySelector('.hero-phone');
+    var copy = document.querySelector('.hero-copy'), phone = document.querySelector('.hero-phone, .hero .trio');
     if (!copy || !phone) return;
     track(function (vh) { return clamp(window.scrollY / vh); }, function (p) {
       copy.style.opacity = p ? String(clamp(1 - p * 1.8)) : '';
@@ -70,7 +70,8 @@
   // The app's screens grow up into place, the way a product rises onto an Apple page.
   function rises() {
     each('[data-rise]', function (fig) {
-      var dev = fig.querySelector('.device');
+      var dev = fig.querySelector('.device, .tilt');
+      if (!dev) return;
       track(function (vh) { return through(fig, vh, 1.02, 0.42); }, function (p) {
         var e = out(p);
         dev.style.opacity = p >= 1 ? '' : String(0.2 + 0.8 * e);

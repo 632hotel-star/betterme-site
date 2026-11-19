@@ -86,6 +86,11 @@
       var src = 'assets/app-' + img.getAttribute('data-shot') + '-' + l + '.webp';
       if (img.getAttribute('src') !== src) img.setAttribute('src', src);
     });
+    // The 1.0.6 screens on the titanium phones (css/v2.css), in each language.
+    document.querySelectorAll('img[data-n]').forEach(function (img) {
+      var src = 'assets/n-' + img.getAttribute('data-n') + '-' + l + '.webp';
+      if (img.getAttribute('src') !== src) img.setAttribute('src', src);
+    });
     document.querySelectorAll('img[data-hero]').forEach(function (img) {
       var src = 'assets/hero-' + l + '.webp';
       if (img.getAttribute('src') !== src) img.setAttribute('src', src);
