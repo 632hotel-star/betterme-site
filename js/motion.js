@@ -151,7 +151,7 @@
       slot = 0;
       if (!phone.matches) { stage.style.removeProperty('--dist'); return; }
       slot = Math.abs(people[1].getBoundingClientRect().left - people[0].getBoundingClientRect().left);
-      dist = (m - 1) * (root.clientHeight || window.innerHeight) * 0.75;
+      dist = (m - 1) * (root.clientHeight || window.innerHeight) * 0.4;   // a short pass: the page stays short
       stage.style.setProperty('--dist', dist + 'px');
     });
     track(function (vh) {
