@@ -229,14 +229,15 @@
     var forced = (location.search.match(/[?&]lang=(ar|en)\b/) || [])[1];
     var ar = forced ? forced === 'ar' : !/^en\b/i.test((navigator.languages && navigator.languages[0]) || navigator.language || 'ar');
     var T = ar ? {
-      kind: { meal: 'وصفة انشاركت معك', routine: 'روتين انشارك معك', program: 'جدول تمرين انشارك معك' },
+      kind: { meal: 'وصفة انشاركت معك', meal_plain: 'وجبة انشاركت معك', routine: 'روتين انشارك معك', program: 'جدول تمرين انشارك معك' },
       steps: 'طريقة التحضير', minutes: ['دقيقة', 'دقيقتين', '%d دقائق', '%d دقيقة'],
       kcal: 'سعرة', protein: 'بروتين', carbs: 'كارب', fat: 'دهون', items: 'المقادير', exercises: 'التمارين',
       days: 'الأيام والتمارين', rest: 'راحة', day: function (n) { return 'اليوم ' + n; },
       weekdays: ['الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'],
       weekShort: ['أحد', 'اثنين', 'ثلاثاء', 'أربعاء', 'خميس', 'جمعة', 'سبت'],
       open: 'افتح في BetterMe', store: 'حمّل BetterMe من App Store',
-      hint: { meal: 'افتحها في التطبيق: تحفظها في «وجباتي»، أو تضيفها ليومك بضغطة.',
+      hint: { meal: 'افتحها في التطبيق: تحفظها في «وجبات المجتمع»، أو تضيفها ليومك بضغطة.',
+              meal_plain: 'افتحها في التطبيق: تحفظها في «وجباتي»، أو تضيفها ليومك بضغطة.',
               routine: 'افتحه في التطبيق وينضاف إلى «روتيناتي» بضغطة.',
               program: 'افتحه في التطبيق: تخليه جدولك، أو تحفظه في «جداولي» وجدولك يبقى مثل ما هو.' },
       small: 'ما عندك التطبيق؟ حمّله، وبعدها ارجع لهالرابط واضغط «افتح في BetterMe».',
@@ -253,14 +254,15 @@
         rest: ['يوم راحة واحد', 'يومين راحة', '%d أيام راحة', '%d يوم راحة']
       }
     } : {
-      kind: { meal: 'A recipe shared with you', routine: 'A routine shared with you', program: 'A workout program shared with you' },
+      kind: { meal: 'A recipe shared with you', meal_plain: 'A meal shared with you', routine: 'A routine shared with you', program: 'A workout program shared with you' },
       steps: 'How to make it', minutes: ['1 min', '2 min', '%d min', '%d min'],
       kcal: 'kcal', protein: 'Protein', carbs: 'Carbs', fat: 'Fat', items: 'Ingredients', exercises: 'Exercises',
       days: 'Days and exercises', rest: 'Rest', day: function (n) { return 'Day ' + n; },
       weekdays: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
       weekShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
       open: 'Open in BetterMe', store: 'Get BetterMe on the App Store',
-      hint: { meal: 'Open it in the app to save it to My meals or add it to your day in one tap.',
+      hint: { meal: 'Open it in the app to save it to Community meals or add it to your day in one tap.',
+              meal_plain: 'Open it in the app to save it to My meals or add it to your day in one tap.',
               routine: 'Open it in the app and it goes to My routines in one tap.',
               program: 'Open it in the app to make it your program, or keep it in My programs and leave yours as it is.' },
       small: 'No app yet? Get it, then come back to this link and tap “Open in BetterMe”.',
@@ -337,12 +339,14 @@
 
     function render(d) {
       var kind = d.kind, p = d.payload, names = d.exercise_names || {};
+      // a meal shared as itself, with no post (0099): «وجبة», saved to «وجباتي»
+      var label = kind === 'meal' && !d.post_id ? 'meal_plain' : kind;
       var tint = kind === 'meal' ? 'var(--meal)' : 'var(--train)';
       share.style.setProperty('--kind', tint);
       document.title = d.title + ' · BetterMe';
       document.getElementById('share-kind').innerHTML = svg(kind);
-      document.getElementById('share-kind').appendChild(document.createTextNode(T.kind[kind]));
-      document.getElementById('share-title').textContent = d.title || T.kind[kind];
+      document.getElementById('share-kind').appendChild(document.createTextNode(T.kind[label]));
+      document.getElementById('share-title').textContent = d.title || T.kind[label];
       // what its author wrote, and a recipe's photo (the public `community` bucket)
       if (d.about) {
         var about = document.getElementById('share-about');
@@ -509,7 +513,7 @@
       }
 
       document.getElementById('share-sub').textContent = sub.join(' · ');
-      document.getElementById('share-hint').textContent = T.hint[kind];
+      document.getElementById('share-hint').textContent = T.hint[label];
       var open = document.getElementById('share-open');
       open.href = 'betterme://share/' + shareCode;
       open.innerHTML = svg('open');
