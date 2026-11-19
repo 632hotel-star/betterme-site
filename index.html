@@ -34,18 +34,19 @@
       if (lang === 'en') { d.lang = 'en'; d.dir = 'ltr'; d.classList.add('i18n-pending'); }
     })();
   </script>
-  <link rel="preload" as="image" href="assets/hero-ar.webp" type="image/webp">
+  <link rel="preload" as="image" href="assets/n-home-ar.webp" type="image/webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&display=swap">
-  <link rel="stylesheet" href="css/site.css?v=20261112e">
+  <link rel="stylesheet" href="css/site.css?v=20261119a">
+  <link rel="stylesheet" href="css/v2.css?v=20261119a">
 </head>
 <body>
   <a class="skip" href="#main" data-i18n="nav.skip">تخطَّ إلى المحتوى</a>
 
   <main id="main">
 
-    <!-- Hero: one line, the download, and the app in a hand -->
+    <!-- Hero: one line, the download, and the app on three phones -->
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
         <p class="hero-brand">BetterMe</p>
@@ -60,8 +61,11 @@
           <p class="note" data-i18n="cta.note">إذا ما انفتح معك الرابط، افتحه في سفاري</p>
         </div>
       </div>
-      <div class="hero-media">
-        <img class="hero-phone" data-hero src="assets/hero-ar.webp" width="1669" height="2150" alt="الصفحة الرئيسية في تطبيق BetterMe على الجوال" data-i18n-attr="alt:hero.alt" fetchpriority="high">
+      <!-- The app on three phones floating at angles: Nutrition, Home in front, Workout -->
+      <div class="hero-media trio">
+        <div class="iph t-left"><div class="iph-front"><div class="iph-bezel"><div class="iph-screen"><img class="iph-shot" data-n="nutrition" src="assets/n-nutrition-ar.webp" width="660" height="1434" alt="صفحة التغذية في BetterMe" data-i18n-attr="alt:alt.nutrition"></div></div><i class="iph-island"></i><i class="iph-glare"></i></div></div>
+        <div class="iph t-right"><div class="iph-front"><div class="iph-bezel"><div class="iph-screen"><img class="iph-shot" data-n="workout" src="assets/n-workout-ar.webp" width="660" height="1434" alt="صفحة التمرين في BetterMe" data-i18n-attr="alt:alt.workout"></div></div><i class="iph-island"></i><i class="iph-glare"></i></div></div>
+        <div class="iph t-mid"><div class="iph-front"><div class="iph-bezel"><div class="iph-screen"><img class="iph-shot" data-n="home" src="assets/n-home-ar.webp" width="660" height="1434" alt="الصفحة الرئيسية في تطبيق BetterMe" data-i18n-attr="alt:hero.alt" fetchpriority="high"></div></div><i class="iph-island"></i><i class="iph-glare"></i></div></div>
       </div>
     </section>
 
@@ -115,23 +119,23 @@
       <div class="hl-track" id="hl-track" tabindex="0" aria-roledescription="carousel" aria-labelledby="t-hl">
         <article class="hl-tile" aria-roledescription="slide">
           <p class="hl-cap"><span data-i18n="hl.1a">صوّر وجبتك،</span> <b data-i18n="hl.1b">والسعرات تنحسب لحالها.</b></p>
-          <div class="device hl-device"><video data-clip="meal" muted playsinline loop preload="none" poster="assets/clip-meal-ar.webp" aria-label="مقطع: تصوير وجبة وتقدير سعراتها" data-i18n-attr="aria-label:food.alt"></video></div>
+          <div class="iph flat hl-device"><div class="iph-front"><div class="iph-bezel"><div class="iph-screen"><img class="iph-shot" data-n="mealphoto" src="assets/n-mealphoto-ar.webp" width="660" height="1434" alt="تقدير سعرات وجبة من صورتها" data-i18n-attr="alt:alt.mealphoto" loading="lazy"></div></div><i class="iph-island"></i><i class="iph-glare"></i></div></div>
         </article>
         <article class="hl-tile" aria-roledescription="slide">
           <p class="hl-cap"><span data-i18n="hl.2a">كل تمرين بفيديو يشرح التكنيك،</span> <b data-i18n="hl.2b">وسجّل أوزانك وعدّاتك عشان تزيد عليها.</b></p>
-          <div class="device hl-device"><video data-clip="session" muted playsinline loop preload="none" poster="assets/clip-session-ar.webp" aria-label="مقطع: تمرين مباشر مع فيديو التمرين ومؤقت الراحة" data-i18n-attr="aria-label:train.alt"></video></div>
+          <div class="iph flat hl-device"><div class="iph-front"><div class="iph-bezel"><div class="iph-screen"><img class="iph-shot" data-n="session" src="assets/n-session-ar.webp" width="660" height="1434" alt="تمرين مباشر مع فيديو التمرين" data-i18n-attr="alt:alt.session" loading="lazy"></div></div><i class="iph-island"></i><i class="iph-glare"></i></div></div>
         </article>
         <article class="hl-tile" aria-roledescription="slide">
           <p class="hl-cap"><span data-i18n="hl.3a">مدرب ذكي</span> <b data-i18n="hl.3b">يجاوبك من أرقامك.</b></p>
-          <div class="device hl-device"><img data-shot="coach" src="assets/app-coach-ar.webp" width="660" height="1434" alt="المدرب الذكي يجاوب حسب هدفك" data-i18n-attr="alt:coach.alt" loading="lazy"></div>
+          <div class="iph flat hl-device"><div class="iph-front"><div class="iph-bezel"><div class="iph-screen"><img class="iph-shot" data-n="coach" src="assets/n-coach-ar.webp" width="660" height="1434" alt="المدرب الذكي يجاوب من بياناتك" data-i18n-attr="alt:alt.coach" loading="lazy"></div></div><i class="iph-island"></i><i class="iph-glare"></i></div></div>
         </article>
         <article class="hl-tile" aria-roledescription="slide">
           <p class="hl-cap"><span data-i18n="hl.4a">شوف جسمك</span> <b data-i18n="hl.4b">وهو يتغيّر.</b></p>
-          <div class="device hl-device"><img data-shot="progress" src="assets/app-progress-ar.webp" width="660" height="1434" alt="صفحة التقدّم في BetterMe" data-i18n-attr="alt:progress.alt" loading="lazy"></div>
+          <div class="iph flat hl-device"><div class="iph-front"><div class="iph-bezel"><div class="iph-screen"><img class="iph-shot" data-n="progress" src="assets/n-progress-ar.webp" width="660" height="1434" alt="صفحة التقدم: خطتك ووزنك والتزامك" data-i18n-attr="alt:alt.progress" loading="lazy"></div></div><i class="iph-island"></i><i class="iph-glare"></i></div></div>
         </article>
         <article class="hl-tile" aria-roledescription="slide">
           <p class="hl-cap"><span data-i18n="hl.5a">نافس أخوياك</span> <b data-i18n="hl.5b">على القمة.</b></p>
-          <div class="device hl-device"><img data-shot="group" src="assets/app-group-ar.webp" width="660" height="1434" alt="ترتيب مجموعة أصدقاء" data-i18n-attr="alt:compete.alt" loading="lazy"></div>
+          <div class="iph flat hl-device"><div class="iph-front"><div class="iph-bezel"><div class="iph-screen"><img class="iph-shot" data-n="friends" src="assets/n-friends-ar.webp" width="660" height="1434" alt="ترتيبك مع أخوياك" data-i18n-attr="alt:alt.friends" loading="lazy"></div></div><i class="iph-island"></i><i class="iph-glare"></i></div></div>
         </article>
       </div>
       <div class="hl-controls">
@@ -154,8 +158,17 @@
           <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M26.22,94.41A6,6,0,0,0,26,96v16A38,38,0,0,0,42,143V216a6,6,0,0,0,6,6H208a6,6,0,0,0,6-6V143A38,38,0,0,0,230,112V96a5.91,5.91,0,0,0-.23-1.64L215.43,44.15A14.07,14.07,0,0,0,202,34H54A14.07,14.07,0,0,0,40.57,44.15Zm25.89-47A2,2,0,0,1,54,46H202a2,2,0,0,1,1.92,1.45L216.05,90H40ZM102,102h52v10a26,26,0,0,1-52,0Zm-64,0H90v10a26,26,0,0,1-38.18,23,6,6,0,0,0-1.65-1A26,26,0,0,1,38,112ZM202,210H54V148.66a38,38,0,0,0,42-16.21,37.95,37.95,0,0,0,64,0,38,38,0,0,0,42,16.21Zm3.83-76a6,6,0,0,0-1.65,1A26,26,0,0,1,166,112V102h52v10A26,26,0,0,1,205.83,134Z"/></svg><span data-i18n="food.i5">المتجر</span></li>
         </ul>
         <figure class="stage" data-rise>
-          <div class="device stage-device"><img data-shot="nutrition" src="assets/app-nutrition-ar.webp" width="660" height="1434" alt="صفحة التغذية في BetterMe" data-i18n-attr="alt:nutrition.alt" loading="lazy"></div>
+          <div class="tilt"><div class="iph stage-phone"><div class="iph-front"><div class="iph-bezel"><div class="iph-screen"><img class="iph-shot" data-n="nutrition" src="assets/n-nutrition-ar.webp" width="660" height="1434" alt="صفحة التغذية في BetterMe" data-i18n-attr="alt:alt.nutrition" loading="lazy"></div></div><i class="iph-island"></i><i class="iph-glare"></i></div></div></div>
         </figure>
+        <div class="split rest-split">
+          <div class="split-copy">
+            <h3 class="section-title sub" data-reveal><span data-i18n="rest.t1">سعرات المطاعم جاهزة.</span> <span class="soft" data-i18n="rest.t2">اختر وجبتك وتنحسب.</span></h3>
+            <p class="lead" data-reveal data-delay="1"><span data-i18n="rest.l1">أكثر من</span> <bdi dir="ltr" class="n">1,200</bdi> <span data-i18n="rest.l2">وجبة، بسعراتها جاهزة.</span></p>
+          </div>
+          <figure class="split-media" data-rise>
+            <div class="tilt flip"><div class="iph split-phone"><div class="iph-front"><div class="iph-bezel"><div class="iph-screen"><img class="iph-shot" data-n="restaurants" src="assets/n-restaurants-ar.webp" width="660" height="1434" alt="سعرات المطاعم في BetterMe" data-i18n-attr="alt:alt.restaurants" loading="lazy"></div></div><i class="iph-island"></i><i class="iph-glare"></i></div></div></div>
+          </figure>
+        </div>
       </div>
     </section>
 
@@ -166,7 +179,7 @@
         <div class="bento">
           <div class="cell cell-plan" data-reveal>
             <p class="cell-cap"><b data-i18n="train.growA">تشوف كم زادت أوزانك</b> <span data-i18n="train.growB">في كل تمرين، من أول جلسة لليوم.</span></p>
-            <div class="device cell-device"><img data-shot="strength" src="assets/app-strength-ar.webp" width="660" height="1434" alt="تطوّر الأوزان في تمرين واحد" data-i18n-attr="alt:strength.alt" loading="lazy"></div>
+            <div class="iph flat cell-device"><div class="iph-front"><div class="iph-bezel"><div class="iph-screen"><img class="iph-shot" data-n="strength" src="assets/n-strength-ar.webp" width="660" height="1434" alt="تطوّر أوزانك في كل تمرين" data-i18n-attr="alt:alt.strength" loading="lazy"></div></div><i class="iph-island"></i><i class="iph-glare"></i></div></div>
           </div>
           <div class="cell cell-num" data-reveal data-delay="1">
             <p class="big-num"><bdi dir="ltr" class="js-count" data-to="566">566</bdi></p>
@@ -211,16 +224,23 @@
       </div>
     </section>
 
-    <!-- AI coach -->
+    <!-- AI coach: what it does for you, on three phones -->
     <section class="chapter coach" aria-labelledby="t-coach">
-      <div class="wrap split">
-        <div class="split-copy">
-          <h2 class="section-title" id="t-coach" data-reveal><span data-i18n="coach.t1">اسأله أي شي.</span> <span class="soft" data-i18n="coach.t2">يجاوبك من أرقامك.</span></h2>
-          <p class="lead" data-reveal data-delay="1"><span data-i18n="coach.b1">مدرب بالذكاء الاصطناعي يعرف</span> <b data-i18n="coach.b2">هدفك وخطتك وأوزانك،</b> <span data-i18n="coach.b3">ويرد عليك على أساسها.</span></p>
-        </div>
-        <figure class="split-media" data-rise>
-          <div class="device split-device"><img data-shot="coach" src="assets/app-coach-ar.webp" width="660" height="1434" alt="المدرب الذكي يجاوب حسب هدفك" data-i18n-attr="alt:coach.alt" loading="lazy"></div>
-        </figure>
+      <div class="wrap">
+        <h2 class="section-title" id="t-coach" data-reveal><span data-i18n="coach.t1">اسأله أي شي.</span> <span class="soft" data-i18n="coach.t2">يجاوبك من أرقامك.</span></h2>
+        <p class="lead center" data-reveal data-delay="1"><span data-i18n="coach.b1">مدرب بالذكاء الاصطناعي يعرف</span> <b data-i18n="coach.b2">هدفك وخطتك وأوزانك،</b> <span data-i18n="coach.b3">ويرد عليك على أساسها.</span></p>
+      </div>
+      <div class="trio ai-trio">
+        <div class="iph t-left"><div class="iph-front"><div class="iph-bezel"><div class="iph-screen"><img class="iph-shot" data-n="complete" src="assets/n-complete-ar.webp" width="660" height="1434" alt="وجبة تكمّل الناقص من يومك" data-i18n-attr="alt:alt.complete" loading="lazy"></div></div><i class="iph-island"></i><i class="iph-glare"></i></div></div>
+        <div class="iph t-right"><div class="iph-front"><div class="iph-bezel"><div class="iph-screen"><img class="iph-shot" data-n="wizard" src="assets/n-wizard-ar.webp" width="660" height="1434" alt="جدول يسويه لك الذكاء الاصطناعي" data-i18n-attr="alt:alt.wizard" loading="lazy"></div></div><i class="iph-island"></i><i class="iph-glare"></i></div></div>
+        <div class="iph t-mid"><div class="iph-front"><div class="iph-bezel"><div class="iph-screen"><img class="iph-shot" data-n="coach" src="assets/n-coach-ar.webp" width="660" height="1434" alt="المدرب الذكي يجاوب من بياناتك" data-i18n-attr="alt:alt.coach" loading="lazy"></div></div><i class="iph-island"></i><i class="iph-glare"></i></div></div>
+      </div>
+      <div class="wrap">
+        <ul class="ai-asks" data-stagger>
+          <li><b data-i18n="coach.a1a">ما تعرف تسوي جدول؟</b> <span data-i18n="coach.a1b">يسويه لك.</span></li>
+          <li><b data-i18n="coach.a2a">ما تدري وش تاكل؟</b> <span data-i18n="coach.a2b">يسوي لك وجبة تكمّل الناقص.</span></li>
+          <li><b data-i18n="coach.a3a">تحس إنك ضايع؟</b> <span data-i18n="coach.a3b">اسأله، ويجاوبك من بياناتك.</span></li>
+        </ul>
       </div>
     </section>
 
@@ -231,7 +251,7 @@
         <div class="bento progress-bento">
           <div class="cell cell-photos" data-reveal>
             <p class="cell-cap"><b data-i18n="journey.photoA">صوّر جسمك بنفس الكادر كل أسبوع،</b> <span data-i18n="journey.photoB">وشوف الفرق نهاية كل شهر.</span></p>
-            <div class="device cell-device"><img data-shot="capture" src="assets/app-capture-ar.webp" width="660" height="1434" alt="تصوير الجسم بنفس الكادر" data-i18n-attr="alt:capture.alt" loading="lazy"></div>
+            <div class="iph flat cell-device"><div class="iph-front"><div class="iph-bezel"><div class="iph-screen"><img class="iph-shot" data-n="bodycompare" src="assets/n-bodycompare-ar.webp" width="660" height="1434" alt="جسمك قبل وبعد" data-i18n-attr="alt:alt.bodycompare" loading="lazy"></div></div><i class="iph-island"></i><i class="iph-glare"></i></div></div>
           </div>
           <div class="cell cell-weight" data-reveal data-delay="1">
             <p class="weight-now"><bdi class="n js-weight" data-from="86.6" data-to="81.6">81.6</bdi> <small data-i18n="unit.kg">كغ</small></p>
@@ -244,10 +264,23 @@
           </div>
           <div class="cell cell-ai" data-reveal>
             <p class="cell-cap"><b data-i18n="journey.aiA">ذكاء اصطناعي يقرأ تقرير InBody،</b> <span data-i18n="journey.aiB">ويقولك إذا ماشي صح أو لا.</span></p>
-            <div class="device cell-device"><img data-shot="coachplan" src="assets/app-coachplan-ar.webp" width="660" height="1434" alt="المدرب الذكي يقول إنك ماشي على الخطة" data-i18n-attr="alt:coachplan.alt" loading="lazy"></div>
+            <div class="iph flat cell-device"><div class="iph-front"><div class="iph-bezel"><div class="iph-screen"><img class="iph-shot" data-n="report" src="assets/n-report-ar.webp" width="660" height="1434" alt="التقرير الشهري من InBody" data-i18n-attr="alt:alt.report" loading="lazy"></div></div><i class="iph-island"></i><i class="iph-glare"></i></div></div>
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- The weekly report coming out of the phone like paper -->
+    <section class="paper" aria-labelledby="t-paper">
+      <div class="wrap">
+        <h2 class="section-title" id="t-paper" data-reveal><span data-i18n="paper.t1">تقرير كل أسبوع.</span> <span class="soft" data-i18n="paper.t2">ورقة وحدة تقولك وين أنت.</span></h2>
+        <p class="lead center" data-reveal data-delay="1" data-i18n="paper.lead">التزامك وأكلك ووزنك وتمارينك، وتشاركه بصورة وحدة.</p>
+      </div>
+      <!-- A ready-made mockup (LS Graphics «iPhone XS Longscroll», free licence) with the app's own picture of the whole
+           weekly report printed on the parts of the paper that are seen. -->
+      <figure class="paper-shot" data-reveal>
+        <img data-n="paper" src="assets/n-paper-ar.webp" width="1400" height="1724" alt="التقرير الأسبوعي في BetterMe" data-i18n-attr="alt:alt.weekly" loading="lazy" decoding="async">
+      </figure>
     </section>
 
     <!-- Levels, then the streaks that earn them -->
@@ -286,17 +319,36 @@
             <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M181.92,153A55.58,55.58,0,0,1,137,197.92a7,7,0,0,1-1,.08,6,6,0,0,1-1-11.92c17.38-2.92,32.13-17.68,35.08-35.08a6,6,0,1,1,11.84,2ZM214,144a86,86,0,0,1-172,0c0-27.47,10.85-55.61,32.25-83.64a6,6,0,0,1,9-.67l26.34,25.56,23.09-63.31a6,6,0,0,1,9.47-2.56C163.72,37.33,214,85.4,214,144Zm-12,0c0-48.4-38.65-89.84-61.07-109.8L117.64,98.06a6,6,0,0,1-9.82,2.25l-28-27.22C62.67,97.13,54,121,54,144a74,74,0,0,0,148,0Z"/></svg><span data-i18n="compete.i2">الالتزام</span></li>
             <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M238,56v64a6,6,0,0,1-12,0V70.48l-85.76,85.76a6,6,0,0,1-8.48,0L96,120.49,28.24,188.24a6,6,0,0,1-8.48-8.48l72-72a6,6,0,0,1,8.48,0L136,143.51,217.52,62H168a6,6,0,0,1,0-12h64A6,6,0,0,1,238,56Z"/></svg><span data-i18n="compete.i3">نسبة التطوّر</span></li>
             <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M232,66H206V48a6,6,0,0,0-6-6H56a6,6,0,0,0-6,6V66H24A14,14,0,0,0,10,80V96a38,38,0,0,0,38,38h5.14A78,78,0,0,0,122,189.75V218H96a6,6,0,0,0,0,12h64a6,6,0,0,0,0-12H134V189.75c32.44-2.52,59.43-25.3,68.62-55.75H208a38,38,0,0,0,38-38V80A14,14,0,0,0,232,66ZM48,122A26,26,0,0,1,22,96V80a2,2,0,0,1,2-2H50v34a80.87,80.87,0,0,0,.65,10Zm146-10.9c0,36.62-29.38,66.63-65.5,66.9A66,66,0,0,1,62,112V54H194ZM234,96a26,26,0,0,1-26,26h-2.77a78.45,78.45,0,0,0,.77-10.9V78h26a2,2,0,0,1,2,2Z"/></svg><span data-i18n="compete.i4">جوائز للأكثر التزام</span></li>
+            <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M104,162H48a6,6,0,0,0-6,6v12a34,34,0,0,0,68,0V168A6,6,0,0,0,104,162Zm-6,18a22,22,0,0,1-44,0v-6H98ZM76,18C65.2,18,54.56,27.91,46,45.9c-13.66,28.82-18.29,71.53,0,93.9a6,6,0,0,0,4.65,2.2h50.53a6,6,0,0,0,4.65-2.2c18.32-22.37,13.69-65.08,0-93.9C97.41,27.91,86.77,18,76,18ZM98.23,130H53.74c-10.09-15.18-11.69-47.65,3.14-79C64.24,35.51,71.77,30,76,30s11.75,5.51,19.1,21C109.92,82.35,108.32,114.82,98.23,130ZM208,186H152a6,6,0,0,0-6,6v12a34,34,0,0,0,68,0V192A6,6,0,0,0,208,186Zm-6,18a22,22,0,0,1-44,0v-6h44Zm-47.27-38h50.53a6,6,0,0,0,4.65-2.2c18.32-22.37,13.69-65.08,0-93.9C201.44,51.91,190.8,42,180,42s-21.43,9.91-30,27.9c-13.66,28.82-18.29,71.53,0,93.9A6,6,0,0,0,154.75,166Zm6.17-91c7.35-15.53,14.88-21,19.1-21s11.74,5.51,19.1,21c14.83,31.31,13.23,63.78,3.14,79H157.77C147.68,138.82,146.08,106.35,160.92,75Z"/></svg><span data-i18n="compete.i5">الخطوات</span></li>
           </ul>
           <p class="fine" data-reveal data-i18n="compete.fine">ووزنك ما يشوفه أحد.</p>
         </div>
         <figure class="split-media" data-rise>
-          <div class="device split-device"><img data-shot="group" src="assets/app-group-ar.webp" width="660" height="1434" alt="ترتيب مجموعة أصدقاء" data-i18n-attr="alt:compete.alt" loading="lazy"></div>
+          <div class="tilt"><div class="iph split-phone"><div class="iph-front"><div class="iph-bezel"><div class="iph-screen"><img class="iph-shot" data-n="friends" src="assets/n-friends-ar.webp" width="660" height="1434" alt="ترتيبك مع أخوياك" data-i18n-attr="alt:alt.friends" loading="lazy"></div></div><i class="iph-island"></i><i class="iph-glare"></i></div></div></div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Community: programs, workout days and meals that people share -->
+    <section class="chapter community tint" aria-labelledby="t-community">
+      <div class="wrap split">
+        <div class="split-copy">
+          <h2 class="section-title" id="t-community" data-reveal><span data-i18n="community.t1">جداول ووجبات من الناس.</span> <span class="soft" data-i18n="community.t2">خذ منها، وشارك اللي عندك.</span></h2>
+          <ul class="icon-list" data-stagger>
+            <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M208,34H182V24a6,6,0,0,0-12,0V34H86V24a6,6,0,0,0-12,0V34H48A14,14,0,0,0,34,48V208a14,14,0,0,0,14,14H208a14,14,0,0,0,14-14V48A14,14,0,0,0,208,34ZM48,46H74V56a6,6,0,0,0,12,0V46h84V56a6,6,0,0,0,12,0V46h26a2,2,0,0,1,2,2V82H46V48A2,2,0,0,1,48,46ZM208,210H48a2,2,0,0,1-2-2V94H210V208A2,2,0,0,1,208,210Zm-39.76-86.24a6,6,0,0,1,0,8.48l-48,48a6,6,0,0,1-8.48,0l-24-24a6,6,0,0,1,8.48-8.48L116,167.51l43.76-43.75A6,6,0,0,1,168.24,123.76Z"/></svg><span data-i18n="community.i1">جداول</span></li>
+            <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M248,122H238V88a14,14,0,0,0-14-14H206V64a14,14,0,0,0-14-14H168a14,14,0,0,0-14,14v58H102V64A14,14,0,0,0,88,50H64A14,14,0,0,0,50,64V74H32A14,14,0,0,0,18,88v34H8a6,6,0,0,0,0,12H18v34a14,14,0,0,0,14,14H50v10a14,14,0,0,0,14,14H88a14,14,0,0,0,14-14V134h52v58a14,14,0,0,0,14,14h24a14,14,0,0,0,14-14V182h18a14,14,0,0,0,14-14V134h10a6,6,0,0,0,0-12ZM32,170a2,2,0,0,1-2-2V88a2,2,0,0,1,2-2H50v84Zm58,22a2,2,0,0,1-2,2H64a2,2,0,0,1-2-2V64a2,2,0,0,1,2-2H88a2,2,0,0,1,2,2Zm104,0a2,2,0,0,1-2,2H168a2,2,0,0,1-2-2V64a2,2,0,0,1,2-2h24a2,2,0,0,1,2,2Zm32-24a2,2,0,0,1-2,2H206V86h18a2,2,0,0,1,2,2Z"/></svg><span data-i18n="community.i2">أيام تمرين</span></li>
+            <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M224,106H213.77a86,86,0,0,0-171.54,0H32a6,6,0,0,0-6,6,102.35,102.35,0,0,0,56,91.06V208a14,14,0,0,0,14,14h64a14,14,0,0,0,14-14v-4.94A102.35,102.35,0,0,0,230,112,6,6,0,0,0,224,106ZM174.24,54.29a74.15,74.15,0,0,1,8.15,7.6A85.89,85.89,0,0,0,130.84,106H97.34A74.24,74.24,0,0,1,168,54C170.08,54,172.17,54.11,174.24,54.29ZM190.3,72.14A73.49,73.49,0,0,1,201.74,106H144.48A73.89,73.89,0,0,1,190.3,72.14ZM128,38a73.68,73.68,0,0,1,26.8,5,86.32,86.32,0,0,0-69.94,63H54.26A74.09,74.09,0,0,1,128,38Zm37.5,155.84a6,6,0,0,0-3.5,5.46V208a2,2,0,0,1-2,2H96a2,2,0,0,1-2-2v-8.7a6,6,0,0,0-3.5-5.46A90.35,90.35,0,0,1,38.2,118H217.8A90.35,90.35,0,0,1,165.5,193.84Z"/></svg><span data-i18n="community.i3">وجبات</span></li>
+            <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M243.6,148.8a6,6,0,0,1-8.4-1.2A53.58,53.58,0,0,0,192,126a6,6,0,0,1,0-12,26,26,0,1,0-25.18-32.5,6,6,0,0,1-11.62-3,38,38,0,1,1,59.91,39.63A65.69,65.69,0,0,1,244.8,140.4,6,6,0,0,1,243.6,148.8ZM189.19,213a6,6,0,0,1-2.19,8.2,5.9,5.9,0,0,1-3,.81,6,6,0,0,1-5.2-3,59,59,0,0,0-101.62,0,6,6,0,1,1-10.38-6A70.1,70.1,0,0,1,103,182.55a46,46,0,1,1,50.1,0A70.1,70.1,0,0,1,189.19,213ZM128,178a34,34,0,1,0-34-34A34,34,0,0,0,128,178ZM70,120a6,6,0,0,0-6-6A26,26,0,1,1,89.18,81.49a6,6,0,1,0,11.62-3,38,38,0,1,0-59.91,39.63A65.69,65.69,0,0,0,11.2,140.4a6,6,0,1,0,9.6,7.2A53.58,53.58,0,0,1,64,126,6,6,0,0,0,70,120Z"/></svg><span data-i18n="community.i4">أصدقائي</span></li>
+          </ul>
+        </div>
+        <figure class="split-media" data-rise>
+          <div class="tilt flip"><div class="iph split-phone"><div class="iph-front"><div class="iph-bezel"><div class="iph-screen"><img class="iph-shot" data-n="community" src="assets/n-community-ar.webp" width="660" height="1434" alt="المجتمع في BetterMe" data-i18n-attr="alt:alt.community" loading="lazy"></div></div><i class="iph-island"></i><i class="iph-glare"></i></div></div></div>
         </figure>
       </div>
     </section>
 
     <!-- Everything you track -->
-    <section class="chapter all tint" aria-labelledby="t-all">
+    <section class="chapter all" aria-labelledby="t-all">
       <div class="wrap">
         <h2 class="section-title" id="t-all" data-reveal><span data-i18n="all.t1">وكل اللي تتابعه،</span> <span class="soft" data-i18n="all.t2">في مكان واحد.</span></h2>
         <ul class="all-grid" data-stagger>
@@ -385,9 +437,10 @@
     </div>
   </div>
 
-  <script src="js/config.js?v=20261112e"></script>
-  <script src="js/strings.js?v=20261112e"></script>
-  <script src="js/motion.js?v=20261112e"></script>
-  <script src="js/main.js?v=20261112e"></script>
+  <script src="js/config.js?v=20261119a"></script>
+  <script src="js/strings.js?v=20261119a"></script>
+  <script src="js/motion.js?v=20261119a"></script>
+  <script src="js/main.js?v=20261119a"></script>
+  <script src="js/v2.js?v=20261119a"></script>
 </body>
 </html>
