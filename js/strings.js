@@ -26,6 +26,17 @@ BM.strings = {
       'hold.button': 'Press and hold here',
       'hold.close': 'Close',
 
+      // 2026-11-23 (owner's list): restaurants in the food row, the three phones, the body photos, Apple Watch
+      'v5.rest': 'Restaurants',
+      'v5.row3': 'The Nutrition page, a meal estimated from its photo, and restaurant calories',
+      'v5.altBig': 'Your body before and after, in the same frame',
+      'v5.altShadow': 'Your last photo shows faintly over the camera so you stand in the same spot',
+      'v5.altVideo': 'A video of all your photos since your first session',
+      'v5.watchT1': 'Train from your watch,',
+      'v5.watchT2': 'without taking out your phone.',
+      'v5.watchLead': 'On Apple Watch you see the exercise on video, log your weight and reps, and have your rest timer, your food and your steps.',
+      'v5.watchAlt': 'BetterMe on Apple Watch',
+
       'nav.affiliate': 'Share the profit',
       'nav.coaches': 'For coaches',
 
