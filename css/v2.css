@@ -87,3 +87,83 @@
   .hero .trio .t-mid { --w: 262px; }
   .hero .trio .t-left, .hero .trio .t-right { --w: 228px; }
 }
+
+/* ---------- 2026-11-23 (owner's list) ---------- */
+/* Food: three phones standing in one row, the Nutrition page in front; the side ones slide out from behind it as the
+   row comes up (js/v2.js). Restaurants are one more way in the icon row above. */
+.food .ways { flex-wrap: nowrap; gap: 2px; }
+.food .ways li { flex: 1 1 0; min-width: 0; width: auto; font-size: 13px; }
+.row3 { display: flex; justify-content: center; align-items: flex-end; margin-top: 56px; }
+.r3 { position: relative; }
+.r3-mid { z-index: 2; }
+.r3-a, .r3-b { z-index: 1; margin-bottom: 28px; }
+.r3-a { margin-inline-end: -9vw; }
+.r3-b { margin-inline-start: -9vw; }
+.r3-mid .r3-phone { --w: min(42vw, 236px); }
+.r3-a .r3-phone, .r3-b .r3-phone { --w: min(34vw, 200px); }
+.r3 .iph-front { box-shadow: inset 0 0 0 0.6px rgba(255, 255, 255, 0.75), 0 30px 50px -26px rgba(10, 20, 40, 0.55); }
+
+/* Training without its icon cell. */
+.bento.no-list { grid-template-areas: "plan plan" "log log" "num num"; }
+
+/* The coach: each question in its own card under the phones. */
+.ai-asks.cards { gap: 12px; max-width: 420px; }
+.ai-asks.cards li { padding: 18px 20px; border-radius: 22px; background: var(--tint); }
+
+/* Progress: the body photos as on the App Store page, small cards around them, the whole report under. */
+.body-grid { display: grid; gap: 12px; margin-top: 44px; grid-template-columns: 1fr 1fr; grid-template-areas: "big big" "shadow video" "minis minis"; }
+.bg-big { grid-area: big; }
+.bg-shadow { grid-area: shadow; }
+.bg-video { grid-area: video; }
+.body-grid figure img { width: 100%; height: auto; border-radius: 20px; box-shadow: 0 22px 44px -26px rgba(10, 20, 40, 0.55); }
+.bg-big img { border-radius: 24px; }
+.bg-minis { grid-area: minis; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.bg-minis .cell-weight { grid-area: auto; }   /* site.css names it for the old grid */
+.mini { display: flex; flex-direction: column; justify-content: space-between; gap: 12px; padding: 18px; border-radius: 22px; background: #fff; }
+.mini .weight-now { gap: 6px; }
+.mini .weight-now .n { font-size: 38px; }
+.mini .weight-now small { font-size: 16px; }
+.mini .growth { height: 64px; }
+.mini-ico svg { width: 34px; height: 34px; color: var(--accent); }
+.mini-cap { font-size: 14px; line-height: 1.45; font-weight: 700; color: var(--ink-2); text-wrap: balance; }
+.mini-cap b { color: var(--ink); }
+.journey .paper-title { margin-top: clamp(84px, 12vw, 130px); text-align: center; }
+.journey .paper-shot { margin-top: 8px; }
+
+/* Apple Watch: a drawn watch (dark case, crown, side button, sport band) and the watch app's real screens in turn. */
+.watch { --ww: min(46vw, 210px); position: relative; width: var(--ww); margin: 70px auto; }
+.w-band { position: absolute; left: 50%; z-index: 0; width: 72%; height: 30%; transform: translateX(-50%); background: linear-gradient(90deg, #141518 0%, #2a2d31 50%, #141518 100%); }
+.w-band.top { bottom: 88%; border-radius: 22px 22px 6px 6px; -webkit-mask: linear-gradient(transparent, #000 75%); mask: linear-gradient(transparent, #000 75%); }
+.w-band.bottom { top: 88%; border-radius: 6px 6px 22px 22px; -webkit-mask: linear-gradient(#000 25%, transparent); mask: linear-gradient(#000 25%, transparent); }
+.w-case {
+  position: relative; z-index: 1; padding: calc(var(--ww) * 0.07); border-radius: calc(var(--ww) * 0.29);
+  background: linear-gradient(150deg, #7a8089 0%, #2f3237 24%, #17191c 50%, #383c42 76%, #1b1d20 100%);
+  box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.18), inset 0 2px 4px rgba(255, 255, 255, 0.25), 0 30px 60px -24px rgba(0, 0, 0, 0.55);
+}
+.w-screen { position: relative; aspect-ratio: 416 / 496; overflow: hidden; border-radius: calc(var(--ww) * 0.2); background: #000; box-shadow: 0 0 0 calc(var(--ww) * 0.018) #050506; }
+.w-s { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; animation: w-cycle 15s linear infinite both; animation-delay: calc(var(--i) * 3s); }
+@keyframes w-cycle { 0% { opacity: 0; } 3% { opacity: 1; } 20% { opacity: 1; } 23% { opacity: 0; } 100% { opacity: 0; } }
+.w-crown { position: absolute; right: calc(var(--ww) * -0.05); top: 25%; width: calc(var(--ww) * 0.065); height: calc(var(--ww) * 0.17); border-radius: 0 6px 6px 0; background: repeating-linear-gradient(0deg, #3a3e44 0 2px, #1d1f22 2px 4px); }
+.w-side { position: absolute; right: calc(var(--ww) * -0.022); top: 52%; width: calc(var(--ww) * 0.03); height: calc(var(--ww) * 0.24); border-radius: 0 4px 4px 0; background: linear-gradient(90deg, #1b1d20, #3d4147); }
+
+
+/* The price ends the page, with the download under it. */
+.price-cta { margin-top: 36px; }
+.end { padding-top: 0; }
+
+@media (min-width: 900px) {
+  .food .ways { max-width: 560px; margin-inline: auto; }
+  .food .ways li { font-size: 14px; }
+  .r3-mid .r3-phone { --w: 260px; }
+  .r3-a .r3-phone, .r3-b .r3-phone { --w: 222px; }
+  .r3-a { margin-inline-end: -36px; }
+  .r3-b { margin-inline-start: -36px; }
+  .bento.no-list { grid-template-areas: "plan num" "plan log"; }
+  .ai-asks.cards { max-width: var(--max); }
+  .body-grid { grid-template-columns: 1fr 2.2fr 1fr; grid-template-areas: "shadow big video" ". minis ."; align-items: start; }
+  .watch { --ww: 230px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .w-s { animation: none !important; }
+  .w-s:first-child { opacity: 1; }
+}
