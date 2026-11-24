@@ -8,6 +8,8 @@
   if (root.classList.contains('inapp')) {
     document.querySelectorAll('video[data-clip]').forEach(function (v) {
       var img = document.createElement('img');
+      // the picture takes the video's place and its look (e.g. .iph-shot fills the phone's screen)
+      if (v.className) img.className = v.className;
       img.setAttribute('data-clip', v.getAttribute('data-clip'));
       img.src = v.getAttribute('poster');
       img.width = 540; img.height = 1174;
